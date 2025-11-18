@@ -98,9 +98,9 @@ return (
       backgroundColor: theme.isDarkMode ? '#000' : '#fff'
     }}>
 <Button
-title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
-onPress={toggleDarkMode}
-/>
+  title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
+  onPress={toggleDarkMode}
+  />
 </View>
 );
 }
@@ -459,9 +459,9 @@ function Component() {
 
 
     <Button
-    title={theme.isDark ? '' : ''}
-    onPress={theme.toggle}
-    />
+      title={theme.isDark ? '' : ''}
+      onPress={theme.toggle}
+      />
 );
 }
 ```

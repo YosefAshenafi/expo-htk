@@ -80,17 +80,17 @@ function ThemeSelector() {
 
     <View row centerH gap-16>
       <ThemeSettingsButton
-      name="light"
-      isActive={scheme === 'light'}
+        name="light"
+        isActive={scheme === 'light'}
+        onPress={changeTheme}
+        theme={useTheme()} // Design tokens from ui-lib
+        />
+    <ThemeSettingsButton
+      name="dark"
+      isActive={scheme === 'dark'}
       onPress={changeTheme}
       theme={useTheme()} // Design tokens from ui-lib
       />
-    <ThemeSettingsButton
-    name="dark"
-    isActive={scheme === 'dark'}
-    onPress={changeTheme}
-    theme={useTheme()} // Design tokens from ui-lib
-    />
 </View>
 );
 }
@@ -117,17 +117,17 @@ function SettingsScreen() {
         <Text text80 marginB-12>Theme</Text>
         <View row centerH gap-16 marginB-32>
           <ThemeSettingsButton
-          name="light"
-          isActive={scheme === 'light'}
+            name="light"
+            isActive={scheme === 'light'}
+            onPress={changeTheme}
+            theme={tokens}
+            />
+        <ThemeSettingsButton
+          name="dark"
+          isActive={scheme === 'dark'}
           onPress={changeTheme}
           theme={tokens}
           />
-        <ThemeSettingsButton
-        name="dark"
-        isActive={scheme === 'dark'}
-        onPress={changeTheme}
-        theme={tokens}
-        />
     </View>
 </View>
 </ScrollView>
@@ -152,12 +152,12 @@ function HorizontalThemeSelector() {
     <View row centerH gap-24 padding-16>
       {(['light', 'dark'] as const).map((themeName) => (
             <ThemeSettingsButton
-            key={themeName}
-            name={themeName}
-            isActive={scheme === themeName}
-            onPress={changeTheme}
-            theme={tokens}
-            />
+              key={themeName}
+              name={themeName}
+              isActive={scheme === themeName}
+              onPress={changeTheme}
+              theme={tokens}
+              />
         ))}
 </View>
 );
@@ -182,21 +182,21 @@ function LabeledThemeButton() {
       <View gap-8>
         <Text text80>Light Mode</Text>
         <ThemeSettingsButton
-        name="light"
-        isActive={scheme === 'light'}
-        onPress={changeTheme}
-        theme={tokens}
-        />
+          name="light"
+          isActive={scheme === 'light'}
+          onPress={changeTheme}
+          theme={tokens}
+          />
     </View>
 
   <View gap-8>
     <Text text80>Dark Mode</Text>
     <ThemeSettingsButton
-    name="dark"
-    isActive={scheme === 'dark'}
-    onPress={changeTheme}
-    theme={tokens}
-    />
+      name="dark"
+      isActive={scheme === 'dark'}
+      onPress={changeTheme}
+      theme={tokens}
+      />
 </View>
 </View>
 );
@@ -231,11 +231,11 @@ function AppHeader() {
 
     <View>
       <ThemeSettingsButton
-      name={scheme === 'light' ? 'dark' : 'light'}
-      isActive={false}
-      onPress={changeTheme}
-      theme={useTheme()}
-      />
+        name={scheme === 'light' ? 'dark' : 'light'}
+        isActive={false}
+        onPress={changeTheme}
+        theme={useTheme()}
+        />
   </View>
 );
 }
@@ -256,8 +256,8 @@ function ThemedButton() {
   return (
 
     <View
-    padding-16
-    backgroundColor={Colors.$backgroundColor}
+      padding-16
+      backgroundColor={Colors.$backgroundColor}
   >
   <Text color={Colors.$textDefault}>Theme Aware</Text>
 </View>
@@ -304,12 +304,12 @@ return (
   <View row centerH gap-16>
     {buttons.map((btn) => (
           <ThemeSettingsButton
-          key={btn.name}
-          name={btn.name as 'light' | 'dark'}
-          isActive={btn.isActive}
-          onPress={changeTheme}
-          theme={tokens}
-          />
+            key={btn.name}
+            name={btn.name as 'light' | 'dark'}
+            isActive={btn.isActive}
+            onPress={changeTheme}
+            theme={tokens}
+            />
       ))}
 </View>
 );
@@ -393,11 +393,11 @@ test('renders theme button', () => {
 
     const { getByText } = render(
       <ThemeSettingsButton
-      name="light"
-      isActive={true}
-      onPress={onPress}
-      theme={mockTheme}
-      />
+        name="light"
+        isActive={true}
+        onPress={onPress}
+        theme={mockTheme}
+        />
   );
 
 expect(getByText('light')).toBeTruthy();
@@ -409,11 +409,11 @@ test('calls onPress with theme name', () => {
 
     const { getByText } = render(
       <ThemeSettingsButton
-      name="dark"
-      isActive={false}
-      onPress={onPress}
-      theme={mockTheme}
-      />
+        name="dark"
+        isActive={false}
+        onPress={onPress}
+        theme={mockTheme}
+        />
   );
 
 fireEvent.press(getByText('dark'));
@@ -426,12 +426,12 @@ test('shows active state styling', () => {
 
     const { getByTestId } = render(
       <ThemeSettingsButton
-      name="light"
-      isActive={true}
-      onPress={onPress}
-      theme={mockTheme}
-      testID="theme-button"
-      />
+        name="light"
+        isActive={true}
+        onPress={onPress}
+        theme={mockTheme}
+        testID="theme-button"
+        />
   );
 
 const button = getByTestId('theme-button');

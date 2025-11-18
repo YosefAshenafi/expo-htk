@@ -105,12 +105,12 @@ function DeleteButton() {
 
 
     <Button
-    title="Delete"
-    onPress={() => confirm({
-          title: 'Confirm Delete',
-          buttons: [
-            { label: 'Cancel', onPress: () => {} },
-            { label: 'Delete', onPress: () => handleDelete() }
+      title="Delete"
+      onPress={() => confirm({
+      title: 'Confirm Delete',
+      buttons: [
+      { label: 'Cancel', onPress: () => {} },
+      { label: 'Delete', onPress: () => handleDelete() }
           ]
       })}
 />

@@ -54,22 +54,22 @@ Specialized entry components for different setting types.
 import { SwitchEntry, FontFamilyEntry, FontSizeEntry } from '@htk/features/appSettings/components/Entries';
 
 <SwitchEntry
-label="Dark Mode"
-value={isDark}
-onChange={(val) => setIsDark(val)}
-/>
+  label="Dark Mode"
+  value={isDark}
+  onChange={(val) => setIsDark(val)}
+  />
 
 <FontFamilyEntry
-label="Font Family"
-value={fontFamily}
-onChange={(val) => setFontFamily(val)}
-/>
+  label="Font Family"
+  value={fontFamily}
+  onChange={(val) => setFontFamily(val)}
+  />
 
 <FontSizeEntry
-label="Font Size"
-value={fontSize}
-onChange={(val) => setFontSize(val)}
-/>
+  label="Font Size"
+  value={fontSize}
+  onChange={(val) => setFontSize(val)}
+  />
 ```
 
 ## Main Components
@@ -99,9 +99,9 @@ return (
 
 
   <AppSettings
-  entries={entries}
-  onSettingChange={(key, value) => {
-      console.log(`${key}: ${value}`);
+    entries={entries}
+    onSettingChange={(key, value) => {
+    console.log(`${key}: ${value}`);
     }}
 />
 );
@@ -191,9 +191,9 @@ return (
   <ScrollView>
     <Text style={styles.title}>Settings</Text>
     <AppSettings
-    entries={entries}
-    onSettingChange={handleSettingChange}
-    />
+      entries={entries}
+      onSettingChange={handleSettingChange}
+      />
 </ScrollView>
 );
 }
@@ -212,35 +212,35 @@ function GroupedSettingsScreen() {
       <Container>
         <Text style={styles.sectionTitle}>Appearance</Text>
         <SwitchEntry
-        label="Dark Mode"
-        value={isDark}
+          label="Dark Mode"
+          value={isDark}
+          onChange={handleChange}
+          />
+      <FontFamilyEntry
+        label="Font Family"
+        value={fontFamily}
         onChange={handleChange}
         />
-      <FontFamilyEntry
-      label="Font Family"
-      value={fontFamily}
+    <FontSizeEntry
+      label="Font Size"
+      value={fontSize}
       onChange={handleChange}
       />
-    <FontSizeEntry
-    label="Font Size"
-    value={fontSize}
-    onChange={handleChange}
-    />
 </Container>
 
 {/* Notification Section */}
 <Container>
   <Text style={styles.sectionTitle}>Notifications</Text>
   <SwitchEntry
-  label="Push Notifications"
-  value={notificationsEnabled}
+    label="Push Notifications"
+    value={notificationsEnabled}
+    onChange={handleChange}
+    />
+<SwitchEntry
+  label="Email Notifications"
+  value={emailNotifications}
   onChange={handleChange}
   />
-<SwitchEntry
-label="Email Notifications"
-value={emailNotifications}
-onChange={handleChange}
-/>
 </Container>
 </ScrollView>
 );
@@ -292,10 +292,10 @@ return (
 
   <Container>
     <FontSizeEntry
-    label="Font Size"
-    value={fontSize}
-    onChange={handleFontSizeChange}
-    />
+      label="Font Size"
+      value={fontSize}
+      onChange={handleFontSizeChange}
+      />
   {error && <Text style={styles.error}>{error}</Text>}
 </Container>
 );
@@ -325,9 +325,9 @@ function SettingsScreen() {
 
 
     <AppSettings
-    entries={[...]}
-    onSettingChange={(key, value) => {
-        setAppSettings({ ...settings, [key]: value });
+      entries={[...]}
+      onSettingChange={(key, value) => {
+      setAppSettings({ ...settings, [key]: value });
       }}
   />
 );

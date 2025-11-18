@@ -86,9 +86,9 @@ function SettingsScreen() {
 
     <View>
       <Switch
-      value={settings.darkMode}
-      onValueChange={(val) => updateSetting('darkMode', val)}
-      />
+        value={settings.darkMode}
+        onValueChange={(val) => updateSetting('darkMode', val)}
+        />
   </View>
 );
 }
@@ -164,9 +164,9 @@ return (
 
 
   <AppSettings
-  entries={entries}
-  onSettingChange={(key, value) => {
-      updateSetting(key as any, value);
+    entries={entries}
+    onSettingChange={(key, value) => {
+    updateSetting(key as any, value);
     }}
 />
 );
@@ -201,9 +201,9 @@ function AccessibilitySettings() {
     <View>
       {/* All property accesses are type-checked */}
       <Toggle
-      value={prefs.reducedMotion} // Type-safe
-      onChange={(val) => update('reducedMotion', val)}
-      />
+        value={prefs.reducedMotion} // Type-safe
+        onChange={(val) => update('reducedMotion', val)}
+        />
   </View>
 );
 }
@@ -232,11 +232,11 @@ return (
 
 
   <Slider
-  value={settings.fontSize}
-  onValueChange={handleFontSizeChange}
-  minimumValue={12}
-  maximumValue={32}
-  />
+    value={settings.fontSize}
+    onValueChange={handleFontSizeChange}
+    minimumValue={12}
+    maximumValue={32}
+    />
 );
 }
 ```
@@ -310,9 +310,9 @@ UI components for rendering settings screens.
 import { AppSettings } from '@htk/features/appSettings/components';
 
 <AppSettings
-entries={settingsDefinitions}
-onSettingChange={handleChange}
-/>
+  entries={settingsDefinitions}
+  onSettingChange={handleChange}
+  />
 ```
 
 ## Type Definitions

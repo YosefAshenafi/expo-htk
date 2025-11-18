@@ -88,9 +88,9 @@ function UserProfile() {
     <View>
       <Text>{user.name}</Text>
       <Button
-      onPress={() => setUser({...user, name: 'Updated'})}
-      title="Update"
-      />
+        onPress={() => setUser({...user, name: 'Updated'})}
+        title="Update"
+        />
   </View>
 );
 }
@@ -120,9 +120,9 @@ function Counter() {
     <View>
       <Text>{count}</Text>
       <Button
-      onPress={() => setCount(count + 1)}
-      title="Increment"
-      />
+        onPress={() => setCount(count + 1)}
+        title="Increment"
+        />
   </View>
 );
 }

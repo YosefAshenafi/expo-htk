@@ -131,9 +131,9 @@ function ThemeToggle() {
 
 
     <Button
-    title={`Current: ${scheme}`}
-    onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
-    />
+      title={`Current: ${scheme}`}
+      onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
+      />
 );
 }
 ```
@@ -233,11 +233,11 @@ function ThemeToggleButton() {
 
 
     <TouchableOpacity
-    onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
-    style={{
-        padding: 12,
-        backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
-        borderRadius: 8
+      onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
+      style={{
+      padding: 12,
+      backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
+      borderRadius: 8
       }}
 >
 <Text style={{ color: 'white' }}>

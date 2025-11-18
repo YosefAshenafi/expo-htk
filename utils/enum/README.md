@@ -94,10 +94,10 @@ function RolePicker() {
     <Picker>
       {roles.map(role => (
             <Picker.Item
-            key={role}
-            label={enumToStr(role)}
-            value={role}
-            />
+              key={role}
+              label={enumToStr(role)}
+              value={role}
+              />
         ))}
 </Picker>
 );
@@ -203,12 +203,12 @@ function PermissionsList() {
 
 
     <FlatList
-    data={permissions}
-    renderItem={({ item }) => (
-        <CheckBox
-        label={enumToStr(item)}
-        value={item}
-        />
+      data={permissions}
+      renderItem={({ item }) => (
+      <CheckBox
+      label={enumToStr(item)}
+      value={item}
+      />
     )}
 />
 );

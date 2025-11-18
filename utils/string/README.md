@@ -117,10 +117,10 @@ function OrderStatusPicker() {
     <Picker>
       {statuses.map(status => (
             <Picker.Item
-            key={status}
-            label={snakeCaseToCapitalize(status)}
-            value={status}
-            />
+              key={status}
+              label={snakeCaseToCapitalize(status)}
+              value={status}
+              />
         ))}
 </Picker>
 );

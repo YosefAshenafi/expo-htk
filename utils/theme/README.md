@@ -124,10 +124,10 @@ function UserList() {
   return (
 
     <FlatList
-    data={users}
-    renderItem={({ item }) => (
-        <View style={Dividers.bottom1}>
-          <UserCard user={item} />
+      data={users}
+      renderItem={({ item }) => (
+      <View style={Dividers.bottom1}>
+      <UserCard user={item} />
       </View>
   )}
 keyExtractor={item => item.id}
@@ -273,16 +273,16 @@ function TabNavigation({ tabs, activeTab, onTabChange }) {
 
     <View style={Dividers.bottom1}>
       <FlatList
-      data={tabs}
-      horizontal
-      renderItem={({ item }) => (
-          <TouchableOpacity
-          onPress={() => onTabChange(item.id)}
-          style={{
-              paddingHorizontal: 16,
-              paddingVertical: 12,
-              borderBottomWidth: activeTab === item.id ? 2 : 0,
-              borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
+        data={tabs}
+        horizontal
+        renderItem={({ item }) => (
+        <TouchableOpacity
+        onPress={() => onTabChange(item.id)}
+        style={{
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderBottomWidth: activeTab === item.id ? 2 : 0,
+        borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
             }}
       >
       <Text>{item.label}</Text>
@@ -304,10 +304,10 @@ function SettingsItem({ label, value, onPress }) {
   return (
 
     <TouchableOpacity
-    style={{
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        ...Dividers.bottom1
+      style={{
+      paddingVertical: 12,
+      paddingHorizontal: 16,
+      ...Dividers.bottom1
       }}
   onPress={onPress}
 >
@@ -369,9 +369,9 @@ function ListItem({ item, showBottom = true, showTop = false }) {
   return (
 
     <View
-    style={{
-        ...(showTop && Dividers.top1),
-        ...(showBottom && Dividers.bottom1)
+      style={{
+      ...(showTop && Dividers.top1),
+      ...(showBottom && Dividers.bottom1)
       }}
 >
 <Text>{item.title}</Text>
@@ -490,11 +490,11 @@ function GridItem({ item }) {
   return (
 
     <View
-    style={{
-        flex: 1,
-        padding: 8,
-        ...Dividers.right1,
-        ...Dividers.bottom1
+      style={{
+      flex: 1,
+      padding: 8,
+      ...Dividers.right1,
+      ...Dividers.bottom1
       }}
 >
 <Text>{item.title}</Text>
@@ -543,21 +543,21 @@ function StepIndicator({ steps, currentStep }) {
       }}>
   {steps.map((step, index) => (
         <View
-        key={step.id}
-        style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: index < steps.length - 1 ? 8 : 0
+          key={step.id}
+          style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom: index < steps.length - 1 ? 8 : 0
           }}
     >
     <View
-    style={{
-        width: 32,
-        height: 32,
-        borderRadius: 16,
-        backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
-        justifyContent: 'center',
-        alignItems: 'center'
+      style={{
+      width: 32,
+      height: 32,
+      borderRadius: 16,
+      backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
+      justifyContent: 'center',
+      alignItems: 'center'
       }}
 >
 <Text style={{ color: 'white' }}>{index + 1}</Text>

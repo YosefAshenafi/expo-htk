@@ -51,11 +51,11 @@ Boolean toggle for simple yes/no settings.
 import { SwitchEntry } from '@htk/features/appSettings';
 
 <SwitchEntry
-label="Dark Mode"
-description="Use dark color scheme"
-value={isDarkMode}
-onChange={(enabled) => setIsDarkMode(enabled)}
-/>
+  label="Dark Mode"
+  description="Use dark color scheme"
+  value={isDarkMode}
+  onChange={(enabled) => setIsDarkMode(enabled)}
+  />
 ```
 
 **Features:**
@@ -71,10 +71,10 @@ Picker component for selecting fonts from available system fonts.
 import { FontFamilyEntry } from '@htk/features/appSettings';
 
 <FontFamilyEntry
-label="Font Family"
-value={selectedFont}
-onChange={(font) => setSelectedFont(font)}
-/>
+  label="Font Family"
+  value={selectedFont}
+  onChange={(font) => setSelectedFont(font)}
+  />
 ```
 
 **Features:**
@@ -90,11 +90,11 @@ Numerical input or picker for adjusting font sizes.
 import { FontSizeEntry } from '@htk/features/appSettings';
 
 <FontSizeEntry
-label="Base Font Size"
-description="Adjust text size"
-value={fontSize}
-onChange={(size) => setFontSize(size)}
-/>
+  label="Base Font Size"
+  description="Adjust text size"
+  value={fontSize}
+  onChange={(size) => setFontSize(size)}
+  />
 ```
 
 **Features:**
@@ -126,10 +126,10 @@ return (
 
   <BaseEntry label={label} value={value} {...props}>
     <MyCustomControl
-    value={value}
-    onChange={onChange}
-    options={options}
-    />
+      value={value}
+      onChange={onChange}
+      options={options}
+      />
 </BaseEntry>
 );
 }
@@ -211,11 +211,11 @@ type OnEntryChange = (key: string, value: any) => void;
 ### Disabled Entries
 ```typescript
 <SwitchEntry
-label="Premium Feature"
-disabled={!isPremium}
-value={premiumSetting}
-onChange={handleChange}
-/>
+  label="Premium Feature"
+  disabled={!isPremium}
+  value={premiumSetting}
+  onChange={handleChange}
+  />
 ```
 
 ### Entries with Validation

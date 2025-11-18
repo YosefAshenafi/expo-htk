@@ -194,9 +194,9 @@ export function ThemedComponent(props: Props) {
   return (
 
     <View
-    style={{
-        backgroundColor: Colors.$backgroundDefault,
-        padding: 16
+      style={{
+      backgroundColor: Colors.$backgroundDefault,
+      padding: 16
       }}
 >
 <Text style={{ color: Colors.$textDefault }}>
