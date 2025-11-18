@@ -282,7 +282,7 @@ async function migrateFromAsyncStorage() {
     if (value) {
       mmkvStorage.setItem(key, value);
     }
-}
+  }
 }
 ```
 
