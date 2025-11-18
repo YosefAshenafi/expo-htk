@@ -125,7 +125,4 @@ MIT License - Copyright 2024 Hacktoolkit
 
 ---
 
-**Version**: 1.0.0
-**Last Updated**: 2024
-
 For detailed information about any feature or utility, see the documentation links above.
