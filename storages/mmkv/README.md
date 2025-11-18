@@ -297,9 +297,9 @@ jest.mock('react-native-mmkv', () => ({
       getItem: jest.fn(),
       setItem: jest.fn(),
       removeItem: jest.fn(),
-      clearAll: jest.fn()
-  }))
-}))
+      clearAll: jest.fn(),
+    })),
+  })),
 }));
 ```
 
