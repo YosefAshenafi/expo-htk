@@ -130,7 +130,7 @@ return (
     onChange={onChange}
     options={options}
     />
-  </BaseEntry>
+</BaseEntry>
 );
 }
 ```

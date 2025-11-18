@@ -98,8 +98,8 @@ function RolePicker() {
             label={enumToStr(role)}
             value={role}
             />
-          ))}
-  </Picker>
+        ))}
+</Picker>
 );
 }
 ```
@@ -209,8 +209,8 @@ function PermissionsList() {
         label={enumToStr(item)}
         value={item}
         />
-      )}
-  />
+    )}
+/>
 );
 }
 ```

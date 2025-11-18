@@ -91,7 +91,7 @@ function UserProfile() {
       onPress={() => setUser({...user, name: 'Updated'})}
       title="Update"
       />
-    </View>
+  </View>
 );
 }
 ```
@@ -123,7 +123,7 @@ function Counter() {
       onPress={() => setCount(count + 1)}
       title="Increment"
       />
-    </View>
+  </View>
 );
 }
 ```

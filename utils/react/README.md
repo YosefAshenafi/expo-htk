@@ -462,7 +462,7 @@ function Component() {
     title={theme.isDark ? '' : ''}
     onPress={theme.toggle}
     />
-  );
+);
 }
 ```
 

@@ -206,14 +206,14 @@ export function FeatureAvailability() {
           title="NFC Payment"
           description="Available on this device"
           />
-        )}
-
-    {device.hasGPS && (
-        <FeatureCard
-        title="Location Services"
-        description="GPS enabled"
-        />
       )}
+
+  {device.hasGPS && (
+      <FeatureCard
+      title="Location Services"
+      description="GPS enabled"
+      />
+  )}
 </View>
 );
 }

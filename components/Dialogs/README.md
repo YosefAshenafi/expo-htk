@@ -243,7 +243,7 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 function TestComponent() {
   const { confirm } = useConfirm();
   return <Button onPress={() => confirm({ ... })} />;
-  }
+}
 
 test('confirms action', () => {
     const onConfirm = jest.fn();

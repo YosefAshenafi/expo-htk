@@ -121,8 +121,8 @@ function OrderStatusPicker() {
             label={snakeCaseToCapitalize(status)}
             value={status}
             />
-          ))}
-  </Picker>
+        ))}
+</Picker>
 );
 }
 ```

@@ -89,7 +89,7 @@ function SettingsScreen() {
       value={settings.darkMode}
       onValueChange={(val) => updateSetting('darkMode', val)}
       />
-    </View>
+  </View>
 );
 }
 ```
@@ -204,7 +204,7 @@ function AccessibilitySettings() {
       value={prefs.reducedMotion} // Type-safe
       onChange={(val) => update('reducedMotion', val)}
       />
-    </View>
+  </View>
 );
 }
 ```

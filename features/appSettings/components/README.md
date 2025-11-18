@@ -194,7 +194,7 @@ return (
     entries={entries}
     onSettingChange={handleSettingChange}
     />
-  </ScrollView>
+</ScrollView>
 );
 }
 ```
@@ -216,32 +216,32 @@ function GroupedSettingsScreen() {
         value={isDark}
         onChange={handleChange}
         />
-        <FontFamilyEntry
-        label="Font Family"
-        value={fontFamily}
-        onChange={handleChange}
-        />
-        <FontSizeEntry
-        label="Font Size"
-        value={fontSize}
-        onChange={handleChange}
-        />
-      </Container>
+      <FontFamilyEntry
+      label="Font Family"
+      value={fontFamily}
+      onChange={handleChange}
+      />
+    <FontSizeEntry
+    label="Font Size"
+    value={fontSize}
+    onChange={handleChange}
+    />
+</Container>
 
-    {/* Notification Section */}
-    <Container>
-      <Text style={styles.sectionTitle}>Notifications</Text>
-      <SwitchEntry
-      label="Push Notifications"
-      value={notificationsEnabled}
-      onChange={handleChange}
-      />
-      <SwitchEntry
-      label="Email Notifications"
-      value={emailNotifications}
-      onChange={handleChange}
-      />
-    </Container>
+{/* Notification Section */}
+<Container>
+  <Text style={styles.sectionTitle}>Notifications</Text>
+  <SwitchEntry
+  label="Push Notifications"
+  value={notificationsEnabled}
+  onChange={handleChange}
+  />
+<SwitchEntry
+label="Email Notifications"
+value={emailNotifications}
+onChange={handleChange}
+/>
+</Container>
 </ScrollView>
 );
 }
@@ -296,8 +296,8 @@ return (
     value={fontSize}
     onChange={handleFontSizeChange}
     />
-    {error && <Text style={styles.error}>{error}</Text>}
-  </Container>
+  {error && <Text style={styles.error}>{error}</Text>}
+</Container>
 );
 }
 ```

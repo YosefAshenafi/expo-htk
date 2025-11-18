@@ -85,13 +85,13 @@ function ThemeSelector() {
       onPress={changeTheme}
       theme={useTheme()} // Design tokens from ui-lib
       />
-      <ThemeSettingsButton
-      name="dark"
-      isActive={scheme === 'dark'}
-      onPress={changeTheme}
-      theme={useTheme()} // Design tokens from ui-lib
-      />
-    </View>
+    <ThemeSettingsButton
+    name="dark"
+    isActive={scheme === 'dark'}
+    onPress={changeTheme}
+    theme={useTheme()} // Design tokens from ui-lib
+    />
+</View>
 );
 }
 ```
@@ -122,14 +122,14 @@ function SettingsScreen() {
           onPress={changeTheme}
           theme={tokens}
           />
-          <ThemeSettingsButton
-          name="dark"
-          isActive={scheme === 'dark'}
-          onPress={changeTheme}
-          theme={tokens}
-          />
-        </View>
+        <ThemeSettingsButton
+        name="dark"
+        isActive={scheme === 'dark'}
+        onPress={changeTheme}
+        theme={tokens}
+        />
     </View>
+</View>
 </ScrollView>
 );
 }
@@ -158,8 +158,8 @@ function HorizontalThemeSelector() {
             onPress={changeTheme}
             theme={tokens}
             />
-          ))}
-  </View>
+        ))}
+</View>
 );
 }
 ```
@@ -187,17 +187,17 @@ function LabeledThemeButton() {
         onPress={changeTheme}
         theme={tokens}
         />
-      </View>
-
-    <View gap-8>
-      <Text text80>Dark Mode</Text>
-      <ThemeSettingsButton
-      name="dark"
-      isActive={scheme === 'dark'}
-      onPress={changeTheme}
-      theme={tokens}
-      />
     </View>
+
+  <View gap-8>
+    <Text text80>Dark Mode</Text>
+    <ThemeSettingsButton
+    name="dark"
+    isActive={scheme === 'dark'}
+    onPress={changeTheme}
+    theme={tokens}
+    />
+</View>
 </View>
 );
 }
@@ -236,7 +236,7 @@ function AppHeader() {
       onPress={changeTheme}
       theme={useTheme()}
       />
-    </View>
+  </View>
 );
 }
 ```
@@ -310,7 +310,7 @@ return (
           onPress={changeTheme}
           theme={tokens}
           />
-        ))}
+      ))}
 </View>
 );
 }
@@ -398,9 +398,9 @@ test('renders theme button', () => {
       onPress={onPress}
       theme={mockTheme}
       />
-    );
+  );
 
-  expect(getByText('light')).toBeTruthy();
+expect(getByText('light')).toBeTruthy();
 });
 
 test('calls onPress with theme name', () => {
@@ -414,10 +414,10 @@ test('calls onPress with theme name', () => {
       onPress={onPress}
       theme={mockTheme}
       />
-    );
+  );
 
-  fireEvent.press(getByText('dark'));
-  expect(onPress).toHaveBeenCalledWith('dark');
+fireEvent.press(getByText('dark'));
+expect(onPress).toHaveBeenCalledWith('dark');
 });
 
 test('shows active state styling', () => {
@@ -432,10 +432,10 @@ test('shows active state styling', () => {
       theme={mockTheme}
       testID="theme-button"
       />
-    );
+  );
 
-  const button = getByTestId('theme-button');
-  // Assert active state styling
+const button = getByTestId('theme-button');
+// Assert active state styling
 });
 ```
 

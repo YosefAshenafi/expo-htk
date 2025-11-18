@@ -134,7 +134,7 @@ function ThemeToggle() {
     title={`Current: ${scheme}`}
     onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
     />
-  );
+);
 }
 ```
 
