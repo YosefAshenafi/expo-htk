@@ -27,7 +27,7 @@ const { useAppSettings, updateAppSetting } = createAppSettings({
 });
 ```
 
-**📚 Full examples and detailed setup instructions are in the documentation below.**
+**Full examples and detailed setup instructions are in the documentation below.**
 
 ## Documentation
 
