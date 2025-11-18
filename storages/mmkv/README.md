@@ -60,10 +60,10 @@ Implements platform-agnostic storage operations:
 ```typescript
 interface StorageAdapter {
   getItem(key: string): string null Promise<string null>;
-    setItem(key: string, value: string): void Promise<void>;
-      removeItem(key: string): void Promise<void>;
-        clearAll(): void Promise<void>;
-        }
+  setItem(key: string, value: string): void Promise<void>;
+  removeItem(key: string): void Promise<void>;
+  clearAll(): void Promise<void>;
+}
 ```
 
 ## API Usage

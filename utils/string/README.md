@@ -222,14 +222,14 @@ import { snakeCaseToCapitalize } from '@htk/utils/string';
 function createLabels<T extends Record<string, any>>(
     data: T
   ): Record<keyof T, string> {
-    const labels = {} as Record<keyof T, string>;
+  const labels = {} as Record<keyof T, string>;
 
-      for (const key in data) {
-        labels[key] = snakeCaseToCapitalize(key);
-      }
-
-    return labels;
+  for (const key in data) {
+    labels[key] = snakeCaseToCapitalize(key);
   }
+
+return labels;
+}
 
 const userLabels = createLabels({
     first_name: '',
@@ -264,12 +264,12 @@ import { capitalize } from '@htk/utils/string';
 
 type ValidationErrors = Record<string, string>;
 
-  function formatValidationErrors(
-    errors: ValidationErrors
-  ): string {
-  return Object.entries(errors)
-  .map(([field, error]) => `${capitalize(field)}: ${error}`)
-  .join('\n');
+function formatValidationErrors(
+  errors: ValidationErrors
+): string {
+return Object.entries(errors)
+.map(([field, error]) => `${capitalize(field)}: ${error}`)
+.join('\n');
 }
 
 // Result:
@@ -352,14 +352,14 @@ interface APIResponse {
 }
 
 function transformForDisplay(data: APIResponse): Record<string, string> {
-    const result: Record<string, string> = {};
+  const result: Record<string, string> = {};
 
-      for (const [key, value] of Object.entries(data)) {
-        result[snakeCaseToCapitalize(key)] = String(value);
-      }
-
-    return result;
+  for (const [key, value] of Object.entries(data)) {
+    result[snakeCaseToCapitalize(key)] = String(value);
   }
+
+return result;
+}
 ```
 
 ### Configuration Key Display

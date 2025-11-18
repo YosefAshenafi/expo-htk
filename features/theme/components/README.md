@@ -258,9 +258,9 @@ function ThemedButton() {
     <View
     padding-16
     backgroundColor={Colors.$backgroundColor}
-    >
-    <Text color={Colors.$textDefault}>Theme Aware</Text>
-  </View>
+  >
+  <Text color={Colors.$textDefault}>Theme Aware</Text>
+</View>
 );
 }
 ```

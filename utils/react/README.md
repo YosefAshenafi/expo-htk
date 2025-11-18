@@ -290,36 +290,36 @@ function useClearNotifications() {
 ```typescript
 type FormContextValue = {
   values: Record<string, any>;
-    errors: Record<string, string>;
-      touched: Record<string, boolean>;
-        isSubmitting: boolean;
-      };
+  errors: Record<string, string>;
+  touched: Record<string, boolean>;
+  isSubmitting: boolean;
+};
 
-    const [FormProvider, useFormState, , useUpdateFormState] = contextBuilder({
-        values: {},
-        errors: {},
-        touched: {},
-        isSubmitting: false
-      });
+const [FormProvider, useFormState, , useUpdateFormState] = contextBuilder({
+    values: {},
+    errors: {},
+    touched: {},
+    isSubmitting: false
+  });
 
-  function useFormField(fieldName: string) {
-    const { values, errors, touched } = useFormState();
-    const updateForm = useUpdateFormState();
+function useFormField(fieldName: string) {
+  const { values, errors, touched } = useFormState();
+  const updateForm = useUpdateFormState();
 
-    return {
-      value: values[fieldName] ?? '',
-      error: touched[fieldName] ? errors[fieldName] : null,
-      setValue: (value: any) => {
-        updateForm({
-            values: {
-              ...values,
-              [fieldName]: value
-            },
-          touched: {
-            ...touched,
-            [fieldName]: true
-          }
-      });
+  return {
+    value: values[fieldName] ?? '',
+    error: touched[fieldName] ? errors[fieldName] : null,
+    setValue: (value: any) => {
+      updateForm({
+          values: {
+            ...values,
+            [fieldName]: value
+          },
+        touched: {
+          ...touched,
+          [fieldName]: true
+        }
+    });
 }
 };
 }

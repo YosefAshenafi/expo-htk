@@ -236,10 +236,10 @@ type EnumDisplay<T extends Record<string, string>> = {
   };
 
 const statusDisplay: EnumDisplay<typeof Status> = {
-    active: 'Active Status',
-    inactive: 'Inactive Status',
-    pending: 'Pending Status'
-  };
+  active: 'Active Status',
+  inactive: 'Inactive Status',
+  pending: 'Pending Status'
+};
 ```
 
 ## Implementation Details
@@ -280,14 +280,14 @@ mobile-phone → Mobile Phone (kebab-case)
 // Cache converted values
 const enumCache = new Map<any, string>();
 
-  function cachedEnumToStr(value: any): string {
-    if (enumCache.has(value)) {
-      return enumCache.get(value)!;
-    }
+function cachedEnumToStr(value: any): string {
+  if (enumCache.has(value)) {
+    return enumCache.get(value)!;
+  }
 
-  const str = enumToStr(value);
-  enumCache.set(value, str);
-  return str;
+const str = enumToStr(value);
+enumCache.set(value, str);
+return str;
 }
 ```
 

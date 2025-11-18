@@ -27,8 +27,8 @@ Generic observer for event-driven communication with global event scope.
 ```typescript
 class Observer<
 Data extends Record<string, any>,
-  Event extends string = string
-  >
+Event extends string = string
+>
 ```
 
 **Type Parameters:**
@@ -41,8 +41,8 @@ Specialized observer for tracking changes to specific entities or resources.
 ```typescript
 class EntityObserver<
 Data extends Record<string, any>,
-  Event extends string = string
-  >
+Event extends string = string
+>
 ```
 
 **Type Parameters:**
@@ -301,25 +301,25 @@ import { Observer } from '@htk/utils/observer';
 
 function useObserver<
 Data extends Record<string, any>,
-  Event extends string
-  >(
-    observer: Observer<Data, Event>,
-      event: Event,
-      callback: (data: Data) => void
-    ) {
-    const callbackRef = useRef(callback);
-
-    useEffect(() => {
-        callbackRef.current = callback;
-      }, [callback]);
+Event extends string
+>(
+  observer: Observer<Data, Event>,
+    event: Event,
+    callback: (data: Data) => void
+  ) {
+  const callbackRef = useRef(callback);
 
   useEffect(() => {
-      const handleNotify = (data: Data) => {
-        callbackRef.current(data);
-      };
+      callbackRef.current = callback;
+    }, [callback]);
 
-    return observer.subscribe(event, handleNotify);
-  }, [observer, event]);
+useEffect(() => {
+    const handleNotify = (data: Data) => {
+      callbackRef.current(data);
+    };
+
+  return observer.subscribe(event, handleNotify);
+}, [observer, event]);
 }
 ```
 

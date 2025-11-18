@@ -150,7 +150,7 @@ interface AppState {
   user: User null;
   settings: Settings;
   cache: Record<string, any>;
-  }
+}
 
 const persistedAtom = createPersistedState();
 const appStateAtom = persistedAtom<AppState>('appState', {

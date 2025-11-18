@@ -344,14 +344,14 @@ for (let i = 0; i < sessionStorage.length; i++) {
 ### View All Stored Data
 ```typescript
 export function debugStorage(): Record<string, string> {
-    const data: Record<string, string> = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key) {
-          data[key] = localStorage.getItem(key) '';
-        }
+  const data: Record<string, string> = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key) {
+      data[key] = localStorage.getItem(key) '';
     }
-  return data;
+}
+return data;
 }
 
 // In browser console

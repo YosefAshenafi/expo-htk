@@ -86,10 +86,10 @@ All adapters implement a common interface:
 ```typescript
 interface StorageAdapter {
   getItem(key: string): string null Promise<string null>;
-    setItem(key: string, value: string): void Promise<void>;
-      removeItem(key: string): void Promise<void>;
-        clearAll(): void Promise<void>;
-        }
+  setItem(key: string, value: string): void Promise<void>;
+  removeItem(key: string): void Promise<void>;
+  clearAll(): void Promise<void>;
+}
 ```
 
 ## Platform Selection
@@ -198,12 +198,12 @@ function getWithExpiry<T>(key: string): T null {
 function backupStorage() {
   const backup: Record<string, string> = {};
 
-    // Manually collect all keys (implementation varies by adapter)
-    // For MMKV: iterate stored keys
-    // For localStorage: use localStorage iteration
+  // Manually collect all keys (implementation varies by adapter)
+  // For MMKV: iterate stored keys
+  // For localStorage: use localStorage iteration
 
-    return JSON.stringify(backup);
-  }
+  return JSON.stringify(backup);
+}
 
 function restoreStorage(backup: string) {
   const data = JSON.parse(backup);

@@ -266,16 +266,16 @@ function useAsyncConfirm() {
   const { confirm } = useConfirm();
 
   return (title: string, message: string): Promise<boolean> => {
-      return new Promise(resolve => {
-          confirm({
-              title,
-              message,
-              buttons: [
-                { label: 'Cancel', onPress: () => resolve(false) },
-                { label: 'Confirm', onPress: () => resolve(true) }
-              ]
-          });
-    });
+    return new Promise(resolve => {
+        confirm({
+            title,
+            message,
+            buttons: [
+              { label: 'Cancel', onPress: () => resolve(false) },
+              { label: 'Confirm', onPress: () => resolve(true) }
+            ]
+        });
+  });
 };
 }
 ```

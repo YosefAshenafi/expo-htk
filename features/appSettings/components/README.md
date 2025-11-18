@@ -278,14 +278,14 @@ function ValidatedSettingsScreen() {
   const [fontSize, setFontSize] = useState(16);
   const [error, setError] = useState<string null>(null);
 
-    const handleFontSizeChange = (size: number) => {
-      if (size < 12 size > 32) {
-        setError('Font size must be between 12 and 32');
-        return;
-      }
-    setError(null);
-    setFontSize(size);
-  };
+  const handleFontSizeChange = (size: number) => {
+    if (size < 12 size > 32) {
+      setError('Font size must be between 12 and 32');
+      return;
+    }
+  setError(null);
+  setFontSize(size);
+};
 
 return (
 

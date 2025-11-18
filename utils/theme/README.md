@@ -284,10 +284,10 @@ function TabNavigation({ tabs, activeTab, onTabChange }) {
               borderBottomWidth: activeTab === item.id ? 2 : 0,
               borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
             }}
-        >
-        <Text>{item.label}</Text>
-      </TouchableOpacity>
-  )}
+      >
+      <Text>{item.label}</Text>
+    </TouchableOpacity>
+)}
 keyExtractor={item => item.id}
 />
 </View>
@@ -310,11 +310,11 @@ function SettingsItem({ label, value, onPress }) {
         ...Dividers.bottom1
       }}
   onPress={onPress}
-  >
-  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-    <Text>{label}</Text>
-    <Text style={{ color: 'gray' }}>{value}</Text>
-  </View>
+>
+<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+  <Text>{label}</Text>
+  <Text style={{ color: 'gray' }}>{value}</Text>
+</View>
 </TouchableOpacity>
 );
 }
@@ -373,8 +373,8 @@ function ListItem({ item, showBottom = true, showTop = false }) {
         ...(showTop && Dividers.top1),
         ...(showBottom && Dividers.bottom1)
       }}
-  >
-  <Text>{item.title}</Text>
+>
+<Text>{item.title}</Text>
 </View>
 );
 }
@@ -496,8 +496,8 @@ function GridItem({ item }) {
         ...Dividers.right1,
         ...Dividers.bottom1
       }}
-  >
-  <Text>{item.title}</Text>
+>
+<Text>{item.title}</Text>
 </View>
 );
 }
@@ -549,19 +549,19 @@ function StepIndicator({ steps, currentStep }) {
             alignItems: 'center',
             marginBottom: index < steps.length - 1 ? 8 : 0
           }}
-      >
-      <View
-      style={{
-          width: 32,
-          height: 32,
-          borderRadius: 16,
-          backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
     >
-    <Text style={{ color: 'white' }}>{index + 1}</Text>
-  </View>
+    <View
+    style={{
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+>
+<Text style={{ color: 'white' }}>{index + 1}</Text>
+</View>
 <Text style={{ marginLeft: 12 }}>{step.title}</Text>
 </View>
 ))}

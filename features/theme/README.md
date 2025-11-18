@@ -56,13 +56,13 @@ interface CreateThemeOptions {
     dark: SchemeColors;
   };
 colors?: Record<string, string>; // Additional colors
-  spacings?: Record<string, number>; // Custom spacings
-    componentDefaults?: { // Component styling
-      Text?: Record<string, any>;
-        View?: Record<string, any>;
-          Button?: Record<string, any>;
-          };
-      }
+spacings?: Record<string, number>; // Custom spacings
+componentDefaults?: { // Component styling
+  Text?: Record<string, any>;
+  View?: Record<string, any>;
+  Button?: Record<string, any>;
+};
+}
 ```
 
 **Returns:**
@@ -239,10 +239,10 @@ function ThemeToggleButton() {
         backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
         borderRadius: 8
       }}
-  >
-  <Text style={{ color: 'white' }}>
-    {scheme === 'light' ? ' Dark Mode' : ' Light Mode'}
-  </Text>
+>
+<Text style={{ color: 'white' }}>
+  {scheme === 'light' ? ' Dark Mode' : ' Light Mode'}
+</Text>
 </TouchableOpacity>
 );
 }
@@ -343,7 +343,7 @@ interface Scheme {
   name: string;
   isDark: boolean;
   colors: Record<string, string>;
-  }
+}
 ```
 
 ## Persistence

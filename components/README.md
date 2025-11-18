@@ -198,10 +198,10 @@ export function ThemedComponent(props: Props) {
         backgroundColor: Colors.$backgroundDefault,
         padding: 16
       }}
-  >
-  <Text style={{ color: Colors.$textDefault }}>
-    Theme-aware component
-  </Text>
+>
+<Text style={{ color: Colors.$textDefault }}>
+  Theme-aware component
+</Text>
 </View>
 );
 }
