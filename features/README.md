@@ -32,9 +32,9 @@ Complete settings management system with UI and persistence.
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, updateAppSetting } = createAppSettings({
-  darkMode: false,
-  fontSize: 16
-});
+    darkMode: false,
+    fontSize: 16
+  });
 ```
 
 ### Theme System
@@ -54,12 +54,12 @@ Comprehensive theme management with light/dark mode support.
 import { createTheme } from '@htk/features/theme';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme } = createTheme({
-  enabled: true,
-  ignoreSystemMode: false,
-  supportDarkMode: true,
-  defaultScheme: 'light',
-  schemes: { light: {...}, dark: {...} }
-});
+    enabled: true,
+    ignoreSystemMode: false,
+    supportDarkMode: true,
+    defaultScheme: 'light',
+    schemes: { light: {...}, dark: {...} }
+  });
 ```
 
 ### Expo Features
@@ -165,7 +165,7 @@ export function createMyFeature(initial: State) {
   return {
     useFeature: () => useAtomValue(atom),
     updateFeature: () => useSetAtom(atom)
-};
+  };
 }
 ```
 
@@ -180,10 +180,10 @@ function ThemedFeature() {
 
 
     <View style={{
-      backgroundColor: scheme === 'dark' ? '#000' : '#fff'
-    }}>
-      {/* Feature content */}
-  </View>
+        backgroundColor: scheme === 'dark' ? '#000' : '#fff'
+      }}>
+  {/* Feature content */}
+</View>
 );
 }
 ```
@@ -201,7 +201,7 @@ function SettingsAwareFeature() {
     <Text style={{ fontSize: settings.fontSize }}>
       Settings-aware text
     </Text>
-  );
+);
 }
 ```
 
@@ -243,9 +243,9 @@ function App() {
     <AppSettingsProvider>
       <ThemeProvider>
         <MainApp />
-      </ThemeProvider>
-    </AppSettingsProvider>
-  );
+    </ThemeProvider>
+</AppSettingsProvider>
+);
 }
 ```
 
@@ -283,27 +283,27 @@ const [Provider, useContext] = contextBuilder(initialState);
 import { createAppSettings } from '@htk/features/appSettings';
 
 describe('appSettings', () => {
-  it('creates settings with defaults', () => {
-    const { useAppSettings } = createAppSettings({
-      count: 0
+    it('creates settings with defaults', () => {
+        const { useAppSettings } = createAppSettings({
+            count: 0
+          });
+
+      // Test initial state
+      const settings = useAppSettings();
+      expect(settings.count).toBe(0);
     });
 
-    // Test initial state
-    const settings = useAppSettings();
-    expect(settings.count).toBe(0);
-  });
-
-  it('updates settings', () => {
+it('updates settings', () => {
     const { useAppSettings, updateAppSetting } = createAppSettings({
-      count: 0
-    });
+        count: 0
+      });
 
-    const update = updateAppSetting();
-    update('count', 1);
+  const update = updateAppSetting();
+  update('count', 1);
 
-    const settings = useAppSettings();
-    expect(settings.count).toBe(1);
-  });
+  const settings = useAppSettings();
+  expect(settings.count).toBe(1);
+});
 });
 ```
 

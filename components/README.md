@@ -38,11 +38,11 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 const { confirm } = useConfirm();
 confirm({
-  title: 'Confirm?',
-  buttons: [
-    { label: 'Cancel', onPress: () => {} },
-    { label: 'OK', onPress: handleConfirm }
-]
+    title: 'Confirm?',
+    buttons: [
+      { label: 'Cancel', onPress: () => {} },
+      { label: 'OK', onPress: handleConfirm }
+    ]
 });
 ```
 
@@ -195,14 +195,14 @@ export function ThemedComponent(props: Props) {
 
     <View
     style={{
-      backgroundColor: Colors.$backgroundDefault,
-      padding: 16
-    }}
+        backgroundColor: Colors.$backgroundDefault,
+        padding: 16
+      }}
   >
-    <Text style={{ color: Colors.$textDefault }}>
-      Theme-aware component
-    </Text>
-  </View>
+  <Text style={{ color: Colors.$textDefault }}>
+    Theme-aware component
+  </Text>
+</View>
 );
 }
 ```
@@ -225,20 +225,20 @@ import { render } from '@testing-library/react-native';
 import { Button } from './Button';
 
 describe('Button', () => {
-  it('renders with label', () => {
-    const { getByText } = render(<Button label="Test" />);
-    expect(getByText('Test')).toBeTruthy();
-  });
+    it('renders with label', () => {
+        const { getByText } = render(<Button label="Test" />);
+      expect(getByText('Test')).toBeTruthy();
+    });
 
-  it('calls onPress when pressed', () => {
+it('calls onPress when pressed', () => {
     const onPress = jest.fn();
     const { getByRole } = render(
       <Button label="Test" onPress={onPress} />
-    );
+  );
 
-    fireEvent.press(getByRole('button'));
-    expect(onPress).toHaveBeenCalled();
-  });
+fireEvent.press(getByRole('button'));
+expect(onPress).toHaveBeenCalled();
+});
 });
 ```
 
@@ -290,9 +290,9 @@ import React from 'react';
 
 export const MyContext = React.createContext<State>(defaultState);
 
-export interface MyComponentProps {
-  children: ReactNode;
-}
+  export interface MyComponentProps {
+    children: ReactNode;
+  }
 
 export function MyProvider(props: MyComponentProps) {
   const [state, setState] = React.useState(defaultState);
@@ -302,7 +302,7 @@ export function MyProvider(props: MyComponentProps) {
 
     <MyContext.Provider value={state}>
       {props.children}
-  </MyContext.Provider>
+    </MyContext.Provider>
 );
 }
 
@@ -332,8 +332,8 @@ export function Content(props: ContentProps) {
 // Usage:
 <Container>
   <Container.Header>Title</Container.Header>
-    <Container.Content>Content</Container.Content>
-    </Container>
+  <Container.Content>Content</Container.Content>
+</Container>
 ```
 
 ## Version Compatibility

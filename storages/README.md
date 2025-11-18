@@ -86,10 +86,10 @@ All adapters implement a common interface:
 ```typescript
 interface StorageAdapter {
   getItem(key: string): string null Promise<string null>;
-  setItem(key: string, value: string): void Promise<void>;
-  removeItem(key: string): void Promise<void>;
-  clearAll(): void Promise<void>;
-}
+    setItem(key: string, value: string): void Promise<void>;
+      removeItem(key: string): void Promise<void>;
+        clearAll(): void Promise<void>;
+        }
 ```
 
 ## Platform Selection
@@ -150,15 +150,15 @@ storage.clearAll();
 ### Type-Safe Storage
 ```typescript
 function useStoredValue<T>(key: string, initial: T) {
-  const [value, setValue] = useState<T>(() => {
-    const stored = storage.getItem(key);
-    return stored ? JSON.parse(stored) : initial;
-  });
+    const [value, setValue] = useState<T>(() => {
+          const stored = storage.getItem(key);
+          return stored ? JSON.parse(stored) : initial;
+        });
 
-  const updateValue = useCallback((newValue: T) => {
-    setValue(newValue);
-    storage.setItem(key, JSON.stringify(newValue));
-  }, [key]);
+    const updateValue = useCallback((newValue: T) => {
+        setValue(newValue);
+        storage.setItem(key, JSON.stringify(newValue));
+      }, [key]);
 
   return [value, updateValue] as const;
 }
@@ -167,29 +167,29 @@ function useStoredValue<T>(key: string, initial: T) {
 ### Storage with Expiration
 ```typescript
 function setWithExpiry<T>(
-  key: string,
-  value: T,
-  ttlMs: number
-) {
+    key: string,
+    value: T,
+    ttlMs: number
+  ) {
   const data = {
     value,
     expiry: Date.now() + ttlMs
   };
-  storage.setItem(key, JSON.stringify(data));
+storage.setItem(key, JSON.stringify(data));
 }
 
 function getWithExpiry<T>(key: string): T null {
-  const stored = storage.getItem(key);
-  if (!stored) return null;
+    const stored = storage.getItem(key);
+    if (!stored) return null;
 
-  const { value, expiry } = JSON.parse(stored);
+    const { value, expiry } = JSON.parse(stored);
 
-  if (Date.now() > expiry) {
-    storage.removeItem(key);
-    return null;
-  }
+    if (Date.now() > expiry) {
+      storage.removeItem(key);
+      return null;
+    }
 
-return value;
+  return value;
 }
 ```
 
@@ -198,19 +198,19 @@ return value;
 function backupStorage() {
   const backup: Record<string, string> = {};
 
-  // Manually collect all keys (implementation varies by adapter)
-// For MMKV: iterate stored keys
-// For localStorage: use localStorage iteration
+    // Manually collect all keys (implementation varies by adapter)
+    // For MMKV: iterate stored keys
+    // For localStorage: use localStorage iteration
 
-return JSON.stringify(backup);
-}
+    return JSON.stringify(backup);
+  }
 
 function restoreStorage(backup: string) {
   const data = JSON.parse(backup);
 
   Object.entries(data).forEach(([key, value]) => {
-    storage.setItem(key, value as string);
-  });
+      storage.setItem(key, value as string);
+    });
 }
 ```
 
@@ -290,8 +290,8 @@ function isStorageAvailable(): boolean {
     storage.removeItem(test);
     return true;
   } catch {
-    return false;
-  }
+  return false;
+}
 }
 ```
 
@@ -300,10 +300,10 @@ function isStorageAvailable(): boolean {
 try {
   storage.setItem('large_data', largeValue);
 } catch (error: any) {
-  if (error.name === 'QuotaExceededError') {
-    // Clear old data and retry
-    cleanupOldData();
-  }
+if (error.name === 'QuotaExceededError') {
+  // Clear old data and retry
+  cleanupOldData();
+}
 }
 ```
 
@@ -319,8 +319,8 @@ const mockStorage = {
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
-});
+    jest.clearAllMocks();
+  });
 ```
 
 ## Security Considerations

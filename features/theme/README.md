@@ -52,17 +52,17 @@ interface CreateThemeOptions {
   supportDarkMode: boolean; // Enable dark mode support
   defaultScheme: 'light' 'dark'; // Default theme
   schemes: { // Color schemes
-  light: SchemeColors;
-  dark: SchemeColors;
-};
+    light: SchemeColors;
+    dark: SchemeColors;
+  };
 colors?: Record<string, string>; // Additional colors
-spacings?: Record<string, number>; // Custom spacings
-componentDefaults?: { // Component styling
-Text?: Record<string, any>;
-View?: Record<string, any>;
-Button?: Record<string, any>;
-};
-}
+  spacings?: Record<string, number>; // Custom spacings
+    componentDefaults?: { // Component styling
+      Text?: Record<string, any>;
+        View?: Record<string, any>;
+          Button?: Record<string, any>;
+          };
+      }
 ```
 
 **Returns:**
@@ -79,16 +79,16 @@ Button?: Record<string, any>;
 import { createTheme } from '@htk/features/theme';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme, ThemeSettings } = createTheme({
-  enabled: true,
-  ignoreSystemMode: false,
-  supportDarkMode: true,
-  defaultScheme: 'light',
-  schemes: {
-    light: {
-      primaryColor: '#007AFF',
-      backgroundColor: '#FFFFFF',
-      textColor: '#000000'
-    },
+    enabled: true,
+    ignoreSystemMode: false,
+    supportDarkMode: true,
+    defaultScheme: 'light',
+    schemes: {
+      light: {
+        primaryColor: '#007AFF',
+        backgroundColor: '#FFFFFF',
+        textColor: '#000000'
+      },
     dark: {
       primaryColor: '#0A84FF',
       backgroundColor: '#000000',
@@ -114,8 +114,8 @@ export function App() {
 
     <ThemeProvider>
       <MainApp />
-    </ThemeProvider>
-  );
+  </ThemeProvider>
+);
 }
 ```
 
@@ -132,9 +132,9 @@ function ThemeToggle() {
 
     <Button
     title={`Current: ${scheme}`}
-  onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
-/>
-);
+    onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
+    />
+  );
 }
 ```
 
@@ -163,14 +163,14 @@ const darkColors = {
 };
 
 const themeSystem = createTheme({
-  enabled: true,
-  ignoreSystemMode: false,
-  supportDarkMode: true,
-  defaultScheme: 'light',
-  schemes: {
-    light: lightColors,
-    dark: darkColors
-  }
+    enabled: true,
+    ignoreSystemMode: false,
+    supportDarkMode: true,
+    defaultScheme: 'light',
+    schemes: {
+      light: lightColors,
+      dark: darkColors
+    }
 });
 
 export const { ThemeProvider, useThemeScheme, useChangeTheme } = themeSystem;
@@ -189,17 +189,17 @@ function ResponsiveCard() {
 
 
     <View style={{
-      backgroundColor: scheme === 'dark' ? Colors.$backgroundDark : Colors.$backgroundLight,
-      padding: 16,
-      borderRadius: 8
-    }}>
-      <Text style={{
-        color: scheme === 'dark' ? '#FFF' : '#000'
+        backgroundColor: scheme === 'dark' ? Colors.$backgroundDark : Colors.$backgroundLight,
+        padding: 16,
+        borderRadius: 8
       }}>
-        This card adapts to theme
-      </Text>
-    </View>
-  );
+  <Text style={{
+      color: scheme === 'dark' ? '#FFF' : '#000'
+    }}>
+This card adapts to theme
+</Text>
+</View>
+);
 }
 ```
 
@@ -213,10 +213,10 @@ function SettingsScreen() {
 
     <ScrollView>
       <Text style={styles.title}>Display Settings</Text>
-        <ThemeSettings />
-        {/* Other settings... */}
-    </ScrollView>
-  );
+      <ThemeSettings />
+    {/* Other settings... */}
+  </ScrollView>
+);
 }
 ```
 
@@ -234,15 +234,15 @@ function ThemeToggleButton() {
 
     <TouchableOpacity
     onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
-  style={{
-    padding: 12,
-    backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
-    borderRadius: 8
-  }}
->
+    style={{
+        padding: 12,
+        backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
+        borderRadius: 8
+      }}
+  >
   <Text style={{ color: 'white' }}>
     {scheme === 'light' ? ' Dark Mode' : ' Light Mode'}
-</Text>
+  </Text>
 </TouchableOpacity>
 );
 }
@@ -268,7 +268,7 @@ function AutoThemeComponent() {
 
     <Text>
       {ignoreSystemMode ? 'Manual Theme' : 'System Theme'}
-  </Text>
+    </Text>
 );
 }
 ```
@@ -278,22 +278,22 @@ function AutoThemeComponent() {
 import { createTheme } from '@htk/features/theme';
 
 const themeSystem = createTheme({
-  enabled: true,
-  ignoreSystemMode: false,
-  supportDarkMode: true,
-  defaultScheme: 'light',
-  schemes: {
-    light: { /* colors */ },
-    dark: { /* colors */ }
-},
-// Add brand-specific colors
-colors: {
-  brandPrimary: '#FF6B6B',
-  brandSecondary: '#4ECDC4',
-  success: '#51CF66',
-  error: '#FF6B6B',
-  warning: '#FFD93D'
-}
+    enabled: true,
+    ignoreSystemMode: false,
+    supportDarkMode: true,
+    defaultScheme: 'light',
+    schemes: {
+      light: { /* colors */ },
+      dark: { /* colors */ }
+    },
+  // Add brand-specific colors
+  colors: {
+    brandPrimary: '#FF6B6B',
+    brandSecondary: '#4ECDC4',
+    success: '#51CF66',
+    error: '#FF6B6B',
+    warning: '#FFD93D'
+  }
 });
 ```
 
@@ -302,21 +302,21 @@ colors: {
 import { createTheme } from '@htk/features/theme';
 
 const themeSystem = createTheme({
-  enabled: true,
-  ignoreSystemMode: false,
-  supportDarkMode: true,
-  defaultScheme: 'light',
-  schemes: { /* ... */ },
-  // Set default styles for components
-  componentDefaults: {
-    Text: {
-      $text70: { fontSize: 18, fontWeight: '600' },
-      $text80: { fontSize: 16, fontWeight: '500' }
-  },
-  Button: {
-    backgroundColor: '#007AFF',
-    borderRadius: 8
-  },
+    enabled: true,
+    ignoreSystemMode: false,
+    supportDarkMode: true,
+    defaultScheme: 'light',
+    schemes: { /* ... */ },
+    // Set default styles for components
+    componentDefaults: {
+      Text: {
+        $text70: { fontSize: 18, fontWeight: '600' },
+        $text80: { fontSize: 16, fontWeight: '500' }
+      },
+    Button: {
+      backgroundColor: '#007AFF',
+      borderRadius: 8
+    },
   View: {
     padding: 16
   }
@@ -343,7 +343,7 @@ interface Scheme {
   name: string;
   isDark: boolean;
   colors: Record<string, string>;
-}
+  }
 ```
 
 ## Persistence
@@ -381,9 +381,9 @@ function AppNavigator() {
       <NavigationContainer>
         <Stack.Navigator>
           {/* Navigation screens */}
-      </Stack.Navigator>
+        </Stack.Navigator>
     </NavigationContainer>
-  </ThemeProvider>
+</ThemeProvider>
 );
 }
 ```
@@ -428,7 +428,7 @@ function useTheme() {
     isLight: scheme === 'light',
     scheme,
     toggle: () => changeTheme(scheme === 'light' ? 'dark' : 'light')
-};
+  };
 }
 ```
 
@@ -443,8 +443,8 @@ function AdaptiveComponent() {
 
 
     <>
-      {scheme === 'light' && <LightModeContent />}
-    {scheme === 'dark' && <DarkModeContent />}
+    {scheme === 'light' && <LightModeContent />}
+  {scheme === 'dark' && <DarkModeContent />}
 </>
 );
 }
@@ -455,12 +455,12 @@ function AdaptiveComponent() {
 import { createTheme } from '@htk/features/theme';
 
 const classicTheme = createTheme({
-  /* classic theme config */
-});
+    /* classic theme config */
+  });
 
 const modernTheme = createTheme({
-  /* modern theme config */
-});
+    /* modern theme config */
+  });
 
 export { classicTheme, modernTheme };
 ```
@@ -508,16 +508,16 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useThemeScheme, useChangeTheme } from '@/theme';
 
 test('changes theme', () => {
-  const { result } = renderHook(() => ({
-    scheme: useThemeScheme(),
-    change: useChangeTheme()
-}));
+    const { result } = renderHook(() => ({
+          scheme: useThemeScheme(),
+          change: useChangeTheme()
+        }));
 
-expect(result.current.scheme).toBe('light');
+  expect(result.current.scheme).toBe('light');
 
-act(() => {
-  result.current.change('dark');
-});
+  act(() => {
+      result.current.change('dark');
+    });
 
 expect(result.current.scheme).toBe('dark');
 });

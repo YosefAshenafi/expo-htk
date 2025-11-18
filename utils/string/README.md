@@ -85,16 +85,16 @@ function UserForm() {
 
     <View>
       <Label>{snakeCaseToCapitalize('first_name')}</Label>
-        <TextInput placeholder="John" />
+      <TextInput placeholder="John" />
 
-        <Label>{snakeCaseToCapitalize('last_name')}</Label>
-          <TextInput placeholder="Doe" />
+    <Label>{snakeCaseToCapitalize('last_name')}</Label>
+    <TextInput placeholder="Doe" />
 
-          <Label>{snakeCaseToCapitalize('email_address')}</Label>
-            <TextInput placeholder="john@example.com" />
-          </View>
-        );
-      }
+  <Label>{snakeCaseToCapitalize('email_address')}</Label>
+  <TextInput placeholder="john@example.com" />
+</View>
+);
+}
 ```
 
 ### Dropdown Labels
@@ -116,13 +116,13 @@ function OrderStatusPicker() {
 
     <Picker>
       {statuses.map(status => (
-        <Picker.Item
-        key={status}
-      label={snakeCaseToCapitalize(status)}
-    value={status}
-  />
-))}
-</Picker>
+            <Picker.Item
+            key={status}
+            label={snakeCaseToCapitalize(status)}
+            value={status}
+            />
+          ))}
+  </Picker>
 );
 }
 ```
@@ -140,7 +140,7 @@ function ValidationError({ field }: { field: string }) {
     <Text style={styles.error}>
       {fieldName} is required
     </Text>
-  );
+);
 }
 
 // Usage
@@ -164,14 +164,14 @@ function DataDisplay(data: APIResponse) {
 
     <View>
       {Object.entries(data).map(([key, value]) => (
-        <Row key={key}>
-          <Label>{snakeCaseToCapitalize(key)}</Label>
-            <Value>{String(value)}</Value>
+            <Row key={key}>
+              <Label>{snakeCaseToCapitalize(key)}</Label>
+              <Value>{String(value)}</Value>
             </Row>
-          ))}
-      </View>
-    );
-  }
+        ))}
+</View>
+);
+}
 ```
 
 ### Capitalized Settings Labels
@@ -183,10 +183,10 @@ function SettingsOption({ name }: { name: string }) {
 
     <Row>
       <Label>{capitalize(name)}</Label>
-        <Toggle />
-      </Row>
-    );
-  }
+      <Toggle />
+  </Row>
+);
+}
 
 // Usage
 <SettingsOption name="notifications" /> // → "Notifications"
@@ -220,22 +220,22 @@ normalizeFieldLabel('userId') // → 'Userid'
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 function createLabels<T extends Record<string, any>>(
-  data: T
-): Record<keyof T, string> {
-  const labels = {} as Record<keyof T, string>;
+    data: T
+  ): Record<keyof T, string> {
+    const labels = {} as Record<keyof T, string>;
 
-  for (const key in data) {
-    labels[key] = snakeCaseToCapitalize(key);
+      for (const key in data) {
+        labels[key] = snakeCaseToCapitalize(key);
+      }
+
+    return labels;
   }
 
-return labels;
-}
-
 const userLabels = createLabels({
-  first_name: '',
-  last_name: '',
-  email_address: ''
-});
+    first_name: '',
+    last_name: '',
+    email_address: ''
+  });
 
 // Result:
 // {
@@ -264,12 +264,12 @@ import { capitalize } from '@htk/utils/string';
 
 type ValidationErrors = Record<string, string>;
 
-function formatValidationErrors(
-  errors: ValidationErrors
-): string {
+  function formatValidationErrors(
+    errors: ValidationErrors
+  ): string {
   return Object.entries(errors)
-.map(([field, error]) => `${capitalize(field)}: ${error}`)
-.join('\n');
+  .map(([field, error]) => `${capitalize(field)}: ${error}`)
+  .join('\n');
 }
 
 // Result:
@@ -312,10 +312,10 @@ import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 function LabeledField({ fieldName }: { fieldName: string }) {
   const label = useMemo(() => {
-    return snakeCaseToCapitalize(fieldName);
-  }, [fieldName]);
+      return snakeCaseToCapitalize(fieldName);
+    }, [fieldName]);
 
-  return <Label>{label}</Label>;
+return <Label>{label}</Label>;
 }
 ```
 
@@ -352,14 +352,14 @@ interface APIResponse {
 }
 
 function transformForDisplay(data: APIResponse): Record<string, string> {
-  const result: Record<string, string> = {};
+    const result: Record<string, string> = {};
 
-  for (const [key, value] of Object.entries(data)) {
-    result[snakeCaseToCapitalize(key)] = String(value);
+      for (const [key, value] of Object.entries(data)) {
+        result[snakeCaseToCapitalize(key)] = String(value);
+      }
+
+    return result;
   }
-
-return result;
-}
 ```
 
 ### Configuration Key Display
@@ -378,14 +378,14 @@ function ConfigDisplay() {
 
     <View>
       {Object.entries(config).map(([key, value]) => (
-        <Row key={key}>
-          <Label>{snakeCaseToCapitalize(key)}</Label>
-            <Value>{String(value)}</Value>
+            <Row key={key}>
+              <Label>{snakeCaseToCapitalize(key)}</Label>
+              <Value>{String(value)}</Value>
             </Row>
-          ))}
-      </View>
-    );
-  }
+        ))}
+</View>
+);
+}
 ```
 
 ## Edge Cases
@@ -442,48 +442,48 @@ snakeCaseToCapitalize('user_email@domain') // → 'User Email@domain'
 
 ```typescript
 describe('capitalize', () => {
-  it('capitalizes first letter', () => {
-    expect(capitalize('hello')).toBe('Hello');
-  });
+    it('capitalizes first letter', () => {
+        expect(capitalize('hello')).toBe('Hello');
+      });
 
   it('lowercases rest of string', () => {
-    expect(capitalize('HELLO')).toBe('Hello');
-  });
+      expect(capitalize('HELLO')).toBe('Hello');
+    });
 
-  it('handles single character', () => {
+it('handles single character', () => {
     expect(capitalize('a')).toBe('A');
   });
 
-  it('handles empty string', () => {
+it('handles empty string', () => {
     expect(capitalize('')).toBe('');
   });
 });
 
 describe('snakeCaseToCapitalize', () => {
-  it('converts snake_case to Title Case', () => {
-    expect(snakeCaseToCapitalize('first_name')).toBe('First Name');
-  });
+    it('converts snake_case to Title Case', () => {
+        expect(snakeCaseToCapitalize('first_name')).toBe('First Name');
+      });
 
   it('handles multiple underscores', () => {
-    expect(snakeCaseToCapitalize('user_profile_page'))
-  .toBe('User Profile Page');
-});
+      expect(snakeCaseToCapitalize('user_profile_page'))
+      .toBe('User Profile Page');
+    });
 
 it('handles single word', () => {
-  expect(snakeCaseToCapitalize('email')).toBe('Email');
-});
+    expect(snakeCaseToCapitalize('email')).toBe('Email');
+  });
 
 it('handles uppercase', () => {
-  expect(snakeCaseToCapitalize('UPPER_CASE')).toBe('Upper Case');
-});
+    expect(snakeCaseToCapitalize('UPPER_CASE')).toBe('Upper Case');
+  });
 
 it('handles empty string', () => {
-  expect(snakeCaseToCapitalize('')).toBe('');
-});
+    expect(snakeCaseToCapitalize('')).toBe('');
+  });
 
 it('handles mixed case', () => {
-  expect(snakeCaseToCapitalize('myVar_name')).toBe('Myvar Name');
-});
+    expect(snakeCaseToCapitalize('myVar_name')).toBe('Myvar Name');
+  });
 });
 ```
 

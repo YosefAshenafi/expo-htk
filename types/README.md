@@ -60,7 +60,7 @@ interface IMapBoxFeature {
     type: 'Point';
     coordinates: [number, number];
   };
-  properties: Record<string, any>;
+properties: Record<string, any>;
 }
 
 interface ILocation {
@@ -78,9 +78,9 @@ interface ILocation {
 import type { IMapBoxFeature } from '@htk/types';
 
 async function reverseGeocode(coords: ICoordinates): Promise<IMapBoxFeature> {
-  const response = await fetch(`/api/geocode?lat=${coords.latitude}&lon=${coords.longitude}`);
-  return response.json();
-}
+    const response = await fetch(`/api/geocode?lat=${coords.latitude}&lon=${coords.longitude}`);
+    return response.json();
+  }
 ```
 
 ### State Management
@@ -101,7 +101,7 @@ function calculateDistance(
   from: ICoordinates,
   to: ICoordinates
 ): number {
-  // Implementation
+// Implementation
 }
 ```
 
@@ -151,10 +151,10 @@ interface ExtendedCoordinates extends ICoordinates {
 ### Generic Types
 ```typescript
 interface Response<T> {
-  data: T;
-  error: string null;
-  loading: boolean;
-}
+    data: T;
+    error: string null;
+    loading: boolean;
+  }
 
 type LocationResponse = Response<ICoordinates>;
 ```
@@ -202,8 +202,8 @@ import type { ICoordinates } from '@htk/types';
 function LocationTracker() {
   const [location, setLocation] = useState<ICoordinates null>(null);
 
-  return <View>{/* UI */}</View>;
-}
+    return <View>{/* UI */}</View>;
+  }
 ```
 
 ## Testing Types

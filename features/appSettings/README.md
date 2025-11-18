@@ -35,12 +35,12 @@ Factory function that creates a complete settings system.
 
 ```typescript
 function createAppSettings<TSettings extends Record<string, any>>(
-  initial: TSettings
-): {
+    initial: TSettings
+  ): {
   atom: Atom<TSettings>;
-  useAppSettings: () => TSettings & { dispatch: UpdateFunction };
-  updateAppSetting: () => (field: keyof TSettings, value: any) => void;
-}
+    useAppSettings: () => TSettings & { dispatch: UpdateFunction };
+    updateAppSetting: () => (field: keyof TSettings, value: any) => void;
+  }
 ```
 
 **Parameters:**
@@ -87,9 +87,9 @@ function SettingsScreen() {
     <View>
       <Switch
       value={settings.darkMode}
-    onValueChange={(val) => updateSetting('darkMode', val)}
-  />
-</View>
+      onValueChange={(val) => updateSetting('darkMode', val)}
+      />
+    </View>
 );
 }
 ```
@@ -110,10 +110,10 @@ type AppSettings = {
 };
 
 const { useAppSettings, updateAppSetting } = createAppSettings<AppSettings>({
-  theme: 'light',
-  fontSize: 16,
-  language: 'en'
-});
+      theme: 'light',
+      fontSize: 16,
+      language: 'en'
+    });
 
 function App() {
   const settings = useAppSettings();
@@ -122,10 +122,10 @@ function App() {
 
 
     <View style={{
-      backgroundColor: settings.theme === 'dark' ? '#000' : '#fff'
-    }}>
-      {/* App content */}
-  </View>
+        backgroundColor: settings.theme === 'dark' ? '#000' : '#fff'
+      }}>
+  {/* App content */}
+</View>
 );
 }
 ```
@@ -146,18 +146,18 @@ function SettingsScreen() {
       label: 'Dark Mode',
       defaultValue: settings.darkMode
     },
-    {
-      type: 'fontFamily',
-      key: 'fontFamily',
-      label: 'Font Family',
-      defaultValue: settings.fontFamily
-    },
-    {
-      type: 'fontSize',
-      key: 'fontSize',
-      label: 'Font Size',
-      defaultValue: settings.fontSize
-    }
+  {
+    type: 'fontFamily',
+    key: 'fontFamily',
+    label: 'Font Family',
+    defaultValue: settings.fontFamily
+  },
+{
+  type: 'fontSize',
+  key: 'fontSize',
+  label: 'Font Size',
+  defaultValue: settings.fontSize
+}
 ];
 
 return (
@@ -165,9 +165,9 @@ return (
 
   <AppSettings
   entries={entries}
-onSettingChange={(key, value) => {
-  updateSetting(key as any, value);
-}}
+  onSettingChange={(key, value) => {
+      updateSetting(key as any, value);
+    }}
 />
 );
 }
@@ -185,11 +185,11 @@ interface UserPreferences {
 }
 
 const { useAppSettings, updateAppSetting } = createAppSettings<UserPreferences>({
-  colorScheme: 'auto',
-  fontSize: 'medium',
-  reducedMotion: false,
-  highContrast: false
-});
+      colorScheme: 'auto',
+      fontSize: 'medium',
+      reducedMotion: false,
+      highContrast: false
+    });
 
 function AccessibilitySettings() {
   const prefs = useAppSettings();
@@ -200,11 +200,11 @@ function AccessibilitySettings() {
 
     <View>
       {/* All property accesses are type-checked */}
-    <Toggle
-    value={prefs.reducedMotion} // Type-safe
-    onChange={(val) => update('reducedMotion', val)}
-  />
-</View>
+      <Toggle
+      value={prefs.reducedMotion} // Type-safe
+      onChange={(val) => update('reducedMotion', val)}
+      />
+    </View>
 );
 }
 ```
@@ -214,8 +214,8 @@ function AccessibilitySettings() {
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, updateAppSetting } = createAppSettings({
-  fontSize: 16
-});
+    fontSize: 16
+  });
 
 function FontSizeControl() {
   const settings = useAppSettings();
@@ -233,10 +233,10 @@ return (
 
   <Slider
   value={settings.fontSize}
-onValueChange={handleFontSizeChange}
-minimumValue={12}
-maximumValue={32}
-/>
+  onValueChange={handleFontSizeChange}
+  minimumValue={12}
+  maximumValue={32}
+  />
 );
 }
 ```
@@ -252,17 +252,17 @@ function ThemedComponent() {
 
   // Respond to setting changes
   useEffect(() => {
-    console.log('Theme changed to:', settings.darkMode);
-  }, [settings.darkMode]);
+      console.log('Theme changed to:', settings.darkMode);
+    }, [settings.darkMode]);
 
-  return (
+return (
 
 
-    <View style={{
+  <View style={{
       backgroundColor: settings.darkMode ? '#000' : '#fff'
     }}>
-      {/* Component updates automatically when settings change */}
-  </View>
+{/* Component updates automatically when settings change */}
+</View>
 );
 }
 ```
@@ -277,15 +277,15 @@ function ResponsiveText() {
 
   // Derive font size based on user preference
   const fontSize = useMemo(() => {
-    const sizeMap = {
-      'small': 12,
-      'medium': 16,
-      'large': 20
-    };
+      const sizeMap = {
+        'small': 12,
+        'medium': 16,
+        'large': 20
+      };
     return sizeMap[settings.fontSize as keyof typeof sizeMap];
   }, [settings.fontSize]);
 
-  return <Text style={{ fontSize }}>Responsive Text</Text>;
+return <Text style={{ fontSize }}>Responsive Text</Text>;
 }
 ```
 
@@ -354,10 +354,10 @@ function App() {
   const { setTheme } = useTheme();
 
   useEffect(() => {
-    setTheme(settings.isDarkMode ? 'dark' : 'light');
-  }, [settings.isDarkMode]);
+      setTheme(settings.isDarkMode ? 'dark' : 'light');
+    }, [settings.isDarkMode]);
 
-  return <MainApp />;
+return <MainApp />;
 }
 ```
 
@@ -410,7 +410,7 @@ function OptimizedComponent() {
   const isDark = useMemo(
     () => settings.theme === 'dark',
     [settings.theme]
-);
+  );
 
 return <Component isDark={isDark} />;
 }
@@ -462,8 +462,8 @@ function Component() {
         updateSetting(key as any, value);
       }
   } catch (error) {
-    console.error('Failed to update setting:', error);
-  }
+  console.error('Failed to update setting:', error);
+}
 };
 
 return <View>{/* ... */}</View>;
@@ -486,7 +486,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
     <SettingsContext.Provider value={settingsSystem}>
       {children}
-  </SettingsContext.Provider>
+    </SettingsContext.Provider>
 );
 }
 
@@ -512,8 +512,8 @@ const darkThemePreset = {
 function ApplyPreset(preset: typeof lightThemePreset) {
   const update = updateAppSetting();
   Object.entries(preset).forEach(([key, value]) => {
-    update(key as any, value);
-  });
+      update(key as any, value);
+    });
 }
 ```
 
@@ -538,30 +538,30 @@ function ApplyPreset(preset: typeof lightThemePreset) {
 import { createAppSettings } from '@htk/features/appSettings';
 
 describe('appSettings', () => {
-  it('creates settings with defaults', () => {
-    const { useAppSettings } = createAppSettings({
-      darkMode: false,
-      fontSize: 16
-    });
+    it('creates settings with defaults', () => {
+        const { useAppSettings } = createAppSettings({
+            darkMode: false,
+            fontSize: 16
+          });
 
-    // Test initial state
-    expect(settings).toEqual({
-      darkMode: false,
-      fontSize: 16
-    });
+      // Test initial state
+      expect(settings).toEqual({
+          darkMode: false,
+          fontSize: 16
+        });
   });
 
-  it('updates settings', () => {
+it('updates settings', () => {
     const { useAppSettings, updateAppSetting } = createAppSettings({
-      counter: 0
-    });
+        counter: 0
+      });
 
-    const update = updateAppSetting();
-    update('counter', 1);
+  const update = updateAppSetting();
+  update('counter', 1);
 
-    const settings = useAppSettings();
-    expect(settings.counter).toBe(1);
-  });
+  const settings = useAppSettings();
+  expect(settings.counter).toBe(1);
+});
 });
 ```
 

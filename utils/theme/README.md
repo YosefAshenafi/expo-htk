@@ -88,9 +88,9 @@ function Card() {
 
     <View style={Dividers.bottom1}>
       <Text>Card Content</Text>
-      </View>
-    );
-  }
+    </View>
+);
+}
 // Renders with 1px bottom border in theme color
 ```
 
@@ -105,14 +105,14 @@ function BorderedBox() {
     Dividers.bottom1
   );
 
-  return (
+return (
 
 
-    <View style={combinedBorders}>
-      <Text>Content</Text>
-      </View>
-    );
-  }
+  <View style={combinedBorders}>
+    <Text>Content</Text>
+  </View>
+);
+}
 ```
 
 ### Layout Separation
@@ -125,10 +125,10 @@ function UserList() {
 
     <FlatList
     data={users}
-  renderItem={({ item }) => (
-    <View style={Dividers.bottom1}>
-      <UserCard user={item} />
-    </View>
+    renderItem={({ item }) => (
+        <View style={Dividers.bottom1}>
+          <UserCard user={item} />
+      </View>
   )}
 keyExtractor={item => item.id}
 />
@@ -147,16 +147,16 @@ function HorizontalLayout() {
     <View style={{ flexDirection: 'row' }}>
       <View style={{ flex: 1 }}>
         <Text>Left Column</Text>
-        </View>
+      </View>
 
-        <View style={Dividers.left1} />
+    <View style={Dividers.left1} />
 
-        <View style={{ flex: 1 }}>
-          <Text>Right Column</Text>
-          </View>
-        </View>
-      );
-    }
+  <View style={{ flex: 1 }}>
+    <Text>Right Column</Text>
+  </View>
+</View>
+);
+}
 ```
 
 ### Card Component
@@ -165,18 +165,18 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  card: {
-    padding: 16,
-    backgroundColor: 'white'
-  },
+    card: {
+      padding: 16,
+      backgroundColor: 'white'
+    },
   header: {
     ...Dividers.bottom1,
     paddingBottom: 12,
     marginBottom: 12
   },
-  body: {
-    paddingVertical: 8
-  }
+body: {
+  paddingVertical: 8
+}
 });
 
 function Card({ title, content }) {
@@ -186,13 +186,13 @@ function Card({ title, content }) {
       <View style={styles.header}>
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
           {title}
-      </Text>
+        </Text>
     </View>
-    <View style={styles.body}>
-      <Text>{content}</Text>
-      </View>
-    </View>
-  );
+  <View style={styles.body}>
+    <Text>{content}</Text>
+  </View>
+</View>
+);
 }
 ```
 
@@ -207,9 +207,9 @@ function FormSection({ title, children }) {
     <View style={Dividers.bottom1}>
       <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 12 }}>
         {title}
-    </Text>
+      </Text>
     {children}
-</View>
+  </View>
 );
 }
 
@@ -219,15 +219,15 @@ function RegistrationForm() {
     <View>
       <FormSection title="Personal Information">
         <TextInput placeholder="First Name" />
-        <TextInput placeholder="Last Name" />
-      </FormSection>
+      <TextInput placeholder="Last Name" />
+  </FormSection>
 
-      <FormSection title="Contact">
-        <TextInput placeholder="Email" />
-        <TextInput placeholder="Phone" />
-      </FormSection>
-    </View>
-  );
+<FormSection title="Contact">
+  <TextInput placeholder="Email" />
+<TextInput placeholder="Phone" />
+</FormSection>
+</View>
+);
 }
 ```
 
@@ -243,23 +243,23 @@ function Dialog({ title, content, onConfirm, onCancel }) {
       <View style={{ padding: 16, ...Dividers.bottom1 }}>
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
           {title}
-      </Text>
+        </Text>
     </View>
 
-    <View style={{ padding: 16, ...Dividers.bottom1 }}>
-      <Text>{content}</Text>
-      </View>
+  <View style={{ padding: 16, ...Dividers.bottom1 }}>
+    <Text>{content}</Text>
+  </View>
 
-      <View style={{
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        padding: 12
-      }}>
-        <Button title="Cancel" onPress={onCancel} />
-        <Button title="Confirm" onPress={onConfirm} />
-      </View>
-    </View>
-  );
+<View style={{
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 12
+  }}>
+<Button title="Cancel" onPress={onCancel} />
+<Button title="Confirm" onPress={onConfirm} />
+</View>
+</View>
+);
 }
 ```
 
@@ -274,19 +274,19 @@ function TabNavigation({ tabs, activeTab, onTabChange }) {
     <View style={Dividers.bottom1}>
       <FlatList
       data={tabs}
-    horizontal
-    renderItem={({ item }) => (
-      <TouchableOpacity
-      onPress={() => onTabChange(item.id)}
-    style={{
-      paddingHorizontal: 16,
-      paddingVertical: 12,
-      borderBottomWidth: activeTab === item.id ? 2 : 0,
-      borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
-    }}
-  >
-    <Text>{item.label}</Text>
-    </TouchableOpacity>
+      horizontal
+      renderItem={({ item }) => (
+          <TouchableOpacity
+          onPress={() => onTabChange(item.id)}
+          style={{
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              borderBottomWidth: activeTab === item.id ? 2 : 0,
+              borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
+            }}
+        >
+        <Text>{item.label}</Text>
+      </TouchableOpacity>
   )}
 keyExtractor={item => item.id}
 />
@@ -305,18 +305,18 @@ function SettingsItem({ label, value, onPress }) {
 
     <TouchableOpacity
     style={{
-      paddingVertical: 12,
-      paddingHorizontal: 16,
-      ...Dividers.bottom1
-    }}
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        ...Dividers.bottom1
+      }}
   onPress={onPress}
->
+  >
   <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
     <Text>{label}</Text>
-      <Text style={{ color: 'gray' }}>{value}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+    <Text style={{ color: 'gray' }}>{value}</Text>
+  </View>
+</TouchableOpacity>
+);
 }
 
 function SettingsList() {
@@ -324,10 +324,10 @@ function SettingsList() {
 
     <View>
       <SettingsItem label="Language" value="English" />
-      <SettingsItem label="Theme" value="Dark" />
-      <SettingsItem label="Notifications" value="On" />
-    </View>
-  );
+    <SettingsItem label="Theme" value="Dark" />
+  <SettingsItem label="Notifications" value="On" />
+</View>
+);
 }
 ```
 
@@ -339,11 +339,11 @@ import { Dividers } from '@htk/utils/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  // Combine multiple dividers
-  bordered: {
-    ...Dividers.top1,
-    ...Dividers.bottom1
-  },
+    // Combine multiple dividers
+    bordered: {
+      ...Dividers.top1,
+      ...Dividers.bottom1
+    },
 
   // Horizontal box
   boxHorizontal: {
@@ -351,13 +351,13 @@ const styles = StyleSheet.create({
     ...Dividers.right1
   },
 
-  // All sides
-  boxFull: {
-    ...Dividers.top1,
-    ...Dividers.right1,
-    ...Dividers.bottom1,
-    ...Dividers.left1
-  }
+// All sides
+boxFull: {
+  ...Dividers.top1,
+  ...Dividers.right1,
+  ...Dividers.bottom1,
+  ...Dividers.left1
+}
 });
 ```
 
@@ -370,12 +370,12 @@ function ListItem({ item, showBottom = true, showTop = false }) {
 
     <View
     style={{
-      ...(showTop && Dividers.top1),
-      ...(showBottom && Dividers.bottom1)
-  }}
->
+        ...(showTop && Dividers.top1),
+        ...(showBottom && Dividers.bottom1)
+      }}
+  >
   <Text>{item.title}</Text>
-  </View>
+</View>
 );
 }
 ```
@@ -395,9 +395,9 @@ function ThemedComponent() {
 
     <View style={Dividers.bottom1}>
       <Text>This divider adapts to theme</Text>
-      </View>
-    );
-  }
+    </View>
+);
+}
 ```
 
 ## Integration with react-native-ui-lib
@@ -433,7 +433,7 @@ import { Dividers } from '@htk/utils/theme';
 import { StyleProp, ViewStyle } from 'react-native';
 
 const dividerStyle: StyleProp<ViewStyle> = Dividers.bottom1;
-// Type-safe
+  // Type-safe
 ```
 
 ## Performance Considerations
@@ -447,8 +447,8 @@ const dividerStyle: StyleProp<ViewStyle> = Dividers.bottom1;
 ```typescript
 // Good: Create once, reuse
 const styles = StyleSheet.create({
-  item: Dividers.bottom1
-});
+    item: Dividers.bottom1
+  });
 
 // Avoid: Creating in render
 function Item() {
@@ -491,15 +491,15 @@ function GridItem({ item }) {
 
     <View
     style={{
-      flex: 1,
-      padding: 8,
-      ...Dividers.right1,
-      ...Dividers.bottom1
-    }}
+        flex: 1,
+        padding: 8,
+        ...Dividers.right1,
+        ...Dividers.bottom1
+      }}
   >
-    <Text>{item.title}</Text>
-    </View>
-  );
+  <Text>{item.title}</Text>
+</View>
+);
 }
 ```
 
@@ -512,18 +512,18 @@ function Breadcrumb({ items }) {
   return (
 
     <View style={{
-      flexDirection: 'row',
-      alignItems: 'center',
-      ...Dividers.bottom1,
-      paddingVertical: 8
-    }}>
-      {items.map((item, index) => (
+        flexDirection: 'row',
+        alignItems: 'center',
+        ...Dividers.bottom1,
+        paddingVertical: 8
+      }}>
+  {items.map((item, index) => (
         <View key={item.id} style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text>{item.label}</Text>
-            {index < items.length - 1 && <Text style={{ marginHorizontal: 8 }}>›</Text>}
+          {index < items.length - 1 && <Text style={{ marginHorizontal: 8 }}>›</Text>}
         </View>
-      ))}
-  </View>
+    ))}
+</View>
 );
 }
 ```
@@ -537,34 +537,34 @@ function StepIndicator({ steps, currentStep }) {
   return (
 
     <View style={{
-      ...Dividers.bottom1,
-      paddingVertical: 16,
-      paddingHorizontal: 12
-    }}>
-      {steps.map((step, index) => (
+        ...Dividers.bottom1,
+        paddingVertical: 16,
+        paddingHorizontal: 12
+      }}>
+  {steps.map((step, index) => (
         <View
         key={step.id}
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: index < steps.length - 1 ? 8 : 0
-      }}
-    >
+        style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginBottom: index < steps.length - 1 ? 8 : 0
+          }}
+      >
       <View
       style={{
-        width: 32,
-        height: 32,
-        borderRadius: 16,
-        backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
+          width: 32,
+          height: 32,
+          borderRadius: 16,
+          backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
     >
-      <Text style={{ color: 'white' }}>{index + 1}</Text>
-      </View>
-      <Text style={{ marginLeft: 12 }}>{step.title}</Text>
-      </View>
-    ))}
+    <Text style={{ color: 'white' }}>{index + 1}</Text>
+  </View>
+<Text style={{ marginLeft: 12 }}>{step.title}</Text>
+</View>
+))}
 </View>
 );
 }
@@ -577,18 +577,18 @@ function StepIndicator({ steps, currentStep }) {
 import { Dividers } from '@htk/utils/theme';
 
 describe('Dividers', () => {
-  it('has correct top divider style', () => {
-    expect(Dividers.top1).toEqual({
-      borderTopWidth: 1,
-      borderColor: expect.any(String)
-  });
-});
+    it('has correct top divider style', () => {
+        expect(Dividers.top1).toEqual({
+            borderTopWidth: 1,
+            borderColor: expect.any(String)
+          });
+    });
 
 it('all dividers use outline color', () => {
-  [Dividers.top1, Dividers.right1, Dividers.bottom1, Dividers.left1]
-.forEach(divider => {
-  expect(divider.borderColor).toBeDefined();
-});
+    [Dividers.top1, Dividers.right1, Dividers.bottom1, Dividers.left1]
+    .forEach(divider => {
+        expect(divider.borderColor).toBeDefined();
+      });
 });
 });
 ```

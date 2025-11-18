@@ -74,12 +74,12 @@ function useErrorTracking() {
 
   return (error: Error) => {
     rollbar.error(error, {
-      device: {
-        platform: device.platform,
-        osVersion: device.osVersion,
-        modelName: device.modelName
-      }
-  });
+        device: {
+          platform: device.platform,
+          osVersion: device.osVersion,
+          modelName: device.modelName
+        }
+    });
 };
 }
 ```
@@ -178,7 +178,7 @@ import { render } from '@testing-library/react-native';
 import { ExpoDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 test('renders device info', () => {
-  const { getByText } = render(<ExpoDeviceInfo />);
+    const { getByText } = render(<ExpoDeviceInfo />);
   expect(getByText(/device/i)).toBeTruthy();
 });
 ```

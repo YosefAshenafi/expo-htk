@@ -57,8 +57,8 @@ export function MyApp() {
   return (
     <Confirm>
       <MainScreen />
-    </Confirm>
-  );
+  </Confirm>
+);
 }
 ```
 
@@ -71,13 +71,13 @@ export function MyComponent() {
 
   const handleDelete = () => {
     confirm({
-      title: 'Delete Item?',
-      message: 'This action cannot be undone.',
-      buttons: [
-        { label: 'Cancel', onPress: () => {} },
-        { label: 'Delete', onPress: handleConfirmedDelete }
-    ]
-});
+        title: 'Delete Item?',
+        message: 'This action cannot be undone.',
+        buttons: [
+          { label: 'Cancel', onPress: () => {} },
+          { label: 'Delete', onPress: handleConfirmedDelete }
+        ]
+    });
 };
 
 return <Button onPress={handleDelete} />;
@@ -109,11 +109,11 @@ interface ConfirmButton {
 const { confirm } = useConfirm();
 
 function confirm(config: {
-  title: string;
-  message: string;
-  buttons: ConfirmButton[];
-  layout?: 'horizontal' 'vertical'; // defaults to horizontal
-}): void
+    title: string;
+    message: string;
+    buttons: ConfirmButton[];
+    layout?: 'horizontal' 'vertical'; // defaults to horizontal
+  }): void
 ```
 
 ## Button Layouts
@@ -134,10 +134,10 @@ Better for longer button labels or mobile screens. Buttons stacked vertically.
 
 ```typescript
 confirm({
-  title: 'Confirm Action',
-  buttons: [...],
-  layout: 'vertical'
-});
+    title: 'Confirm Action',
+    buttons: [...],
+    layout: 'vertical'
+  });
 ```
 
 ## Styling

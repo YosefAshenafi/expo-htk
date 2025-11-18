@@ -60,10 +60,10 @@ Implements platform-agnostic storage operations:
 ```typescript
 interface StorageAdapter {
   getItem(key: string): string null Promise<string null>;
-  setItem(key: string, value: string): void Promise<void>;
-  removeItem(key: string): void Promise<void>;
-  clearAll(): void Promise<void>;
-}
+    setItem(key: string, value: string): void Promise<void>;
+      removeItem(key: string): void Promise<void>;
+        clearAll(): void Promise<void>;
+        }
 ```
 
 ## API Usage
@@ -154,28 +154,28 @@ storage.setItem('password', encryptedPassword);
 ### Type-Safe Storage Wrapper
 ```typescript
 interface StorageValue<T> {
-  value: T;
-  timestamp: number;
-}
+    value: T;
+    timestamp: number;
+  }
 
 export function setTypedValue<T>(
-  key: string,
-  value: T
-): void {
+    key: string,
+    value: T
+  ): void {
   const data: StorageValue<T> = {
-    value,
-    timestamp: Date.now()
-};
-storage.setItem(key, JSON.stringify(data));
+      value,
+      timestamp: Date.now()
+    };
+  storage.setItem(key, JSON.stringify(data));
 }
 
 export function getTypedValue<T>(key: string): T null {
-  const raw = storage.getItem(key);
-  if (!raw) return null;
+    const raw = storage.getItem(key);
+    if (!raw) return null;
 
-  const data: StorageValue<T> = JSON.parse(raw);
-  return data.value;
-}
+    const data: StorageValue<T> = JSON.parse(raw);
+      return data.value;
+    }
 ```
 
 ### Persisted State Hook
@@ -183,20 +183,20 @@ export function getTypedValue<T>(key: string): T null {
 import { useCallback } from 'react';
 
 function useStoredValue<T>(key: string, initialValue: T) {
-  const [value, setValue] = useState<T>(() => {
-    const stored = storage.getItem(key);
-    return stored ? JSON.parse(stored) : initialValue;
-  });
+    const [value, setValue] = useState<T>(() => {
+          const stored = storage.getItem(key);
+          return stored ? JSON.parse(stored) : initialValue;
+        });
 
-  const updateValue = useCallback((newValue: T ((prev: T) => T)) => {
-    setValue(prev => {
-      const updated = typeof newValue === 'function'
-      ? newValue(prev)
-    : newValue;
-    storage.setItem(key, JSON.stringify(updated));
-    return updated;
-  });
-}, [key]);
+    const updateValue = useCallback((newValue: T ((prev: T) => T)) => {
+        setValue(prev => {
+            const updated = typeof newValue === 'function'
+            ? newValue(prev)
+            : newValue;
+            storage.setItem(key, JSON.stringify(updated));
+            return updated;
+          });
+    }, [key]);
 
 return [value, updateValue] as const;
 }
@@ -247,8 +247,8 @@ function backupStorage() {
 function restoreStorage(backup: string) {
   const data = JSON.parse(backup);
   Object.entries(data).forEach(([key, value]) => {
-    storage.setItem(key, value as string);
-  });
+      storage.setItem(key, value as string);
+    });
 }
 ```
 
@@ -261,9 +261,9 @@ try {
     processData(JSON.parse(value));
   }
 } catch (error) {
-  console.error('Storage access failed:', error);
-  // Fall back to default value
-  return defaultValue;
+console.error('Storage access failed:', error);
+// Fall back to default value
+return defaultValue;
 }
 ```
 
@@ -282,7 +282,7 @@ async function migrateFromAsyncStorage() {
     if (value) {
       mmkvStorage.setItem(key, value);
     }
-  }
+}
 }
 ```
 
@@ -291,15 +291,15 @@ async function migrateFromAsyncStorage() {
 ### Mock MMKV for Tests
 ```typescript
 jest.mock('react-native-mmkv', () => ({
-  MMKVLoader: jest.fn(() => ({
-    setProcessingMode: jest.fn().mockReturnThis(),
-    build: jest.fn(() => ({
-      getItem: jest.fn(),
-      setItem: jest.fn(),
-      removeItem: jest.fn(),
-      clearAll: jest.fn(),
-    })),
-  })),
+      MMKVLoader: jest.fn(() => ({
+            setProcessingMode: jest.fn().mockReturnThis(),
+            build: jest.fn(() => ({
+                  getItem: jest.fn(),
+                  setItem: jest.fn(),
+                  removeItem: jest.fn(),
+                  clearAll: jest.fn(),
+                })),
+        })),
 }));
 ```
 

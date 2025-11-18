@@ -35,7 +35,7 @@ export function DebugScreen() {
   return (
 
     <ExpoDeviceInfo />
-  );
+);
 }
 ```
 
@@ -62,11 +62,11 @@ function MyComponent() {
 
     <View>
       <Text>Device: {deviceInfo.manufacturer} {deviceInfo.modelName}</Text>
-        <Text>OS: {deviceInfo.osVersion}</Text>
-          <Text>Platform: {deviceInfo.platform}</Text>
-          </View>
-        );
-      }
+      <Text>OS: {deviceInfo.osVersion}</Text>
+      <Text>Platform: {deviceInfo.platform}</Text>
+    </View>
+);
+}
 ```
 
 ### Hook Return Value
@@ -101,10 +101,10 @@ interface DeviceInfo {
   // Screen & Display
   displaySize: number; // Diagonal in inches (approximate)
 
-// Additional Info
-brand: string; // Device brand
-serialNumber: string; // Device serial (may be restricted)
-isTablet: boolean; // Convenience flag
+  // Additional Info
+  brand: string; // Device brand
+  serialNumber: string; // Device serial (may be restricted)
+  isTablet: boolean; // Convenience flag
 }
 ```
 
@@ -154,10 +154,10 @@ export function SettingsScreen() {
 
     <ScrollView>
       <Text style={styles.title}>Device Information</Text>
-        <ExpoDeviceInfo />
-      </ScrollView>
-    );
-  }
+      <ExpoDeviceInfo />
+  </ScrollView>
+);
+}
 ```
 
 ### Custom Device Info Display
@@ -173,20 +173,20 @@ export function DeviceCard() {
 
     <View style={styles.card}>
       <Text style={styles.label}>Device</Text>
-        <Text style={styles.value}>
-          {device.manufacturer} {device.modelName}
+      <Text style={styles.value}>
+        {device.manufacturer} {device.modelName}
       </Text>
 
-      <Text style={styles.label}>Operating System</Text>
-        <Text style={styles.value}>
-          {device.osName} {device.osVersion}
-      </Text>
+    <Text style={styles.label}>Operating System</Text>
+    <Text style={styles.value}>
+      {device.osName} {device.osVersion}
+    </Text>
 
-      {device.isTablet && (
-        <Text style={styles.badge}>Tablet Device</Text>
-        )}
-    </View>
-  );
+  {device.isTablet && (
+      <Text style={styles.badge}>Tablet Device</Text>
+    )}
+</View>
+);
 }
 ```
 
@@ -202,18 +202,18 @@ export function FeatureAvailability() {
 
     <View>
       {device.hasNFC && (
-        <FeatureCard
-        title="NFC Payment"
-        description="Available on this device"
-        />
-      )}
+          <FeatureCard
+          title="NFC Payment"
+          description="Available on this device"
+          />
+        )}
 
     {device.hasGPS && (
-      <FeatureCard
-      title="Location Services"
-      description="GPS enabled"
-      />
-    )}
+        <FeatureCard
+        title="Location Services"
+        description="GPS enabled"
+        />
+      )}
 </View>
 );
 }
@@ -274,13 +274,13 @@ export function App() {
 
   // Include device info with error reports
   rollbar.configure({
-    payload: {
-      device: {
-        platform: device.platform,
-        osVersion: device.osVersion,
-        modelName: device.modelName
-      }
-  }
+      payload: {
+        device: {
+          platform: device.platform,
+          osVersion: device.osVersion,
+          modelName: device.modelName
+        }
+    }
 });
 }
 ```

@@ -38,11 +38,11 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs';
 // In components:
 const { confirm } = useConfirm();
 confirm({
-  title: 'Delete?',
-  buttons: [
-    { label: 'Cancel', onPress: () => {} },
-    { label: 'Delete', onPress: handleDelete }
-]
+    title: 'Delete?',
+    buttons: [
+      { label: 'Cancel', onPress: () => {} },
+      { label: 'Delete', onPress: handleDelete }
+    ]
 });
 ```
 
@@ -94,8 +94,8 @@ export function App() {
 
     <Confirm>
       <MainScreen />
-    </Confirm>
-  );
+  </Confirm>
+);
 }
 
 function DeleteButton() {
@@ -107,12 +107,12 @@ function DeleteButton() {
     <Button
     title="Delete"
     onPress={() => confirm({
-      title: 'Confirm Delete',
-      buttons: [
-        { label: 'Cancel', onPress: () => {} },
-        { label: 'Delete', onPress: () => handleDelete() }
-    ]
-})}
+          title: 'Confirm Delete',
+          buttons: [
+            { label: 'Cancel', onPress: () => {} },
+            { label: 'Delete', onPress: () => handleDelete() }
+          ]
+      })}
 />
 );
 }
@@ -128,7 +128,7 @@ export function App() {
 
     <Confirm>
       {/* Future: AlertDialog, PromptDialog, etc. */}
-    <MainScreen />
+      <MainScreen />
   </Confirm>
 );
 }
@@ -169,7 +169,7 @@ DialogType/
  ```typescript
 // Use React.createContext + useReducer
 const Context = React.createContext<State>(defaultState);
-const DispatchContext = React.createContext<Dispatch>(defaultDispatch);
+  const DispatchContext = React.createContext<Dispatch>(defaultDispatch);
 ```
 
 3. **Type Safety**
@@ -243,18 +243,18 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 function TestComponent() {
   const { confirm } = useConfirm();
   return <Button onPress={() => confirm({ ... })} />;
-}
+  }
 
 test('confirms action', () => {
-  const onConfirm = jest.fn();
-  const { getByText } = render(
-    <Confirm>
-      <TestComponent onConfirm={onConfirm} />
+    const onConfirm = jest.fn();
+    const { getByText } = render(
+      <Confirm>
+        <TestComponent onConfirm={onConfirm} />
     </Confirm>
-  );
+);
 
-  fireEvent.press(getByText('Confirm'));
-  expect(onConfirm).toHaveBeenCalled();
+fireEvent.press(getByText('Confirm'));
+expect(onConfirm).toHaveBeenCalled();
 });
 ```
 
@@ -266,16 +266,16 @@ function useAsyncConfirm() {
   const { confirm } = useConfirm();
 
   return (title: string, message: string): Promise<boolean> => {
-    return new Promise(resolve => {
-      confirm({
-        title,
-        message,
-        buttons: [
-          { label: 'Cancel', onPress: () => resolve(false) },
-          { label: 'Confirm', onPress: () => resolve(true) }
-      ]
-  });
-});
+      return new Promise(resolve => {
+          confirm({
+              title,
+              message,
+              buttons: [
+                { label: 'Cancel', onPress: () => resolve(false) },
+                { label: 'Confirm', onPress: () => resolve(true) }
+              ]
+          });
+    });
 };
 }
 ```
@@ -283,18 +283,18 @@ function useAsyncConfirm() {
 ### Confirmation with Data
 ```typescript
 function useConfirmWithData<T>() {
-  const { confirm } = useConfirm();
+    const { confirm } = useConfirm();
 
-  return (title: string, data: T): Promise<T null> => {
-    return new Promise(resolve => {
-      confirm({
-        title,
-        buttons: [
-          { label: 'Cancel', onPress: () => resolve(null) },
-          { label: 'Confirm', onPress: () => resolve(data) }
-      ]
-  });
-});
+    return (title: string, data: T): Promise<T null> => {
+        return new Promise(resolve => {
+            confirm({
+                title,
+                buttons: [
+                  { label: 'Cancel', onPress: () => resolve(null) },
+                  { label: 'Confirm', onPress: () => resolve(data) }
+                ]
+            });
+      });
 };
 }
 ```

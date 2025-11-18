@@ -22,9 +22,9 @@ This is a toolkit meant to be integrated into your Expo project. Copy or referen
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, updateAppSetting } = createAppSettings({
-  darkMode: false,
-  fontSize: 16
-});
+    darkMode: false,
+    fontSize: 16
+  });
 ```
 
 **Full examples and detailed setup instructions are in the documentation below.**

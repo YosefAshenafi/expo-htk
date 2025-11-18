@@ -26,8 +26,8 @@ Generates a complete context system for managing shared state across React compo
 
 ```typescript
 function contextBuilder<T>(
-  defaultValue: T
-): [IProvider<T>, IuseContext<T>, IuseContextDispatch<T>, IuseUpdate<T>]
+    defaultValue: T
+  ): [IProvider<T>, IuseContext<T>, IuseContextDispatch<T>, IuseUpdate<T>]
 ```
 
 **Returns Tuple:**
@@ -72,8 +72,8 @@ export function App() {
 
     <ThemeProvider>
       <MainApp />
-    </ThemeProvider>
-  );
+  </ThemeProvider>
+);
 }
 ```
 
@@ -87,20 +87,20 @@ function ThemeToggle() {
 
   const toggleDarkMode = () => {
     updateTheme({
-      isDarkMode: !theme.isDarkMode
-    });
-  };
+        isDarkMode: !theme.isDarkMode
+      });
+};
 
-  return (
+return (
 
 
-    <View style={{
+  <View style={{
       backgroundColor: theme.isDarkMode ? '#000' : '#fff'
     }}>
-      <Button
-      title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
-    onPress={toggleDarkMode}
-  />
+<Button
+title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
+onPress={toggleDarkMode}
+/>
 </View>
 );
 }
@@ -126,7 +126,7 @@ const defaultAppContext: AppContextValue = {
     language: 'en',
     notifications: true
   },
-  isOnline: true
+isOnline: true
 };
 
 const [AppProvider, useApp, useAppDispatch, useUpdateApp] =
@@ -143,15 +143,15 @@ function UserSettings() {
   const handleLogout = () => {
     // Full control over dispatch with custom actions
     dispatch({
-      type: 'RESET' // Resets to default value
-    });
-  };
+        type: 'RESET' // Resets to default value
+      });
+};
 
-  return (
+return (
 
 
-    <Button title="Logout" onPress={handleLogout} />
-  );
+  <Button title="Logout" onPress={handleLogout} />
+);
 }
 ```
 
@@ -166,20 +166,20 @@ function UserProfile() {
   // Update single property
   const updateLanguage = (lang: string) => {
     updateApp({
-      preferences: {
-        ...preferences,
-        language: lang
-      }
-  });
+        preferences: {
+          ...preferences,
+          language: lang
+        }
+    });
 };
 
 // Update multiple properties
 const onUserDataFetched = (userData: User) => {
   updateApp({
-    user: userData,
-    isLoading: false,
-    error: null
-  });
+      user: userData,
+      isLoading: false,
+      error: null
+    });
 };
 
 const onLoadingStart = () => {
@@ -188,9 +188,9 @@ const onLoadingStart = () => {
 
 const onError = (error: string) => {
   updateApp({
-    error,
-    isLoading: false
-  });
+      error,
+      isLoading: false
+    });
 };
 
 return (
@@ -198,8 +198,8 @@ return (
 
   <View>
     <Text>{user?.name}</Text>
-    </View>
-  );
+  </View>
+);
 }
 ```
 
@@ -217,11 +217,11 @@ type AuthContextValue = {
 };
 
 const [AuthProvider, useAuth, useAuthDispatch, useUpdateAuth] = contextBuilder<AuthContextValue>({
-  isAuthenticated: false,
-  user: null,
-  token: null,
-  isLoading: false
-});
+      isAuthenticated: false,
+      user: null,
+      token: null,
+      isLoading: false
+    });
 
 // Custom hook for login
 function useLogin() {
@@ -234,17 +234,17 @@ function useLogin() {
       const response = await loginAPI(email, password);
 
       updateAuth({
-        isAuthenticated: true,
-        user: response.user,
-        token: response.token,
-        isLoading: false
-      });
-    } catch (error) {
-      updateAuth({
-        isLoading: false
-      });
-      throw error;
-    }
+          isAuthenticated: true,
+          user: response.user,
+          token: response.token,
+          isLoading: false
+        });
+  } catch (error) {
+  updateAuth({
+      isLoading: false
+    });
+throw error;
+}
 };
 }
 ```
@@ -258,9 +258,9 @@ type NotificationContextValue = {
 
 const [NotificationProvider, useNotifications, , useUpdateNotifications] =
 contextBuilder({
-  notifications: [],
-  unreadCount: 0
-});
+    notifications: [],
+    unreadCount: 0
+  });
 
 function useAddNotification() {
   const { notifications, unreadCount } = useNotifications();
@@ -268,10 +268,10 @@ function useAddNotification() {
 
   return (notification: Notification) => {
     updateNotifications({
-      notifications: [...notifications, notification],
-      unreadCount: unreadCount + 1
-    });
-  };
+        notifications: [...notifications, notification],
+        unreadCount: unreadCount + 1
+      });
+};
 }
 
 function useClearNotifications() {
@@ -279,10 +279,10 @@ function useClearNotifications() {
 
   return () => {
     updateNotifications({
-      notifications: [],
-      unreadCount: 0
-    });
-  };
+        notifications: [],
+        unreadCount: 0
+      });
+};
 }
 ```
 
@@ -290,37 +290,37 @@ function useClearNotifications() {
 ```typescript
 type FormContextValue = {
   values: Record<string, any>;
-  errors: Record<string, string>;
-  touched: Record<string, boolean>;
-  isSubmitting: boolean;
-};
+    errors: Record<string, string>;
+      touched: Record<string, boolean>;
+        isSubmitting: boolean;
+      };
 
-const [FormProvider, useFormState, , useUpdateFormState] = contextBuilder({
-  values: {},
-  errors: {},
-  touched: {},
-  isSubmitting: false
-});
+    const [FormProvider, useFormState, , useUpdateFormState] = contextBuilder({
+        values: {},
+        errors: {},
+        touched: {},
+        isSubmitting: false
+      });
 
-function useFormField(fieldName: string) {
-  const { values, errors, touched } = useFormState();
-  const updateForm = useUpdateFormState();
+  function useFormField(fieldName: string) {
+    const { values, errors, touched } = useFormState();
+    const updateForm = useUpdateFormState();
 
-  return {
-    value: values[fieldName] ?? '',
-    error: touched[fieldName] ? errors[fieldName] : null,
-    setValue: (value: any) => {
-      updateForm({
-        values: {
-          ...values,
-          [fieldName]: value
-        },
-        touched: {
-          ...touched,
-          [fieldName]: true
-        }
-    });
-  }
+    return {
+      value: values[fieldName] ?? '',
+      error: touched[fieldName] ? errors[fieldName] : null,
+      setValue: (value: any) => {
+        updateForm({
+            values: {
+              ...values,
+              [fieldName]: value
+            },
+          touched: {
+            ...touched,
+            [fieldName]: true
+          }
+      });
+}
 };
 }
 ```
@@ -386,9 +386,9 @@ const update = useUpdate(): (payload: Partial<T>) => void
 ### Full TypeScript Support
 ```typescript
 const [Provider, useContext, useDispatch, useUpdate] = contextBuilder({
-  count: 0,
-  name: 'app'
-});
+    count: 0,
+    name: 'app'
+  });
 
 function Component() {
   const { count, name } = useContext(); // Fully typed
@@ -405,10 +405,10 @@ function Component() {
 ### Computed Context Values
 ```typescript
 const [Provider, useAuth, , useUpdateAuth] = contextBuilder({
-  firstName: '',
-  lastName: '',
-  email: ''
-});
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
 
 // Custom hook for derived values
 function useFullName() {
@@ -431,9 +431,9 @@ function ComposedProviders({ children }: { children: ReactNode }) {
       <AuthProvider>
         <NotificationProvider>
           {children}
-      </NotificationProvider>
+        </NotificationProvider>
     </AuthProvider>
-  </ThemeProvider>
+</ThemeProvider>
 );
 }
 ```
@@ -448,7 +448,7 @@ function useThemeMode() {
     isDark: isDarkMode,
     toggle: () => updateTheme({ isDarkMode: !isDarkMode }),
     setMode: (dark: boolean) => updateTheme({ isDarkMode: dark })
-};
+  };
 }
 
 // Usage
@@ -460,9 +460,9 @@ function Component() {
 
     <Button
     title={theme.isDark ? '' : ''}
-  onPress={theme.toggle}
-/>
-);
+    onPress={theme.toggle}
+    />
+  );
 }
 ```
 
@@ -489,8 +489,8 @@ const contextValue = useMemo(() => ({ ...state }), [state]);
 ### Memoize Consumer Components
 ```typescript
 const ConsumerComponent = React.memo(({ value }: { value: T }) => {
-  return <Text>{value.name}</Text>;
-});
+    return <Text>{value.name}</Text>;
+  });
 ```
 
 ### Separate Contexts by Update Frequency
@@ -526,18 +526,18 @@ const [AnimationProvider, useAnimation] = contextBuilder(defaultAnimation);
 ### Testing Components Using Context
 ```typescript
 describe('ThemeToggle', () => {
-  it('toggles dark mode', () => {
-    const { getByRole } = render(
-      <ThemeProvider>
-        <ThemeToggle />
-      </ThemeProvider>
+    it('toggles dark mode', () => {
+        const { getByRole } = render(
+          <ThemeProvider>
+            <ThemeToggle />
+        </ThemeProvider>
     );
 
-    const button = getByRole('button');
-    fireEvent.press(button);
+  const button = getByRole('button');
+  fireEvent.press(button);
 
-    expect(button).toHaveTextContent('ON');
-  });
+  expect(button).toHaveTextContent('ON');
+});
 });
 ```
 
@@ -551,7 +551,7 @@ const mockContext = {
 const MockProvider = ({ children }: { children: ReactNode }) => (
   <ThemeProvider value={mockContext}>
     {children}
-</ThemeProvider>
+  </ThemeProvider>
 );
 ```
 
@@ -578,8 +578,8 @@ function App() {
 
     <ThemeProvider>
       <Child />
-    </ThemeProvider>
-  );
+  </ThemeProvider>
+);
 }
 
 function Child() {
@@ -594,10 +594,10 @@ function Child() {
 ```typescript
 // Create new object
 updateTheme({
-  preferences: {
-    ...preferences,
-    language: 'en'
-  }
+    preferences: {
+      ...preferences,
+      language: 'en'
+    }
 });
 ```
 
@@ -625,17 +625,17 @@ function useReset() {
 ### Context Middleware Pattern
 ```typescript
 function createMiddlewareContext<T>(defaultValue: T) {
-  const [Provider, useContext, useDispatch, useUpdate] = contextBuilder(defaultValue);
+    const [Provider, useContext, useDispatch, useUpdate] = contextBuilder(defaultValue);
 
-  const useWithMiddleware = (middleware: (action: any) => any) => {
-    const dispatch = useDispatch();
+    const useWithMiddleware = (middleware: (action: any) => any) => {
+      const dispatch = useDispatch();
 
-    return (action: any) => {
-      const processed = middleware(action);
-      dispatch(processed);
-    };
+      return (action: any) => {
+        const processed = middleware(action);
+        dispatch(processed);
+      };
   };
 
-  return [Provider, useContext, useDispatch, useUpdate, useWithMiddleware] as const;
+return [Provider, useContext, useDispatch, useUpdate, useWithMiddleware] as const;
 }
 ```

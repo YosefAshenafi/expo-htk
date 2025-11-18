@@ -116,21 +116,21 @@ interface MyCustomEntryProps extends BaseEntryProps {
 }
 
 export function MyCustomEntry({
-  label,
-  value,
-  onChange,
-  options = [],
-  ...props
-}: MyCustomEntryProps) {
-  return (
+    label,
+    value,
+    onChange,
+    options = [],
+    ...props
+  }: MyCustomEntryProps) {
+return (
 
-    <BaseEntry label={label} value={value} {...props}>
-      <MyCustomControl
-      value={value}
+  <BaseEntry label={label} value={value} {...props}>
+    <MyCustomControl
+    value={value}
     onChange={onChange}
-  options={options}
-/>
-</BaseEntry>
+    options={options}
+    />
+  </BaseEntry>
 );
 }
 ```
@@ -147,16 +147,16 @@ const settingsEntries = [
     label: 'Dark Mode',
     description: 'Enable dark color scheme'
   },
-  {
-    type: 'fontFamily',
-    key: 'fontFamily',
-    label: 'Font Family'
-  },
-  {
-    type: 'fontSize',
-    key: 'fontSize',
-    label: 'Font Size'
-  }
+{
+  type: 'fontFamily',
+  key: 'fontFamily',
+  label: 'Font Family'
+},
+{
+  type: 'fontSize',
+  key: 'fontSize',
+  label: 'Font Size'
+}
 ];
 ```
 
@@ -228,7 +228,7 @@ const validationRules = {
 ### Conditional Entry Display
 ```typescript
 {shouldShowAdvanced && (
-  <MyCustomEntry {...props} />
+    <MyCustomEntry {...props} />
 )}
 ```
 

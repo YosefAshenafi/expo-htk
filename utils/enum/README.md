@@ -48,7 +48,7 @@ enum Status {
 
 // Display in UI
 <Text>{enumToStr(Status.ACTIVE)}</Text>
-  // Output: "active"
+// Output: "active"
 ```
 
 ### Numeric Enum Conversion
@@ -93,13 +93,13 @@ function RolePicker() {
 
     <Picker>
       {roles.map(role => (
-        <Picker.Item
-        key={role}
-      label={enumToStr(role)}
-    value={role}
-  />
-))}
-</Picker>
+            <Picker.Item
+            key={role}
+            label={enumToStr(role)}
+            value={role}
+            />
+          ))}
+  </Picker>
 );
 }
 ```
@@ -122,9 +122,9 @@ function StatusBadge({ status }: { status: Status }) {
 
     <View style={{ backgroundColor: getStatusColor(status) }}>
       <Text>{enumToStr(status)}</Text>
-      </View>
-    );
-  }
+    </View>
+);
+}
 ```
 
 ## Advanced Patterns
@@ -142,11 +142,11 @@ enum LogLevel {
 
 // Custom display names
 const LogLevelDisplay: Record<LogLevel, string> = {
-  [LogLevel.DEBUG]: ' Debug',
-  [LogLevel.INFO]: ' Info',
-  [LogLevel.WARN]: ' Warning',
-  [LogLevel.ERROR]: ' Error'
-};
+    [LogLevel.DEBUG]: ' Debug',
+    [LogLevel.INFO]: ' Info',
+    [LogLevel.WARN]: ' Warning',
+    [LogLevel.ERROR]: ' Error'
+  };
 
 function getLogLevelDisplay(level: LogLevel): string {
   return LogLevelDisplay[level] enumToStr(level);
@@ -178,10 +178,10 @@ enum ValidationError {
 
 function getErrorMessage(error: ValidationError): string {
   const messages: Record<ValidationError, string> = {
-    [ValidationError.REQUIRED_FIELD]: 'This field is required',
-    [ValidationError.INVALID_EMAIL]: 'Please enter a valid email',
-    [ValidationError.PASSWORD_TOO_SHORT]: 'Password must be at least 8 characters'
-  };
+      [ValidationError.REQUIRED_FIELD]: 'This field is required',
+      [ValidationError.INVALID_EMAIL]: 'Please enter a valid email',
+      [ValidationError.PASSWORD_TOO_SHORT]: 'Password must be at least 8 characters'
+    };
 
   return messages[error];
 }
@@ -204,13 +204,13 @@ function PermissionsList() {
 
     <FlatList
     data={permissions}
-  renderItem={({ item }) => (
-    <CheckBox
-    label={enumToStr(item)}
-  value={item}
-/>
-)}
-/>
+    renderItem={({ item }) => (
+        <CheckBox
+        label={enumToStr(item)}
+        value={item}
+        />
+      )}
+  />
 );
 }
 ```
@@ -220,8 +220,8 @@ function PermissionsList() {
 ### Generic Enum Type Handling
 ```typescript
 function displayEnum<T extends Record<string, string>>(
-  enumValue: T[keyof T]
-): string {
+    enumValue: T[keyof T]
+  ): string {
   return enumToStr(enumValue);
 }
 
@@ -232,14 +232,14 @@ const result = displayEnum(Status.ACTIVE);
 ### Typing Enum Display Objects
 ```typescript
 type EnumDisplay<T extends Record<string, string>> = {
-  [K in T[keyof T]]: string;
-};
+    [K in T[keyof T]]: string;
+  };
 
 const statusDisplay: EnumDisplay<typeof Status> = {
-  active: 'Active Status',
-  inactive: 'Inactive Status',
-  pending: 'Pending Status'
-};
+    active: 'Active Status',
+    inactive: 'Inactive Status',
+    pending: 'Pending Status'
+  };
 ```
 
 ## Implementation Details
@@ -280,14 +280,14 @@ mobile-phone → Mobile Phone (kebab-case)
 // Cache converted values
 const enumCache = new Map<any, string>();
 
-function cachedEnumToStr(value: any): string {
-  if (enumCache.has(value)) {
-    return enumCache.get(value)!;
-  }
+  function cachedEnumToStr(value: any): string {
+    if (enumCache.has(value)) {
+      return enumCache.get(value)!;
+    }
 
-const str = enumToStr(value);
-enumCache.set(value, str);
-return str;
+  const str = enumToStr(value);
+  enumCache.set(value, str);
+  return str;
 }
 ```
 
@@ -316,21 +316,21 @@ return str;
 
 ```typescript
 describe('enumToStr', () => {
-  it('converts enum to readable string', () => {
-    const result = enumToStr(Status.ACTIVE);
-    expect(result).toBe('active'); // or 'Active' depending on impl
-  });
+    it('converts enum to readable string', () => {
+        const result = enumToStr(Status.ACTIVE);
+        expect(result).toBe('active'); // or 'Active' depending on impl
+      });
 
   it('handles snake_case conversion', () => {
-    const result = enumToStr(DeviceType.MOBILE_PHONE);
-    expect(result).toMatch(/mobile.*phone/i);
-  });
-
-  it('handles all enum values', () => {
-    Object.values(Status).forEach(value => {
-      expect(() => enumToStr(value)).not.toThrow();
+      const result = enumToStr(DeviceType.MOBILE_PHONE);
+      expect(result).toMatch(/mobile.*phone/i);
     });
-  });
+
+it('handles all enum values', () => {
+    Object.values(Status).forEach(value => {
+        expect(() => enumToStr(value)).not.toThrow();
+      });
+});
 });
 ```
 

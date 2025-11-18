@@ -82,16 +82,16 @@ function ThemeSelector() {
       <ThemeSettingsButton
       name="light"
       isActive={scheme === 'light'}
-    onPress={changeTheme}
-  theme={useTheme()} // Design tokens from ui-lib
-  />
-  <ThemeSettingsButton
-  name="dark"
-  isActive={scheme === 'dark'}
-onPress={changeTheme}
-theme={useTheme()} // Design tokens from ui-lib
-/>
-</View>
+      onPress={changeTheme}
+      theme={useTheme()} // Design tokens from ui-lib
+      />
+      <ThemeSettingsButton
+      name="dark"
+      isActive={scheme === 'dark'}
+      onPress={changeTheme}
+      theme={useTheme()} // Design tokens from ui-lib
+      />
+    </View>
 );
 }
 ```
@@ -114,22 +114,22 @@ function SettingsScreen() {
       <View padding-16>
         <Text text70 marginB-16>Display Settings</Text>
 
-          <Text text80 marginB-12>Theme</Text>
-            <View row centerH gap-16 marginB-32>
-              <ThemeSettingsButton
-              name="light"
-              isActive={scheme === 'light'}
-            onPress={changeTheme}
+        <Text text80 marginB-12>Theme</Text>
+        <View row centerH gap-16 marginB-32>
+          <ThemeSettingsButton
+          name="light"
+          isActive={scheme === 'light'}
+          onPress={changeTheme}
           theme={tokens}
-        />
-        <ThemeSettingsButton
-        name="dark"
-        isActive={scheme === 'dark'}
-      onPress={changeTheme}
-    theme={tokens}
-  />
-</View>
-</View>
+          />
+          <ThemeSettingsButton
+          name="dark"
+          isActive={scheme === 'dark'}
+          onPress={changeTheme}
+          theme={tokens}
+          />
+        </View>
+    </View>
 </ScrollView>
 );
 }
@@ -151,15 +151,15 @@ function HorizontalThemeSelector() {
 
     <View row centerH gap-24 padding-16>
       {(['light', 'dark'] as const).map((themeName) => (
-        <ThemeSettingsButton
-        key={themeName}
-      name={themeName}
-    isActive={scheme === themeName}
-  onPress={changeTheme}
-theme={tokens}
-/>
-))}
-</View>
+            <ThemeSettingsButton
+            key={themeName}
+            name={themeName}
+            isActive={scheme === themeName}
+            onPress={changeTheme}
+            theme={tokens}
+            />
+          ))}
+  </View>
 );
 }
 ```
@@ -181,23 +181,23 @@ function LabeledThemeButton() {
     <View gap-8>
       <View gap-8>
         <Text text80>Light Mode</Text>
-          <ThemeSettingsButton
-          name="light"
-          isActive={scheme === 'light'}
+        <ThemeSettingsButton
+        name="light"
+        isActive={scheme === 'light'}
         onPress={changeTheme}
-      theme={tokens}
-    />
-  </View>
+        theme={tokens}
+        />
+      </View>
 
-  <View gap-8>
-    <Text text80>Dark Mode</Text>
+    <View gap-8>
+      <Text text80>Dark Mode</Text>
       <ThemeSettingsButton
       name="dark"
       isActive={scheme === 'dark'}
-    onPress={changeTheme}
-  theme={tokens}
-/>
-</View>
+      onPress={changeTheme}
+      theme={tokens}
+      />
+    </View>
 </View>
 );
 }
@@ -212,13 +212,13 @@ import { createTheme } from '@htk/features/theme';
 import { ThemeSettingsButton } from '@htk/features/theme/components';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme } = createTheme({
-  enabled: true,
-  supportDarkMode: true,
-  defaultScheme: 'light',
-  schemes: {
-    light: { /* colors */ },
-    dark: { /* colors */ }
-}
+    enabled: true,
+    supportDarkMode: true,
+    defaultScheme: 'light',
+    schemes: {
+      light: { /* colors */ },
+      dark: { /* colors */ }
+    }
 });
 
 // Use in component
@@ -232,11 +232,11 @@ function AppHeader() {
     <View>
       <ThemeSettingsButton
       name={scheme === 'light' ? 'dark' : 'light'}
-    isActive={false}
-  onPress={changeTheme}
-theme={useTheme()}
-/>
-</View>
+      isActive={false}
+      onPress={changeTheme}
+      theme={useTheme()}
+      />
+    </View>
 );
 }
 ```
@@ -258,10 +258,10 @@ function ThemedButton() {
     <View
     padding-16
     backgroundColor={Colors.$backgroundColor}
-  >
+    >
     <Text color={Colors.$textDefault}>Theme Aware</Text>
-    </View>
-  );
+  </View>
+);
 }
 ```
 
@@ -292,25 +292,25 @@ function OptimizedThemeSelector() {
   const tokens = useTheme();
 
   const buttons = useMemo(() => (
-    ['light', 'dark'].map((name) => ({
-      name,
-      isActive: scheme === name
-    }))
-), [scheme]);
+      ['light', 'dark'].map((name) => ({
+            name,
+            isActive: scheme === name
+          }))
+  ), [scheme]);
 
 return (
 
 
   <View row centerH gap-16>
     {buttons.map((btn) => (
-      <ThemeSettingsButton
-      key={btn.name}
-    name={btn.name as 'light' | 'dark'}
-  isActive={btn.isActive}
-onPress={changeTheme}
-theme={tokens}
-/>
-))}
+          <ThemeSettingsButton
+          key={btn.name}
+          name={btn.name as 'light' | 'dark'}
+          isActive={btn.isActive}
+          onPress={changeTheme}
+          theme={tokens}
+          />
+        ))}
 </View>
 );
 }
@@ -388,54 +388,54 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { ThemeSettingsButton } from '@htk/features/theme/components';
 
 test('renders theme button', () => {
-  const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
-  const onPress = jest.fn();
+    const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
+    const onPress = jest.fn();
 
-  const { getByText } = render(
-    <ThemeSettingsButton
-    name="light"
-    isActive={true}
-  onPress={onPress}
-theme={mockTheme}
-/>
-);
+    const { getByText } = render(
+      <ThemeSettingsButton
+      name="light"
+      isActive={true}
+      onPress={onPress}
+      theme={mockTheme}
+      />
+    );
 
-expect(getByText('light')).toBeTruthy();
+  expect(getByText('light')).toBeTruthy();
 });
 
 test('calls onPress with theme name', () => {
-  const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
-  const onPress = jest.fn();
+    const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
+    const onPress = jest.fn();
 
-  const { getByText } = render(
-    <ThemeSettingsButton
-    name="dark"
-    isActive={false}
-  onPress={onPress}
-theme={mockTheme}
-/>
-);
+    const { getByText } = render(
+      <ThemeSettingsButton
+      name="dark"
+      isActive={false}
+      onPress={onPress}
+      theme={mockTheme}
+      />
+    );
 
-fireEvent.press(getByText('dark'));
-expect(onPress).toHaveBeenCalledWith('dark');
+  fireEvent.press(getByText('dark'));
+  expect(onPress).toHaveBeenCalledWith('dark');
 });
 
 test('shows active state styling', () => {
-  const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
-  const onPress = jest.fn();
+    const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
+    const onPress = jest.fn();
 
-  const { getByTestId } = render(
-    <ThemeSettingsButton
-    name="light"
-    isActive={true}
-  onPress={onPress}
-theme={mockTheme}
-testID="theme-button"
-/>
-);
+    const { getByTestId } = render(
+      <ThemeSettingsButton
+      name="light"
+      isActive={true}
+      onPress={onPress}
+      theme={mockTheme}
+      testID="theme-button"
+      />
+    );
 
-const button = getByTestId('theme-button');
-// Assert active state styling
+  const button = getByTestId('theme-button');
+  // Assert active state styling
 });
 ```
 

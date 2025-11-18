@@ -68,10 +68,10 @@ const persistedAtom = createPersistedState();
 
 // Create persisted atom
 const userAtom = persistedAtom('currentUser', {
-  id: '',
-  name: '',
-  email: ''
-});
+    id: '',
+    name: '',
+    email: ''
+  });
 ```
 
 ### 2. Use in Components
@@ -87,12 +87,12 @@ function UserProfile() {
 
     <View>
       <Text>{user.name}</Text>
-        <Button
-        onPress={() => setUser({...user, name: 'Updated'})}
+      <Button
+      onPress={() => setUser({...user, name: 'Updated'})}
       title="Update"
       />
     </View>
-  );
+);
 }
 ```
 
@@ -119,12 +119,12 @@ function Counter() {
 
     <View>
       <Text>{count}</Text>
-        <Button
-        onPress={() => setCount(count + 1)}
+      <Button
+      onPress={() => setCount(count + 1)}
       title="Increment"
       />
     </View>
-  );
+);
 }
 ```
 
@@ -136,10 +136,10 @@ const firstNameAtom = atom('John');
 const lastNameAtom = atom('Doe');
 
 const fullNameAtom = atom((get) => {
-  const firstName = get(firstNameAtom);
-  const lastName = get(lastNameAtom);
-  return `${firstName} ${lastName}`;
-});
+    const firstName = get(firstNameAtom);
+    const lastName = get(lastNameAtom);
+    return `${firstName} ${lastName}`;
+  });
 ```
 
 ### Persisted Complex State
@@ -150,14 +150,14 @@ interface AppState {
   user: User null;
   settings: Settings;
   cache: Record<string, any>;
-}
+  }
 
 const persistedAtom = createPersistedState();
 const appStateAtom = persistedAtom<AppState>('appState', {
-  user: null,
-  settings: {},
-  cache: {}
-});
+      user: null,
+      settings: {},
+      cache: {}
+    });
 
 function useAppState() {
   return useAtomValue(appStateAtom);
@@ -173,9 +173,9 @@ function useUpdateAppState() {
 import { atom } from 'jotai';
 
 const userAtom = atom(async (get) => {
-  const userId = get(userIdAtom);
-  return fetch(`/api/users/${userId}`).then(r => r.json());
-});
+    const userId = get(userIdAtom);
+    return fetch(`/api/users/${userId}`).then(r => r.json());
+  });
 
 function UserData() {
   const user = useAtomValue(userAtom);
@@ -184,10 +184,10 @@ function UserData() {
 
 
     <Suspense fallback={<Text>Loading...</Text>}>
-      <Text>{user.name}</Text>
-      </Suspense>
-    );
-  }
+    <Text>{user.name}</Text>
+  </Suspense>
+);
+}
 ```
 
 ## Integration with Features
@@ -197,9 +197,9 @@ function UserData() {
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, atom } = createAppSettings({
-  theme: 'light',
-  fontSize: 16
-});
+    theme: 'light',
+    fontSize: 16
+  });
 
 // Uses persisted atoms internally
 ```
@@ -254,7 +254,7 @@ function Component() {
   const displayName = useMemo(
     () => `${user.first} ${user.last}`,
     [user.first, user.last]
-);
+  );
 
 return <Text>{displayName}</Text>;
 }
@@ -297,20 +297,20 @@ const cacheAtom = atom({...});
 import { useAtomValue, useSetAtom } from 'jotai/react';
 
 describe('userAtom', () => {
-  it('has correct initial value', () => {
-    const { result } = renderHook(() => useAtomValue(userAtom));
-    expect(result.current).toEqual(initialValue);
-  });
+    it('has correct initial value', () => {
+        const { result } = renderHook(() => useAtomValue(userAtom));
+        expect(result.current).toEqual(initialValue);
+      });
 
   it('updates value', () => {
-    const { result } = renderHook(() => ({
-      value: useAtomValue(userAtom),
-      set: useSetAtom(userAtom)
-  }));
+      const { result } = renderHook(() => ({
+            value: useAtomValue(userAtom),
+            set: useSetAtom(userAtom)
+          }));
 
-  act(() => {
-    result.current.set(newValue);
-  });
+    act(() => {
+        result.current.set(newValue);
+      });
 
   expect(result.current.value).toEqual(newValue);
 });
@@ -342,16 +342,16 @@ updateProfile(profile) {
 import { createPersistedState } from '@htk/states';
 
 function usePersistedState<T>(
-  key: string,
-  initial: T
-) {
+    key: string,
+    initial: T
+  ) {
   const persistedAtom = createPersistedState();
   const atom = persistedAtom(key, initial);
 
   return {
     value: useAtomValue(atom),
     set: useSetAtom(atom)
-};
+  };
 }
 ```
 
@@ -363,14 +363,14 @@ import { useAtomValue } from 'jotai/react';
 
 // Log atom changes (development only)
 function useDebugAtom<T>(atom: Atom<T>) {
-  const value = useAtomValue(atom);
+      const value = useAtomValue(atom);
 
-  useEffect(() => {
-    console.log('Atom updated:', value);
-  }, [value]);
+      useEffect(() => {
+          console.log('Atom updated:', value);
+        }, [value]);
 
-  return value;
-}
+    return value;
+  }
 ```
 
 ## Migration from Other State Systems
