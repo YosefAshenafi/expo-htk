@@ -16,7 +16,7 @@ Offers components for:
 
 ## Component Hierarchy
 
-```
+```typescript
 AppSettings (Main Component)
 ├── Container (Wrapper/Layout)
 └── Entries/
@@ -57,19 +57,19 @@ import { SwitchEntry, FontFamilyEntry, FontSizeEntry } from '@htk/features/appSe
   label="Dark Mode"
   value={isDark}
   onChange={(val) => setIsDark(val)}
-  />
+/>
 
 <FontFamilyEntry
   label="Font Family"
   value={fontFamily}
   onChange={(val) => setFontFamily(val)}
-  />
+/>
 
 <FontSizeEntry
   label="Font Size"
   value={fontSize}
   onChange={(val) => setFontSize(val)}
-  />
+/>
 ```
 
 ## Main Components
@@ -96,14 +96,12 @@ function SettingsScreen() {
   ];
 
 return (
-
-
   <AppSettings
     entries={entries}
     onSettingChange={(key, value) => {
     console.log(`${key}: ${value}`);
     }}
-/>
+  />
 );
 }
 ```
@@ -130,7 +128,6 @@ import { Container } from '@htk/features/appSettings/components';
 
 function CustomSettings() {
   return (
-
     <Container>
       {/* Your custom settings entries */}
     </Container>
@@ -186,15 +183,13 @@ const handleSettingChange = (key: string, value: any) => {
 };
 
 return (
-
-
   <ScrollView>
     <Text style={styles.title}>Settings</Text>
     <AppSettings
       entries={entries}
       onSettingChange={handleSettingChange}
-      />
-</ScrollView>
+    />
+  </ScrollView>
 );
 }
 ```
@@ -206,7 +201,6 @@ import { SwitchEntry } from '@htk/features/appSettings/components/Entries';
 
 function GroupedSettingsScreen() {
   return (
-
     <ScrollView>
       {/* Appearance Section */}
       <Container>
@@ -215,18 +209,18 @@ function GroupedSettingsScreen() {
           label="Dark Mode"
           value={isDark}
           onChange={handleChange}
-          />
+        />
       <FontFamilyEntry
         label="Font Family"
         value={fontFamily}
         onChange={handleChange}
-        />
+      />
     <FontSizeEntry
       label="Font Size"
       value={fontSize}
       onChange={handleChange}
-      />
-</Container>
+    />
+      </Container>
 
 {/* Notification Section */}
 <Container>
@@ -235,14 +229,14 @@ function GroupedSettingsScreen() {
     label="Push Notifications"
     value={notificationsEnabled}
     onChange={handleChange}
-    />
+  />
 <SwitchEntry
   label="Email Notifications"
   value={emailNotifications}
   onChange={handleChange}
-  />
+/>
 </Container>
-</ScrollView>
+    </ScrollView>
 );
 }
 ```
@@ -288,16 +282,14 @@ function ValidatedSettingsScreen() {
 };
 
 return (
-
-
   <Container>
     <FontSizeEntry
       label="Font Size"
       value={fontSize}
       onChange={handleFontSizeChange}
-      />
+    />
   {error && <Text style={styles.error}>{error}</Text>}
-</Container>
+  </Container>
 );
 }
 ```
@@ -322,14 +314,12 @@ function SettingsScreen() {
   const settings = useAppSettings();
 
   return (
-
-
     <AppSettings
       entries={[...]}
       onSettingChange={(key, value) => {
       setAppSettings({ ...settings, [key]: value });
       }}
-  />
+    />
 );
 }
 ```
@@ -347,7 +337,6 @@ import { View, Text } from 'react-native-ui-lib';
 
 function StyledSetting() {
   return (
-
     <View padding-16 backgroundColor="$backgroundColor">
       <Text text70>Setting Label</Text>
     </View>

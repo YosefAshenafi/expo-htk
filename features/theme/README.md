@@ -27,7 +27,7 @@ theme/
 │ ├── ThemeSettingsButton.tsx # Theme selection button
 │ └── README.md # Components documentation
 └── README.md # This file
-```
+```typescript
 
 ## Core API
 
@@ -42,7 +42,7 @@ function createTheme(options: CreateThemeOptions): {
   useIgnoreSystemMode: () => boolean;
   ThemeSettings: React.FC;
 }
-```
+```typescript
 
 **Parameters:**
 ```typescript
@@ -63,7 +63,7 @@ componentDefaults?: { // Component styling
   Button?: Record<string, any>;
 };
 }
-```
+```typescript
 
 **Returns:**
 - `ThemeProvider`: Provider component to wrap app
@@ -103,7 +103,7 @@ colors: {
 });
 
 export { ThemeProvider, useThemeScheme, useChangeTheme, ThemeSettings };
-```
+```typescript
 
 ### 2. Wrap App with Provider
 ```typescript
@@ -111,13 +111,12 @@ import { ThemeProvider } from '@/theme';
 
 export function App() {
   return (
-
     <ThemeProvider>
       <MainApp />
-  </ThemeProvider>
+    </ThemeProvider>
 );
 }
-```
+```typescript
 
 ### 3. Use Theme in Components
 ```typescript
@@ -128,15 +127,13 @@ function ThemeToggle() {
   const changeTheme = useChangeTheme();
 
   return (
-
-
     <Button
       title={`Current: ${scheme}`}
       onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
-      />
+    />
 );
 }
-```
+```typescript
 
 ## Usage Examples
 
@@ -174,7 +171,7 @@ const themeSystem = createTheme({
 });
 
 export const { ThemeProvider, useThemeScheme, useChangeTheme } = themeSystem;
-```
+```typescript
 
 ### Responsive Components
 ```typescript
@@ -186,8 +183,6 @@ function ResponsiveCard() {
   const scheme = useThemeScheme();
 
   return (
-
-
     <View style={{
         backgroundColor: scheme === 'dark' ? Colors.$backgroundDark : Colors.$backgroundLight,
         padding: 16,
@@ -197,11 +192,11 @@ function ResponsiveCard() {
       color: scheme === 'dark' ? '#FFF' : '#000'
     }}>
 This card adapts to theme
-</Text>
-</View>
+  </Text>
+    </View>
 );
 }
-```
+```typescript
 
 ### Theme Settings Integration
 ```typescript
@@ -210,15 +205,14 @@ import { ScrollView } from 'react-native';
 
 function SettingsScreen() {
   return (
-
     <ScrollView>
       <Text style={styles.title}>Display Settings</Text>
       <ThemeSettings />
     {/* Other settings... */}
-  </ScrollView>
+    </ScrollView>
 );
 }
-```
+```typescript
 
 ### Custom Theme Toggle Button
 ```typescript
@@ -230,8 +224,6 @@ function ThemeToggleButton() {
   const changeTheme = useChangeTheme();
 
   return (
-
-
     <TouchableOpacity
       onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
       style={{
@@ -243,10 +235,10 @@ function ThemeToggleButton() {
 <Text style={{ color: 'white' }}>
   {scheme === 'light' ? ' Dark Mode' : ' Light Mode'}
 </Text>
-</TouchableOpacity>
+    </TouchableOpacity>
 );
 }
-```
+```typescript
 
 ### System Theme Respecting
 ```typescript
@@ -264,14 +256,12 @@ function AutoThemeComponent() {
   // - Use changeTheme() to switch manually
 
   return (
-
-
     <Text>
       {ignoreSystemMode ? 'Manual Theme' : 'System Theme'}
     </Text>
 );
 }
-```
+```typescript
 
 ### Custom Colors
 ```typescript
@@ -295,7 +285,7 @@ const themeSystem = createTheme({
     warning: '#FFD93D'
   }
 });
-```
+```typescript
 
 ### Component Defaults
 ```typescript
@@ -322,7 +312,7 @@ const themeSystem = createTheme({
   }
 }
 });
-```
+```typescript
 
 ## Child Components
 
@@ -344,7 +334,7 @@ interface Scheme {
   isDark: boolean;
   colors: Record<string, string>;
 }
-```
+```typescript
 
 ## Persistence
 
@@ -360,7 +350,7 @@ Theme preferences are automatically persisted:
   ignoreSystemMode: boolean; // Whether to override system theme
   scheme: 'light' 'dark'; // Currently selected theme
 }
-```
+```typescript
 
 ## Integration with React Navigation
 
@@ -375,18 +365,16 @@ function AppNavigator() {
   const { ThemeProvider } = useTheme();
 
   return (
-
-
     <ThemeProvider>
       <NavigationContainer>
         <Stack.Navigator>
           {/* Navigation screens */}
         </Stack.Navigator>
-    </NavigationContainer>
-</ThemeProvider>
+      </NavigationContainer>
+    </ThemeProvider>
 );
 }
-```
+```typescript
 
 ## System Theme Detection
 
@@ -400,7 +388,7 @@ ignoreSystemMode: false
 Uses System Theme
 ↓
 App Theme Updates
-```
+```typescript
 
 When `ignoreSystemMode: true`:
 ```
@@ -411,7 +399,7 @@ useChangeTheme()
 Overrides System
 ↓
 Persisted
-```
+```typescript
 
 ## Advanced Patterns
 
@@ -430,7 +418,7 @@ function useTheme() {
     toggle: () => changeTheme(scheme === 'light' ? 'dark' : 'light')
   };
 }
-```
+```typescript
 
 ### Conditional Rendering by Theme
 ```typescript
@@ -440,15 +428,13 @@ function AdaptiveComponent() {
   const scheme = useThemeScheme();
 
   return (
-
-
     <>
     {scheme === 'light' && <LightModeContent />}
   {scheme === 'dark' && <DarkModeContent />}
 </>
 );
 }
-```
+```typescript
 
 ### Theme Variants
 ```typescript
@@ -463,7 +449,7 @@ const modernTheme = createTheme({
   });
 
 export { classicTheme, modernTheme };
-```
+```typescript
 
 ## Performance Considerations
 

@@ -37,7 +37,7 @@ The component uses React Context to manage:
 - Action callbacks
 
 ### Component Hierarchy
-```
+```typescript
 Confirm (Provider)
 ├── Root (Container)
 │ ├── Title
@@ -57,7 +57,7 @@ export function MyApp() {
   return (
     <Confirm>
       <MainScreen />
-  </Confirm>
+    </Confirm>
 );
 }
 ```

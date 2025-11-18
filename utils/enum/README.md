@@ -89,17 +89,15 @@ function RolePicker() {
   const roles = Object.values(UserRole);
 
   return (
-
-
     <Picker>
       {roles.map(role => (
             <Picker.Item
               key={role}
               label={enumToStr(role)}
               value={role}
-              />
+            />
         ))}
-</Picker>
+            </Picker>
 );
 }
 ```
@@ -119,7 +117,6 @@ function getStatusColor(status: Status) {
 
 function StatusBadge({ status }: { status: Status }) {
   return (
-
     <View style={{ backgroundColor: getStatusColor(status) }}>
       <Text>{enumToStr(status)}</Text>
     </View>
@@ -200,8 +197,6 @@ function PermissionsList() {
   const permissions = Object.values(Permission);
 
   return (
-
-
     <FlatList
       data={permissions}
       renderItem={({ item }) => (
@@ -210,7 +205,7 @@ function PermissionsList() {
       value={item}
       />
     )}
-/>
+    />
 );
 }
 ```
@@ -251,7 +246,7 @@ The `enumToStr` function typically:
 4. Preserves special characters if needed
 
 **Example transformation:**
-```
+```typescript
 MOBILE_PHONE → Mobile Phone
 mobile_phone → Mobile Phone
 mobilePhone → Mobile Phone (camelCase)

@@ -55,7 +55,7 @@ import { SwitchEntry } from '@htk/features/appSettings';
   description="Use dark color scheme"
   value={isDarkMode}
   onChange={(enabled) => setIsDarkMode(enabled)}
-  />
+/>
 ```
 
 **Features:**
@@ -74,7 +74,7 @@ import { FontFamilyEntry } from '@htk/features/appSettings';
   label="Font Family"
   value={selectedFont}
   onChange={(font) => setSelectedFont(font)}
-  />
+/>
 ```
 
 **Features:**
@@ -94,7 +94,7 @@ import { FontSizeEntry } from '@htk/features/appSettings';
   description="Adjust text size"
   value={fontSize}
   onChange={(size) => setFontSize(size)}
-  />
+/>
 ```
 
 **Features:**
@@ -123,14 +123,13 @@ export function MyCustomEntry({
     ...props
   }: MyCustomEntryProps) {
 return (
-
   <BaseEntry label={label} value={value} {...props}>
     <MyCustomControl
       value={value}
       onChange={onChange}
       options={options}
-      />
-</BaseEntry>
+    />
+  </BaseEntry>
 );
 }
 ```
@@ -215,7 +214,7 @@ type OnEntryChange = (key: string, value: any) => void;
   disabled={!isPremium}
   value={premiumSetting}
   onChange={handleChange}
-  />
+/>
 ```
 
 ### Entries with Validation

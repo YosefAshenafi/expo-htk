@@ -34,7 +34,7 @@ npm install react-native-mmkv
 yarn add react-native-mmkv
 # or for Expo
 expo install react-native-mmkv
-```
+```typescript
 
 ## Files Included
 
@@ -52,7 +52,7 @@ import { MMKVLoader } from 'react-native-mmkv';
 const storage = new MMKVLoader()
 .setProcessingMode(MMKVMode.SINGLE_PROCESS)
 .build();
-```
+```typescript
 
 ### Storage Interface
 Implements platform-agnostic storage operations:
@@ -64,7 +64,7 @@ interface StorageAdapter {
   removeItem(key: string): void Promise<void>;
   clearAll(): void Promise<void>;
 }
-```
+```typescript
 
 ## API Usage
 
@@ -78,7 +78,7 @@ storage.setItem('userPreference', JSON.stringify({ theme: 'dark' }));
 // Retrieve it
 const saved = storage.getItem('userPreference');
 const data = saved ? JSON.parse(saved) : null;
-```
+```typescript
 
 ### Integration with Jotai
 ```typescript
@@ -97,7 +97,7 @@ function ThemeComponent() {
   const [theme, setTheme] = useAtom(userThemeAtom);
   // Theme is automatically persisted to MMKV
 }
-```
+```typescript
 
 ### Clearing Storage
 ```typescript
@@ -106,7 +106,7 @@ storage.removeItem('tempData');
 
 // Clear all stored data
 storage.clearAll();
-```
+```typescript
 
 ## Performance Characteristics
 
@@ -135,7 +135,7 @@ const customStorage = new MMKVLoader()
 .setProcessingMode(MMKVMode.SINGLE_PROCESS)
 .setEncryptionKey('your-encryption-key') // Enable encryption
 .build();
-```
+```typescript
 
 ### With Encryption
 ```typescript
@@ -147,7 +147,7 @@ const storage = new MMKVLoader()
 // Secure sensitive data
 storage.setItem('apiToken', secureToken);
 storage.setItem('password', encryptedPassword);
-```
+```typescript
 
 ## Common Patterns
 
@@ -176,7 +176,7 @@ export function getTypedValue<T>(key: string): T null {
     const data: StorageValue<T> = JSON.parse(raw);
       return data.value;
     }
-```
+```typescript
 
 ### Persisted State Hook
 ```typescript
@@ -200,7 +200,7 @@ function useStoredValue<T>(key: string, initialValue: T) {
 
 return [value, updateValue] as const;
 }
-```
+```typescript
 
 ## Platform Support
 
@@ -228,12 +228,12 @@ return [value, updateValue] as const;
 **iOS:**
 ```
 ~/Library/Caches/com.yourapp/mmkv
-```
+```typescript
 
 **Android:**
 ```
 /data/data/com.yourapp/mmkv
-```
+```typescript
 
 ### Backup & Restore
 ```typescript
@@ -250,7 +250,7 @@ function restoreStorage(backup: string) {
       storage.setItem(key, value as string);
     });
 }
-```
+```typescript
 
 ## Error Handling
 
@@ -265,7 +265,7 @@ console.error('Storage access failed:', error);
 // Fall back to default value
 return defaultValue;
 }
-```
+```typescript
 
 ## Migration from Other Storage
 
@@ -284,7 +284,7 @@ async function migrateFromAsyncStorage() {
     }
 }
 }
-```
+```typescript
 
 ## Testing
 

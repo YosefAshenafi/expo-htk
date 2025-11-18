@@ -16,7 +16,7 @@ Offers components for:
 
 ## Component Hierarchy
 
-```
+```typescript
 Theme Components
 ├── ThemeSettingsButton (Individual theme option)
 └── README.md (This file)
@@ -76,22 +76,20 @@ function ThemeSelector() {
   const changeTheme = useChangeTheme();
 
   return (
-
-
     <View row centerH gap-16>
       <ThemeSettingsButton
         name="light"
         isActive={scheme === 'light'}
         onPress={changeTheme}
         theme={useTheme()} // Design tokens from ui-lib
-        />
+      />
     <ThemeSettingsButton
       name="dark"
       isActive={scheme === 'dark'}
       onPress={changeTheme}
       theme={useTheme()} // Design tokens from ui-lib
-      />
-</View>
+    />
+    </View>
 );
 }
 ```
@@ -108,8 +106,6 @@ function SettingsScreen() {
   const tokens = useTheme(); // Get design tokens
 
   return (
-
-
     <ScrollView>
       <View padding-16>
         <Text text70 marginB-16>Display Settings</Text>
@@ -121,16 +117,16 @@ function SettingsScreen() {
             isActive={scheme === 'light'}
             onPress={changeTheme}
             theme={tokens}
-            />
+          />
         <ThemeSettingsButton
           name="dark"
           isActive={scheme === 'dark'}
           onPress={changeTheme}
           theme={tokens}
-          />
-    </View>
-</View>
-</ScrollView>
+        />
+        </View>
+        </View>
+    </ScrollView>
 );
 }
 ```
@@ -147,8 +143,6 @@ function HorizontalThemeSelector() {
   const tokens = useTheme();
 
   return (
-
-
     <View row centerH gap-24 padding-16>
       {(['light', 'dark'] as const).map((themeName) => (
             <ThemeSettingsButton
@@ -157,9 +151,9 @@ function HorizontalThemeSelector() {
               isActive={scheme === themeName}
               onPress={changeTheme}
               theme={tokens}
-              />
+            />
         ))}
-</View>
+    </View>
 );
 }
 ```
@@ -176,8 +170,6 @@ function LabeledThemeButton() {
   const tokens = useTheme();
 
   return (
-
-
     <View gap-8>
       <View gap-8>
         <Text text80>Light Mode</Text>
@@ -186,8 +178,8 @@ function LabeledThemeButton() {
           isActive={scheme === 'light'}
           onPress={changeTheme}
           theme={tokens}
-          />
-    </View>
+        />
+      </View>
 
   <View gap-8>
     <Text text80>Dark Mode</Text>
@@ -196,9 +188,9 @@ function LabeledThemeButton() {
       isActive={scheme === 'dark'}
       onPress={changeTheme}
       theme={tokens}
-      />
-</View>
-</View>
+    />
+  </View>
+  </View>
 );
 }
 ```
@@ -227,16 +219,14 @@ function AppHeader() {
   const changeTheme = useChangeTheme();
 
   return (
-
-
     <View>
       <ThemeSettingsButton
         name={scheme === 'light' ? 'dark' : 'light'}
         isActive={false}
         onPress={changeTheme}
         theme={useTheme()}
-        />
-  </View>
+      />
+    </View>
 );
 }
 ```
@@ -254,13 +244,12 @@ import { View, Text, Colors } from 'react-native-ui-lib';
 
 function ThemedButton() {
   return (
-
     <View
       padding-16
       backgroundColor={Colors.$backgroundColor}
   >
   <Text color={Colors.$textDefault}>Theme Aware</Text>
-</View>
+    </View>
 );
 }
 ```
@@ -299,8 +288,6 @@ function OptimizedThemeSelector() {
   ), [scheme]);
 
 return (
-
-
   <View row centerH gap-16>
     {buttons.map((btn) => (
           <ThemeSettingsButton
@@ -309,9 +296,9 @@ return (
             isActive={btn.isActive}
             onPress={changeTheme}
             theme={tokens}
-            />
+          />
       ))}
-</View>
+  </View>
 );
 }
 ```
@@ -397,7 +384,7 @@ test('renders theme button', () => {
         isActive={true}
         onPress={onPress}
         theme={mockTheme}
-        />
+      />
   );
 
 expect(getByText('light')).toBeTruthy();
@@ -413,7 +400,7 @@ test('calls onPress with theme name', () => {
         isActive={false}
         onPress={onPress}
         theme={mockTheme}
-        />
+      />
   );
 
 fireEvent.press(getByText('dark'));
@@ -431,7 +418,7 @@ test('shows active state styling', () => {
         onPress={onPress}
         theme={mockTheme}
         testID="theme-button"
-        />
+      />
   );
 
 const button = getByTestId('theme-button');

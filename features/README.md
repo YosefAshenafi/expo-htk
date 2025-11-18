@@ -99,7 +99,7 @@ features/
 │ ├── deviceInfo/ # Device information
 │ └── README.md # Documentation
 └── README.md # This file
-```
+```typescript
 
 ## Feature Development Pattern
 
@@ -116,7 +116,7 @@ export function createMyFeature(options: Options) {
     updateMyFeature
   };
 }
-```
+```typescript
 
 ### 2. Create Components
 ```typescript
@@ -124,7 +124,7 @@ export function createMyFeature(options: Options) {
 export function MyComponent(props: MyComponentProps) {
   // Component implementation
 }
-```
+```typescript
 
 ### 3. Add Type Definitions
 ```typescript
@@ -136,7 +136,7 @@ export interface MyFeatureState {
 export interface MyFeatureOptions {
   // Configuration options
 }
-```
+```typescript
 
 ### 4. Provide Documentation
 ```markdown
@@ -150,7 +150,7 @@ Code examples
 
 ## API
 Complete API documentation
-```
+```typescript
 
 ## Integration Patterns
 
@@ -167,7 +167,7 @@ export function createMyFeature(initial: State) {
     updateFeature: () => useSetAtom(atom)
   };
 }
-```
+```typescript
 
 ### With Theme System
 ```typescript
@@ -177,16 +177,14 @@ function ThemedFeature() {
   const scheme = useThemeScheme();
 
   return (
-
-
     <View style={{
         backgroundColor: scheme === 'dark' ? '#000' : '#fff'
       }}>
   {/* Feature content */}
-</View>
+    </View>
 );
 }
-```
+```typescript
 
 ### With App Settings
 ```typescript
@@ -196,14 +194,12 @@ function SettingsAwareFeature() {
   const settings = useAppSettings();
 
   return (
-
-
     <Text style={{ fontSize: settings.fontSize }}>
       Settings-aware text
     </Text>
 );
 }
-```
+```typescript
 
 ## Best Practices
 
@@ -238,16 +234,14 @@ function App() {
   const { ThemeProvider } = createTheme({...});
 
   return (
-
-
     <AppSettingsProvider>
       <ThemeProvider>
         <MainApp />
-    </ThemeProvider>
-</AppSettingsProvider>
+      </ThemeProvider>
+    </AppSettingsProvider>
 );
 }
-```
+```typescript
 
 ## Feature Communication
 
@@ -261,21 +255,21 @@ function SettingsConsumer() {
   const settings = useAppSettings();
   // Use settings
 }
-```
+```typescript
 
 ### Observer Pattern
 ```typescript
 import { Observer } from '@htk/utils/observer';
 
 const featureObserver = new Observer<FeatureEvent>();
-```
+```typescript
 
 ### Context
 ```typescript
 import { contextBuilder } from '@htk/utils/react';
 
 const [Provider, useContext] = contextBuilder(initialState);
-```
+```typescript
 
 ## Testing Features
 

@@ -69,10 +69,9 @@ import { ThemeProvider } from '@/context/theme';
 
 export function App() {
   return (
-
     <ThemeProvider>
       <MainApp />
-  </ThemeProvider>
+    </ThemeProvider>
 );
 }
 ```
@@ -92,16 +91,14 @@ function ThemeToggle() {
 };
 
 return (
-
-
   <View style={{
       backgroundColor: theme.isDarkMode ? '#000' : '#fff'
     }}>
 <Button
   title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
   onPress={toggleDarkMode}
-  />
-</View>
+/>
+  </View>
 );
 }
 ```
@@ -148,8 +145,6 @@ function UserSettings() {
 };
 
 return (
-
-
   <Button title="Logout" onPress={handleLogout} />
 );
 }
@@ -194,8 +189,6 @@ const onError = (error: string) => {
 };
 
 return (
-
-
   <View>
     <Text>{user?.name}</Text>
   </View>
@@ -426,14 +419,13 @@ function useInitials() {
 ```typescript
 function ComposedProviders({ children }: { children: ReactNode }) {
   return (
-
     <ThemeProvider>
       <AuthProvider>
         <NotificationProvider>
           {children}
         </NotificationProvider>
-    </AuthProvider>
-</ThemeProvider>
+      </AuthProvider>
+    </ThemeProvider>
 );
 }
 ```
@@ -456,12 +448,10 @@ function Component() {
   const theme = useThemeMode();
 
   return (
-
-
     <Button
       title={theme.isDark ? '' : ''}
       onPress={theme.toggle}
-      />
+    />
 );
 }
 ```
@@ -530,7 +520,7 @@ describe('ThemeToggle', () => {
         const { getByRole } = render(
           <ThemeProvider>
             <ThemeToggle />
-        </ThemeProvider>
+          </ThemeProvider>
     );
 
   const button = getByRole('button');
@@ -575,10 +565,9 @@ function App() {
 // Correct
 function App() {
   return (
-
     <ThemeProvider>
       <Child />
-  </ThemeProvider>
+    </ThemeProvider>
 );
 }
 

@@ -333,8 +333,6 @@ function UserProfile() {
       });
 
   return (
-
-
     <View>
       <Text>{user?.name}</Text>
     </View>

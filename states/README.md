@@ -83,15 +83,13 @@ function UserProfile() {
   const setUser = useSetAtom(userAtom);
 
   return (
-
-
     <View>
       <Text>{user.name}</Text>
       <Button
         onPress={() => setUser({...user, name: 'Updated'})}
         title="Update"
-        />
-  </View>
+      />
+    </View>
 );
 }
 ```
@@ -115,15 +113,13 @@ function Counter() {
   const setCount = useSetAtom(countAtom);
 
   return (
-
-
     <View>
       <Text>{count}</Text>
       <Button
         onPress={() => setCount(count + 1)}
         title="Increment"
-        />
-  </View>
+      />
+    </View>
 );
 }
 ```
@@ -181,11 +177,9 @@ function UserData() {
   const user = useAtomValue(userAtom);
 
   return (
-
-
     <Suspense fallback={<Text>Loading...</Text>}>
     <Text>{user.name}</Text>
-  </Suspense>
+    </Suspense>
 );
 }
 ```

@@ -38,7 +38,7 @@ const point: ICoordinates = {
 
 ## Architecture
 
-```
+```typescript
 types/
 ├── geolocation.ts # Geographic types
 └── README.md # This file

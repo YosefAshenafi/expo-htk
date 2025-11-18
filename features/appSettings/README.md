@@ -16,7 +16,7 @@ Provides a complete settings solution with:
 
 ## Architecture
 
-```
+```typescript
 appSettings/
 ├── index.ts # Main API (createAppSettings)
 ├── types.ts # TypeScript type definitions
@@ -82,14 +82,12 @@ function SettingsScreen() {
   const updateSetting = updateAppSetting();
 
   return (
-
-
     <View>
       <Switch
         value={settings.darkMode}
         onValueChange={(val) => updateSetting('darkMode', val)}
-        />
-  </View>
+      />
+    </View>
 );
 }
 ```
@@ -119,13 +117,11 @@ function App() {
   const settings = useAppSettings();
 
   return (
-
-
     <View style={{
         backgroundColor: settings.theme === 'dark' ? '#000' : '#fff'
       }}>
   {/* App content */}
-</View>
+    </View>
 );
 }
 ```
@@ -161,14 +157,12 @@ function SettingsScreen() {
 ];
 
 return (
-
-
   <AppSettings
     entries={entries}
     onSettingChange={(key, value) => {
     updateSetting(key as any, value);
     }}
-/>
+  />
 );
 }
 ```
@@ -196,15 +190,13 @@ function AccessibilitySettings() {
   const update = updateAppSetting();
 
   return (
-
-
     <View>
       {/* All property accesses are type-checked */}
       <Toggle
         value={prefs.reducedMotion} // Type-safe
         onChange={(val) => update('reducedMotion', val)}
-        />
-  </View>
+      />
+    </View>
 );
 }
 ```
@@ -229,14 +221,12 @@ function FontSizeControl() {
 };
 
 return (
-
-
   <Slider
     value={settings.fontSize}
     onValueChange={handleFontSizeChange}
     minimumValue={12}
     maximumValue={32}
-    />
+  />
 );
 }
 ```
@@ -256,13 +246,11 @@ function ThemedComponent() {
     }, [settings.darkMode]);
 
 return (
-
-
   <View style={{
       backgroundColor: settings.darkMode ? '#000' : '#fff'
     }}>
 {/* Component updates automatically when settings change */}
-</View>
+  </View>
 );
 }
 ```
@@ -312,7 +300,7 @@ import { AppSettings } from '@htk/features/appSettings/components';
 <AppSettings
   entries={settingsDefinitions}
   onSettingChange={handleChange}
-  />
+/>
 ```
 
 ## Type Definitions
@@ -483,7 +471,6 @@ const SettingsContext = createContext(settingsSystem);
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   return (
-
     <SettingsContext.Provider value={settingsSystem}>
       {children}
     </SettingsContext.Provider>

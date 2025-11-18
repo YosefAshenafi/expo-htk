@@ -23,7 +23,7 @@ For Expo web support, ensure:
 npx expo install expo-web
 # or
 npm install expo
-```
+```typescript
 
 ## Files Included
 
@@ -43,7 +43,7 @@ interface StorageAdapter {
   removeItem(key: string): void;
   clearAll(): void;
 }
-```
+```typescript
 
 ## API Usage
 
@@ -57,7 +57,7 @@ storage.setItem('userPreference', JSON.stringify({ theme: 'dark' }));
 // Retrieve it
 const saved = storage.getItem('userPreference');
 const data = saved ? JSON.parse(saved) : null;
-```
+```typescript
 
 ### Integration with Jotai
 ```typescript
@@ -76,7 +76,7 @@ function ThemeComponent() {
   const [theme, setTheme] = useAtom(userThemeAtom);
   // Theme is automatically persisted to browser localStorage
 }
-```
+```typescript
 
 ### Clearing Storage
 ```typescript
@@ -85,7 +85,7 @@ storage.removeItem('tempData');
 
 // Clear all stored data
 storage.clearAll();
-```
+```typescript
 
 ## Browser Compatibility
 
@@ -116,7 +116,7 @@ if (e instanceof DOMException && e.name === 'QuotaExceededError') {
   // Clear old data and retry, or reduce data size
 }
 }
-```
+```typescript
 
 ## Platform-Specific Behavior
 
@@ -172,7 +172,7 @@ export function getTypedValue<T>(key: string): T null {
       return null;
     }
 }
-```
+```typescript
 
 ### Storage Event Listener (Multi-Tab Sync)
 ```typescript
@@ -202,7 +202,7 @@ const updateValue = useCallback((newValue: T) => {
 
 return [value, updateValue] as const;
 }
-```
+```typescript
 
 ### Storage with Expiration
 ```typescript
@@ -231,7 +231,7 @@ export function getValueWithExpiry<T>(key: string): T null {
 
   return value as T;
 }
-```
+```typescript
 
 ## Best Practices
 
@@ -275,7 +275,7 @@ storage.setItem('apiToken', token); // Insecure
 // Safe usage: Non-sensitive preferences
 storage.setItem('userTheme', 'dark'); // Safe
 storage.setItem('language', 'en'); // Safe
-```
+```typescript
 
 ## Testing
 
@@ -297,7 +297,7 @@ beforeEach(() => {
 afterEach(() => {
     jest.clearAllMocks();
   });
-```
+```typescript
 
 ### Test Storage Operations
 ```typescript
@@ -321,7 +321,7 @@ it('clears all data', () => {
     expect(storage.getItem('key2')).toBeNull();
   });
 });
-```
+```typescript
 
 ## Migration from Other Storage
 
@@ -337,7 +337,7 @@ for (let i = 0; i < sessionStorage.length; i++) {
     }
 }
 }
-```
+```typescript
 
 ## Debugging
 
@@ -356,7 +356,7 @@ return data;
 
 // In browser console
 console.table(debugStorage());
-```
+```typescript
 
 ### Monitor Storage Changes
 ```typescript
@@ -368,7 +368,7 @@ window.addEventListener('storage', (e) => {
         url: e.url
       });
 });
-```
+```typescript
 
 ## Common Issues
 
@@ -407,7 +407,7 @@ localStorage.clear();
 
 // Or remove specific items
 localStorage.removeItem('key');
-```
+```typescript
 
 ## Related Documentation
 - **Storages**: [`../README.md`](../README.md) - Storage adapter overview
@@ -429,7 +429,7 @@ const isLocalStorageAvailable = (): boolean => {
   return false;
 }
 };
-```
+```typescript
 
 ### Handling Storage Errors
 ```typescript

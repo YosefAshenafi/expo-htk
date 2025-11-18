@@ -85,7 +85,6 @@ import { View, Text } from 'react-native';
 
 function Card() {
   return (
-
     <View style={Dividers.bottom1}>
       <Text>Card Content</Text>
     </View>
@@ -106,8 +105,6 @@ function BorderedBox() {
   );
 
 return (
-
-
   <View style={combinedBorders}>
     <Text>Content</Text>
   </View>
@@ -122,7 +119,6 @@ import { View, FlatList } from 'react-native';
 
 function UserList() {
   return (
-
     <FlatList
       data={users}
       renderItem={({ item }) => (
@@ -131,7 +127,7 @@ function UserList() {
       </View>
   )}
 keyExtractor={item => item.id}
-/>
+    />
 );
 }
 ```
@@ -143,7 +139,6 @@ import { View } from 'react-native';
 
 function HorizontalLayout() {
   return (
-
     <View style={{ flexDirection: 'row' }}>
       <View style={{ flex: 1 }}>
         <Text>Left Column</Text>
@@ -154,7 +149,7 @@ function HorizontalLayout() {
   <View style={{ flex: 1 }}>
     <Text>Right Column</Text>
   </View>
-</View>
+  </View>
 );
 }
 ```
@@ -181,17 +176,16 @@ body: {
 
 function Card({ title, content }) {
   return (
-
     <View style={styles.card}>
       <View style={styles.header}>
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
           {title}
         </Text>
-    </View>
+      </View>
   <View style={styles.body}>
     <Text>{content}</Text>
   </View>
-</View>
+  </View>
 );
 }
 ```
@@ -203,30 +197,28 @@ import { View, TextInput, Text } from 'react-native';
 
 function FormSection({ title, children }) {
   return (
-
     <View style={Dividers.bottom1}>
       <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 12 }}>
         {title}
       </Text>
     {children}
-  </View>
+    </View>
 );
 }
 
 function RegistrationForm() {
   return (
-
     <View>
       <FormSection title="Personal Information">
         <TextInput placeholder="First Name" />
       <TextInput placeholder="Last Name" />
-  </FormSection>
+      </FormSection>
 
 <FormSection title="Contact">
   <TextInput placeholder="Email" />
 <TextInput placeholder="Phone" />
 </FormSection>
-</View>
+    </View>
 );
 }
 ```
@@ -238,13 +230,12 @@ import { View, Text, Button } from 'react-native';
 
 function Dialog({ title, content, onConfirm, onCancel }) {
   return (
-
     <View style={{ backgroundColor: 'white', borderRadius: 8 }}>
       <View style={{ padding: 16, ...Dividers.bottom1 }}>
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
           {title}
         </Text>
-    </View>
+      </View>
 
   <View style={{ padding: 16, ...Dividers.bottom1 }}>
     <Text>{content}</Text>
@@ -270,7 +261,6 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 function TabNavigation({ tabs, activeTab, onTabChange }) {
   return (
-
     <View style={Dividers.bottom1}>
       <FlatList
         data={tabs}
@@ -286,11 +276,11 @@ function TabNavigation({ tabs, activeTab, onTabChange }) {
             }}
       >
       <Text>{item.label}</Text>
-    </TouchableOpacity>
+        </TouchableOpacity>
 )}
 keyExtractor={item => item.id}
-/>
-</View>
+      />
+    </View>
 );
 }
 ```
@@ -302,7 +292,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 function SettingsItem({ label, value, onPress }) {
   return (
-
     <TouchableOpacity
       style={{
       paddingVertical: 12,
@@ -315,18 +304,17 @@ function SettingsItem({ label, value, onPress }) {
   <Text>{label}</Text>
   <Text style={{ color: 'gray' }}>{value}</Text>
 </View>
-</TouchableOpacity>
+    </TouchableOpacity>
 );
 }
 
 function SettingsList() {
   return (
-
     <View>
       <SettingsItem label="Language" value="English" />
     <SettingsItem label="Theme" value="Dark" />
   <SettingsItem label="Notifications" value="On" />
-</View>
+    </View>
 );
 }
 ```
@@ -367,7 +355,6 @@ import { Dividers } from '@htk/utils/theme';
 
 function ListItem({ item, showBottom = true, showTop = false }) {
   return (
-
     <View
       style={{
       ...(showTop && Dividers.top1),
@@ -375,7 +362,7 @@ function ListItem({ item, showBottom = true, showTop = false }) {
       }}
 >
 <Text>{item.title}</Text>
-</View>
+    </View>
 );
 }
 ```
@@ -392,7 +379,6 @@ import { Colors } from 'react-native-ui-lib';
 function ThemedComponent() {
   // No need to manually change colors - theme system handles it
   return (
-
     <View style={Dividers.bottom1}>
       <Text>This divider adapts to theme</Text>
     </View>
@@ -488,7 +474,6 @@ import { View } from 'react-native';
 
 function GridItem({ item }) {
   return (
-
     <View
       style={{
       flex: 1,
@@ -498,7 +483,7 @@ function GridItem({ item }) {
       }}
 >
 <Text>{item.title}</Text>
-</View>
+    </View>
 );
 }
 ```
@@ -510,7 +495,6 @@ import { View, Text } from 'react-native';
 
 function Breadcrumb({ items }) {
   return (
-
     <View style={{
         flexDirection: 'row',
         alignItems: 'center',
@@ -523,7 +507,7 @@ function Breadcrumb({ items }) {
           {index < items.length - 1 && <Text style={{ marginHorizontal: 8 }}>›</Text>}
         </View>
     ))}
-</View>
+        </View>
 );
 }
 ```
@@ -535,7 +519,6 @@ import { View, Text } from 'react-native';
 
 function StepIndicator({ steps, currentStep }) {
   return (
-
     <View style={{
         ...Dividers.bottom1,
         paddingVertical: 16,
@@ -561,11 +544,11 @@ function StepIndicator({ steps, currentStep }) {
       }}
 >
 <Text style={{ color: 'white' }}>{index + 1}</Text>
-</View>
+    </View>
 <Text style={{ marginLeft: 12 }}>{step.title}</Text>
-</View>
+    </View>
 ))}
-</View>
+    </View>
 );
 }
 ```

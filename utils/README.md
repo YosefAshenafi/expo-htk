@@ -166,7 +166,7 @@ rollbar.error(new Error('Something went wrong'));
 
 ## Architecture
 
-```
+```typescript
 utils/
 ├── string/ # String manipulation
 │ └── README.md # Documentation
@@ -229,7 +229,7 @@ enum Status { ACTIVE = 'active', INACTIVE = 'inactive' }
   {Object.values(Status).map(s => (
         <Picker.Item label={enumToStr(s)} value={s} />
     ))}
-</Picker>
+        </Picker>
 ```
 
 ### Observer Usage
@@ -308,7 +308,7 @@ enum FontSize { SMALL = 'small', MEDIUM = 'medium', LARGE = 'large' }
   {Object.values(FontSize).map(size => (
         <Picker.Item label={enumToStr(size)} value={size} />
     ))}
-</Picker>
+        </Picker>
 ```
 
 ## Best Practices

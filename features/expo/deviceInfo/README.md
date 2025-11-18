@@ -33,7 +33,6 @@ import { ExpoDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 export function DebugScreen() {
   return (
-
     <ExpoDeviceInfo />
 );
 }
@@ -58,8 +57,6 @@ function MyComponent() {
   const deviceInfo = useDeviceInfo();
 
   return (
-
-
     <View>
       <Text>Device: {deviceInfo.manufacturer} {deviceInfo.modelName}</Text>
       <Text>OS: {deviceInfo.osVersion}</Text>
@@ -151,11 +148,10 @@ import { ExpoDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 export function SettingsScreen() {
   return (
-
     <ScrollView>
       <Text style={styles.title}>Device Information</Text>
       <ExpoDeviceInfo />
-  </ScrollView>
+    </ScrollView>
 );
 }
 ```
@@ -169,8 +165,6 @@ export function DeviceCard() {
   const device = useDeviceInfo();
 
   return (
-
-
     <View style={styles.card}>
       <Text style={styles.label}>Device</Text>
       <Text style={styles.value}>
@@ -185,7 +179,7 @@ export function DeviceCard() {
   {device.isTablet && (
       <Text style={styles.badge}>Tablet Device</Text>
     )}
-</View>
+    </View>
 );
 }
 ```
@@ -198,23 +192,21 @@ export function FeatureAvailability() {
   const device = useDeviceInfo();
 
   return (
-
-
     <View>
       {device.hasNFC && (
           <FeatureCard
             title="NFC Payment"
             description="Available on this device"
-            />
+          />
       )}
 
   {device.hasGPS && (
       <FeatureCard
         title="Location Services"
         description="GPS enabled"
-        />
+      />
   )}
-</View>
+    </View>
 );
 }
 ```

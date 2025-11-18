@@ -42,7 +42,7 @@ console.log(device.modelName, device.osVersion);
 
 ## Architecture
 
-```
+```typescript
 expo/
 ├── deviceInfo/ # Device information module
 │ ├── index.tsx # Main exports

@@ -68,7 +68,7 @@ const value = JSON.parse(storage.getItem('key') '{}');
 
 ## Architecture
 
-```
+```typescript
 storages/
 ├── mmkv/ # MMKV storage adapter
 │ ├── state.ts # MMKV implementation
@@ -96,7 +96,7 @@ interface StorageAdapter {
 
 The storage system automatically selects appropriate storage:
 
-```
+```typescript
 Platform Detection
 ↓
 Mobile (iOS/Android) → MMKV

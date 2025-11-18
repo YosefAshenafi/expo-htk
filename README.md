@@ -58,7 +58,7 @@ const { useAppSettings, updateAppSetting } = createAppSettings({
 
 ## Architecture
 
-```
+```typescript
 expo-htk/
 ├── features/         # Complete feature implementations
 ├── components/       # Reusable UI components

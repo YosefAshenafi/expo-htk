@@ -48,7 +48,7 @@ confirm({
 
 ## Architecture
 
-```
+```typescript
 components/
 ├── Dialogs/ # Dialog components
 │ ├── Confirm/ # Confirmation dialog
@@ -69,7 +69,7 @@ components/
 Each component should have its own folder:
 
  **Good:**
-```
+```typescript
 components/Button/
 ├── index.tsx
 ├── Button.tsx
@@ -78,7 +78,7 @@ components/Button/
 ```
 
  **Bad:**
-```
+```typescript
 components/Button.tsx
 ```
 
@@ -130,7 +130,7 @@ export function Component(props: Props) { }
   * label="Press me"
   * onPress={() => console.log('Pressed')}
   * />
-  * ```
+  * ```typescript
 */
 export function Button(props: ButtonProps) { }
 ```
@@ -192,7 +192,6 @@ import { Colors, View, Text } from 'react-native-ui-lib';
 
 export function ThemedComponent(props: Props) {
   return (
-
     <View
       style={{
       backgroundColor: Colors.$backgroundDefault,
@@ -202,7 +201,7 @@ export function ThemedComponent(props: Props) {
 <Text style={{ color: Colors.$textDefault }}>
   Theme-aware component
 </Text>
-</View>
+    </View>
 );
 }
 ```
@@ -298,8 +297,6 @@ export function MyProvider(props: MyComponentProps) {
   const [state, setState] = React.useState(defaultState);
 
   return (
-
-
     <MyContext.Provider value={state}>
       {props.children}
     </MyContext.Provider>
@@ -333,7 +330,7 @@ export function Content(props: ContentProps) {
 <Container>
   <Container.Header>Title</Container.Header>
   <Container.Content>Content</Container.Content>
-</Container>
+  </Container>
 ```
 
 ## Version Compatibility

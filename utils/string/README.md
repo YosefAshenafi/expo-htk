@@ -82,7 +82,6 @@ interface UserData {
 
 function UserForm() {
   return (
-
     <View>
       <Label>{snakeCaseToCapitalize('first_name')}</Label>
       <TextInput placeholder="John" />
@@ -92,7 +91,7 @@ function UserForm() {
 
   <Label>{snakeCaseToCapitalize('email_address')}</Label>
   <TextInput placeholder="john@example.com" />
-</View>
+    </View>
 );
 }
 ```
@@ -112,17 +111,15 @@ function OrderStatusPicker() {
   const statuses = Object.values(OrderStatus);
 
   return (
-
-
     <Picker>
       {statuses.map(status => (
             <Picker.Item
               key={status}
               label={snakeCaseToCapitalize(status)}
               value={status}
-              />
+            />
         ))}
-</Picker>
+            </Picker>
 );
 }
 ```
@@ -135,8 +132,6 @@ function ValidationError({ field }: { field: string }) {
   const fieldName = capitalize(field);
 
   return (
-
-
     <Text style={styles.error}>
       {fieldName} is required
     </Text>
@@ -161,7 +156,6 @@ interface APIResponse {
 
 function DataDisplay(data: APIResponse) {
   return (
-
     <View>
       {Object.entries(data).map(([key, value]) => (
             <Row key={key}>
@@ -169,7 +163,7 @@ function DataDisplay(data: APIResponse) {
               <Value>{String(value)}</Value>
             </Row>
         ))}
-</View>
+    </View>
 );
 }
 ```
@@ -180,11 +174,10 @@ import { capitalize } from '@htk/utils/string';
 
 function SettingsOption({ name }: { name: string }) {
   return (
-
     <Row>
       <Label>{capitalize(name)}</Label>
       <Toggle />
-  </Row>
+    </Row>
 );
 }
 
@@ -375,7 +368,6 @@ const config = {
 
 function ConfigDisplay() {
   return (
-
     <View>
       {Object.entries(config).map(([key, value]) => (
             <Row key={key}>
@@ -383,7 +375,7 @@ function ConfigDisplay() {
               <Value>{String(value)}</Value>
             </Row>
         ))}
-</View>
+    </View>
 );
 }
 ```

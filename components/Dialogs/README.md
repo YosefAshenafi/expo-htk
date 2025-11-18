@@ -67,7 +67,7 @@ Dialogs/
 │ ├── VerticalButtons.tsx # Button layout (column)
 │ └── README.md # Documentation
 └── README.md # This file
-```
+```typescript
 
 ### Design Pattern
 Each dialog follows these patterns:
@@ -91,10 +91,9 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 
 export function App() {
   return (
-
     <Confirm>
       <MainScreen />
-  </Confirm>
+    </Confirm>
 );
 }
 
@@ -102,8 +101,6 @@ function DeleteButton() {
   const { confirm } = useConfirm();
 
   return (
-
-
     <Button
       title="Delete"
       onPress={() => confirm({
@@ -113,10 +110,10 @@ function DeleteButton() {
       { label: 'Delete', onPress: () => handleDelete() }
           ]
       })}
-/>
+    />
 );
 }
-```
+```typescript
 
 ### Multiple Dialog Types
 ```typescript
@@ -125,14 +122,13 @@ import { Confirm } from '@htk/components/Dialogs/Confirm';
 export function App() {
   // Wrap with multiple dialog providers
   return (
-
     <Confirm>
       {/* Future: AlertDialog, PromptDialog, etc. */}
       <MainScreen />
-  </Confirm>
+    </Confirm>
 );
 }
-```
+```typescript
 
 ## Best Practices
 
@@ -163,14 +159,14 @@ DialogType/
 ├── Root.tsx # Container component
 ├── YourComponent.tsx # Dialog subcomponents
 └── README.md # Documentation
-```
+```typescript
 
 2. **Context Pattern**
  ```typescript
 // Use React.createContext + useReducer
 const Context = React.createContext<State>(defaultState);
   const DispatchContext = React.createContext<Dispatch>(defaultDispatch);
-```
+```typescript
 
 3. **Type Safety**
  - Export Props interfaces for all components
@@ -250,13 +246,13 @@ test('confirms action', () => {
     const { getByText } = render(
       <Confirm>
         <TestComponent onConfirm={onConfirm} />
-    </Confirm>
+      </Confirm>
 );
 
 fireEvent.press(getByText('Confirm'));
 expect(onConfirm).toHaveBeenCalled();
 });
-```
+```typescript
 
 ## Common Patterns
 
@@ -278,7 +274,7 @@ function useAsyncConfirm() {
   });
 };
 }
-```
+```typescript
 
 ### Confirmation with Data
 ```typescript
