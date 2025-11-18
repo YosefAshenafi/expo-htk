@@ -70,16 +70,16 @@ import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 import { rollbar } from '@htk/utils/rollbar';
 
 function useErrorTracking() {
-  const device = useDeviceInfo();
+const device = useDeviceInfo();
 
-  return (error: Error) => {
-    rollbar.error(error, {
-      device: {
-        platform: device.platform,
-        osVersion: device.osVersion,
-        modelName: device.modelName
-      }
-  });
+return (error: Error) => {
+rollbar.error(error, {
+device: {
+platform: device.platform,
+osVersion: device.osVersion,
+modelName: device.modelName
+}
+});
 };
 }
 ```
@@ -90,14 +90,14 @@ import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 import { useAppSettings } from '@htk/features/appSettings';
 
 function useAdaptiveUI() {
-  const device = useDeviceInfo();
-  const settings = useAppSettings();
+const device = useDeviceInfo();
+const settings = useAppSettings();
 
-  return {
-    isTablet: device.isTablet,
-    fontSize: settings.fontSize,
-    columns: device.isTablet ? 2 : 1
-  };
+return {
+isTablet: device.isTablet,
+fontSize: settings.fontSize,
+columns: device.isTablet ? 2 : 1
+};
 }
 ```
 
@@ -120,12 +120,12 @@ Access device information programmatically.
 ```typescript
 const device = useDeviceInfo();
 // Returns: {
-  // manufacturer: string;
-  // modelName: string;
-  // platform: 'ios' 'android' 'web';
-  // osVersion: string;
-  // // ... more properties
-  // }
+// manufacturer: string;
+// modelName: string;
+// platform: 'ios' 'android' 'web';
+// osVersion: string;
+// // ... more properties
+// }
 ```
 
 ## Performance Considerations
@@ -178,8 +178,8 @@ import { render } from '@testing-library/react-native';
 import { ExpoDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 test('renders device info', () => {
-  const { getByText } = render(<ExpoDeviceInfo />);
-  expect(getByText(/device/i)).toBeTruthy();
+const { getByText } = render(<ExpoDeviceInfo />);
+expect(getByText(/device/i)).toBeTruthy();
 });
 ```
 

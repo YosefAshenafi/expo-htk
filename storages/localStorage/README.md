@@ -38,10 +38,10 @@ Implements platform-agnostic storage operations:
 
 ```typescript
 interface StorageAdapter {
-  getItem(key: string): string null;
-  setItem(key: string, value: string): void;
-  removeItem(key: string): void;
-  clearAll(): void;
+getItem(key: string): string null;
+setItem(key: string, value: string): void;
+removeItem(key: string): void;
+clearAll(): void;
 }
 ```
 
@@ -66,15 +66,15 @@ import { localStorage } from '@htk/storages/localStorage';
 
 // Create a persisted atom (web only)
 const userThemeAtom = atomWithStorage(
-  'userTheme',
-  'light',
-  localStorage
+'userTheme',
+'light',
+localStorage
 );
 
 // Use in components
 function ThemeComponent() {
-  const [theme, setTheme] = useAtom(userThemeAtom);
-  // Theme is automatically persisted to browser localStorage
+const [theme, setTheme] = useAtom(userThemeAtom);
+// Theme is automatically persisted to browser localStorage
 }
 ```
 
@@ -109,12 +109,12 @@ storage.clearAll();
 ### Exceeded Quota
 ```typescript
 try {
-  storage.setItem('largeData', JSON.stringify(bigObject));
+storage.setItem('largeData', JSON.stringify(bigObject));
 } catch (e) {
-  if (e instanceof DOMException && e.name === 'QuotaExceededError') {
-    console.error('Storage quota exceeded');
-    // Clear old data and retry, or reduce data size
-  }
+if (e instanceof DOMException && e.name === 'QuotaExceededError') {
+console.error('Storage quota exceeded');
+// Clear old data and retry, or reduce data size
+}
 }
 ```
 
@@ -152,10 +152,10 @@ export function setTypedValue<T>(
   value: T,
   version: number = 1
 ): void {
-  const data: StorageValue<T> = {
-    value,
-    version,
-    timestamp: Date.now()
+const data: StorageValue<T> = {
+  value,
+  version,
+  timestamp: Date.now()
 };
 storage.setItem(key, JSON.stringify(data));
 }
@@ -165,12 +165,12 @@ export function getTypedValue<T>(key: string): T null {
   if (!raw) return null;
 
   try {
-    const data: StorageValue<T> = JSON.parse(raw);
+  const data: StorageValue<T> = JSON.parse(raw);
     return data.value;
   } catch (error) {
-    console.error('Failed to parse storage value:', error);
-    return null;
-  }
+  console.error('Failed to parse storage value:', error);
+  return null;
+}
 }
 ```
 
@@ -181,23 +181,23 @@ export function useLocalStorageSync<T>(
   key: string,
   initialValue: T
 ) {
-  const [value, setValue] = useState<T>(initialValue);
+const [value, setValue] = useState<T>(initialValue);
 
   useEffect(() => {
-    // Listen for changes from other tabs
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === key && e.newValue) {
-        setValue(JSON.parse(e.newValue));
-      }
-  };
+  // Listen for changes from other tabs
+  const handleStorageChange = (e: StorageEvent) => {
+  if (e.key === key && e.newValue) {
+  setValue(JSON.parse(e.newValue));
+}
+};
 
-  window.addEventListener('storage', handleStorageChange);
-  return () => window.removeEventListener('storage', handleStorageChange);
+window.addEventListener('storage', handleStorageChange);
+return () => window.removeEventListener('storage', handleStorageChange);
 }, [key]);
 
 const updateValue = useCallback((newValue: T) => {
-  setValue(newValue);
-  storage.setItem(key, JSON.stringify(newValue));
+setValue(newValue);
+storage.setItem(key, JSON.stringify(newValue));
 }, [key]);
 
 return [value, updateValue] as const;
@@ -211,11 +211,11 @@ export function setValueWithExpiry<T>(
   value: T,
   expiryMs: number
 ): void {
-  const data = {
-    value,
-    expiry: Date.now() + expiryMs
-  };
-  storage.setItem(key, JSON.stringify(data));
+const data = {
+value,
+expiry: Date.now() + expiryMs
+};
+storage.setItem(key, JSON.stringify(data));
 }
 
 export function getValueWithExpiry<T>(key: string): T null {
@@ -225,9 +225,9 @@ export function getValueWithExpiry<T>(key: string): T null {
   const { value, expiry } = JSON.parse(raw);
 
   if (Date.now() > expiry) {
-    storage.removeItem(key);
-    return null;
-  }
+  storage.removeItem(key);
+  return null;
+}
 
 return value as T;
 }
@@ -282,44 +282,44 @@ storage.setItem('language', 'en'); // Safe
 ### Mock localStorage for Tests
 ```typescript
 const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
+getItem: jest.fn(),
+setItem: jest.fn(),
+removeItem: jest.fn(),
+clear: jest.fn(),
 };
 
 beforeEach(() => {
-  Object.defineProperty(window, 'localStorage', {
-    value: localStorageMock
-  });
+Object.defineProperty(window, 'localStorage', {
+value: localStorageMock
+});
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
+jest.clearAllMocks();
 });
 ```
 
 ### Test Storage Operations
 ```typescript
 describe('localStorage operations', () => {
-  it('stores and retrieves values', () => {
-    storage.setItem('key', 'value');
-    expect(storage.getItem('key')).toBe('value');
-  });
+it('stores and retrieves values', () => {
+storage.setItem('key', 'value');
+expect(storage.getItem('key')).toBe('value');
+});
 
-  it('removes items', () => {
-    storage.setItem('key', 'value');
-    storage.removeItem('key');
-    expect(storage.getItem('key')).toBeNull();
-  });
+it('removes items', () => {
+storage.setItem('key', 'value');
+storage.removeItem('key');
+expect(storage.getItem('key')).toBeNull();
+});
 
-  it('clears all data', () => {
-    storage.setItem('key1', 'value1');
-    storage.setItem('key2', 'value2');
-    storage.clearAll();
-    expect(storage.getItem('key1')).toBeNull();
-    expect(storage.getItem('key2')).toBeNull();
-  });
+it('clears all data', () => {
+storage.setItem('key1', 'value1');
+storage.setItem('key2', 'value2');
+storage.clearAll();
+expect(storage.getItem('key1')).toBeNull();
+expect(storage.getItem('key2')).toBeNull();
+});
 });
 ```
 
@@ -329,12 +329,12 @@ describe('localStorage operations', () => {
 ```typescript
 // Migrate from sessionStorage
 for (let i = 0; i < sessionStorage.length; i++) {
-  const key = sessionStorage.key(i);
-  if (key) {
-    const value = sessionStorage.getItem(key);
-    if (value) {
-      storage.setItem(key, value);
-    }
+const key = sessionStorage.key(i);
+if (key) {
+const value = sessionStorage.getItem(key);
+if (value) {
+storage.setItem(key, value);
+}
 }
 }
 ```
@@ -345,11 +345,11 @@ for (let i = 0; i < sessionStorage.length; i++) {
 ```typescript
 export function debugStorage(): Record<string, string> {
   const data: Record<string, string> = {};
-  for (let i = 0; i < localStorage.length; i++) {
+    for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     if (key) {
-      data[key] = localStorage.getItem(key) '';
-    }
+    data[key] = localStorage.getItem(key) '';
+  }
 }
 return data;
 }
@@ -361,12 +361,12 @@ console.table(debugStorage());
 ### Monitor Storage Changes
 ```typescript
 window.addEventListener('storage', (e) => {
-  console.log('Storage changed:', {
-    key: e.key,
-    oldValue: e.oldValue,
-    newValue: e.newValue,
-    url: e.url
-  });
+console.log('Storage changed:', {
+key: e.key,
+oldValue: e.oldValue,
+newValue: e.newValue,
+url: e.url
+});
 });
 ```
 
@@ -420,31 +420,31 @@ localStorage.removeItem('key');
 ### Storage Not Available
 ```typescript
 const isLocalStorageAvailable = (): boolean => {
-  try {
-    const test = '__localStorage_test__';
-    storage.setItem(test, test);
-    storage.removeItem(test);
-    return true;
-  } catch {
-    return false;
-  }
+try {
+const test = '__localStorage_test__';
+storage.setItem(test, test);
+storage.removeItem(test);
+return true;
+} catch {
+return false;
+}
 };
 ```
 
 ### Handling Storage Errors
 ```typescript
 function safeSetItem(key: string, value: string): boolean {
-  try {
-    storage.setItem(key, value);
-    return true;
-  } catch (e) {
-    if (e instanceof DOMException) {
-      if (e.name === 'QuotaExceededError') {
-        console.error('Storage quota exceeded');
-      } else if (e.name === 'SecurityError') {
-        console.error('Storage access denied (private mode?)');
-      }
-  }
+try {
+storage.setItem(key, value);
+return true;
+} catch (e) {
+if (e instanceof DOMException) {
+if (e.name === 'QuotaExceededError') {
+console.error('Storage quota exceeded');
+} else if (e.name === 'SecurityError') {
+console.error('Storage access denied (private mode?)');
+}
+}
 return false;
 }
 }

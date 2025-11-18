@@ -33,12 +33,12 @@ The foundational component that all entries extend. Provides:
 
 ```typescript
 interface BaseEntryProps {
-  label: string;
-  description?: string;
-  value: any;
-  onChange: (value: any) => void;
-  icon?: ReactNode;
-  disabled?: boolean;
+label: string;
+description?: string;
+value: any;
+onChange: (value: any) => void;
+icon?: ReactNode;
+disabled?: boolean;
 }
 ```
 
@@ -112,20 +112,21 @@ To add a new setting entry type, extend the Base entry:
 import { BaseEntry, BaseEntryProps } from './Base';
 
 interface MyCustomEntryProps extends BaseEntryProps {
-  options?: string[];
+options?: string[];
 }
 
 export function MyCustomEntry({
-  label,
-  value,
-  onChange,
-  options = [],
-  ...props
+label,
+value,
+onChange,
+options = [],
+...props
 }: MyCustomEntryProps) {
-  return (
-    <BaseEntry label={label} value={value} {...props}>
-  <MyCustomControl
-  value={value}
+return (
+
+  <BaseEntry label={label} value={value} {...props}>
+<MyCustomControl
+value={value}
 onChange={onChange}
 options={options}
 />
@@ -140,22 +141,22 @@ Entries are used within the AppSettings component through entry definitions:
 
 ```typescript
 const settingsEntries = [
-  {
-    type: 'switch',
-    key: 'darkMode',
-    label: 'Dark Mode',
-    description: 'Enable dark color scheme'
-  },
-  {
-    type: 'fontFamily',
-    key: 'fontFamily',
-    label: 'Font Family'
-  },
-  {
-    type: 'fontSize',
-    key: 'fontSize',
-    label: 'Font Size'
-  }
+{
+type: 'switch',
+key: 'darkMode',
+label: 'Dark Mode',
+description: 'Enable dark color scheme'
+},
+{
+type: 'fontFamily',
+key: 'fontFamily',
+label: 'Font Family'
+},
+{
+type: 'fontSize',
+key: 'fontSize',
+label: 'Font Size'
+}
 ];
 ```
 
@@ -172,13 +173,13 @@ All entries integrate with the app's theme system via `react-native-ui-lib`:
 ```typescript
 // Entry configuration type
 interface SettingsEntry {
-  type: 'switch' 'fontFamily' 'fontSize' string;
-  key: string;
-  label: string;
-  description?: string;
-  defaultValue?: any;
-  disabled?: boolean;
-  validation?: (value: any) => boolean;
+type: 'switch' 'fontFamily' 'fontSize' string;
+key: string;
+label: string;
+description?: string;
+defaultValue?: any;
+disabled?: boolean;
+validation?: (value: any) => boolean;
 }
 
 // Entry change handler
@@ -220,14 +221,14 @@ onChange={handleChange}
 ### Entries with Validation
 ```typescript
 const validationRules = {
-  fontSize: (value) => value >= 12 && value <= 32
+fontSize: (value) => value >= 12 && value <= 32
 };
 ```
 
 ### Conditional Entry Display
 ```typescript
 {shouldShowAdvanced && (
-  <MyCustomEntry {...props} />
+<MyCustomEntry {...props} />
 )}
 ```
 

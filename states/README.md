@@ -46,8 +46,8 @@ Factory function for creating persisted atoms.
 
 ```typescript
 function createPersistedState(): (
-  key: string,
-  initial: T
+key: string,
+initial: T
 ) => Atom<T>
 ```
 
@@ -68,9 +68,9 @@ const persistedAtom = createPersistedState();
 
 // Create persisted atom
 const userAtom = persistedAtom('currentUser', {
-  id: '',
-  name: '',
-  email: ''
+id: '',
+name: '',
+email: ''
 });
 ```
 
@@ -79,17 +79,19 @@ const userAtom = persistedAtom('currentUser', {
 import { useAtomValue, useSetAtom } from 'jotai/react';
 
 function UserProfile() {
-  const user = useAtomValue(userAtom);
-  const setUser = useSetAtom(userAtom);
+const user = useAtomValue(userAtom);
+const setUser = useSetAtom(userAtom);
 
-  return (
-    <View>
+return (
+
+
+  <View>
   <Text>{user.name}</Text>
-<Button
-onPress={() => setUser({...user, name: 'Updated'})}
-title="Update"
-/>
-</View>
+  <Button
+  onPress={() => setUser({...user, name: 'Updated'})}
+  title="Update"
+  />
+  </View>
 );
 }
 ```
@@ -109,17 +111,19 @@ import { useAtomValue, useSetAtom } from 'jotai/react';
 const countAtom = atom(0);
 
 function Counter() {
-  const count = useAtomValue(countAtom);
-  const setCount = useSetAtom(countAtom);
+const count = useAtomValue(countAtom);
+const setCount = useSetAtom(countAtom);
 
-  return (
-    <View>
+return (
+
+
+  <View>
   <Text>{count}</Text>
-<Button
-onPress={() => setCount(count + 1)}
-title="Increment"
-/>
-</View>
+  <Button
+  onPress={() => setCount(count + 1)}
+  title="Increment"
+  />
+  </View>
 );
 }
 ```
@@ -132,9 +136,9 @@ const firstNameAtom = atom('John');
 const lastNameAtom = atom('Doe');
 
 const fullNameAtom = atom((get) => {
-  const firstName = get(firstNameAtom);
-  const lastName = get(lastNameAtom);
-  return `${firstName} ${lastName}`;
+const firstName = get(firstNameAtom);
+const lastName = get(lastNameAtom);
+return `${firstName} ${lastName}`;
 });
 ```
 
@@ -143,9 +147,9 @@ const fullNameAtom = atom((get) => {
 import { createPersistedState } from '@htk/states';
 
 interface AppState {
-  user: User null;
-  settings: Settings;
-  cache: Record<string, any>;
+user: User null;
+settings: Settings;
+cache: Record<string, any>;
 }
 
 const persistedAtom = createPersistedState();
@@ -156,11 +160,11 @@ const appStateAtom = persistedAtom<AppState>('appState', {
 });
 
 function useAppState() {
-  return useAtomValue(appStateAtom);
+return useAtomValue(appStateAtom);
 }
 
 function useUpdateAppState() {
-  return useSetAtom(appStateAtom);
+return useSetAtom(appStateAtom);
 }
 ```
 
@@ -169,16 +173,18 @@ function useUpdateAppState() {
 import { atom } from 'jotai';
 
 const userAtom = atom(async (get) => {
-  const userId = get(userIdAtom);
-  return fetch(`/api/users/${userId}`).then(r => r.json());
+const userId = get(userIdAtom);
+return fetch(`/api/users/${userId}`).then(r => r.json());
 });
 
 function UserData() {
-  const user = useAtomValue(userAtom);
+const user = useAtomValue(userAtom);
 
-  return (
-    <Suspense fallback={<Text>Loading...</Text>}>
-  <Text>{user.name}</Text>
+return (
+
+
+  <Suspense fallback={<Text>Loading...</Text>}>
+<Text>{user.name}</Text>
 </Suspense>
 );
 }
@@ -191,8 +197,8 @@ function UserData() {
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, atom } = createAppSettings({
-  theme: 'light',
-  fontSize: 16
+theme: 'light',
+fontSize: 16
 });
 
 // Uses persisted atoms internally
@@ -243,11 +249,11 @@ const status = useAtomValue(statusAtom);
 import { useMemo } from 'react';
 
 function Component() {
-  const user = useAtomValue(userAtom);
+const user = useAtomValue(userAtom);
 
-  const displayName = useMemo(
-    () => `${user.first} ${user.last}`,
-    [user.first, user.last]
+const displayName = useMemo(
+() => `${user.first} ${user.last}`,
+[user.first, user.last]
 );
 
 return <Text>{displayName}</Text>;
@@ -291,22 +297,22 @@ const cacheAtom = atom({...});
 import { useAtomValue, useSetAtom } from 'jotai/react';
 
 describe('userAtom', () => {
-  it('has correct initial value', () => {
-    const { result } = renderHook(() => useAtomValue(userAtom));
-    expect(result.current).toEqual(initialValue);
-  });
+it('has correct initial value', () => {
+const { result } = renderHook(() => useAtomValue(userAtom));
+expect(result.current).toEqual(initialValue);
+});
 
-  it('updates value', () => {
-    const { result } = renderHook(() => ({
-      value: useAtomValue(userAtom),
-      set: useSetAtom(userAtom)
-  }));
+it('updates value', () => {
+const { result } = renderHook(() => ({
+value: useAtomValue(userAtom),
+set: useSetAtom(userAtom)
+}));
 
-  act(() => {
-    result.current.set(newValue);
-  });
+act(() => {
+result.current.set(newValue);
+});
 
-  expect(result.current.value).toEqual(newValue);
+expect(result.current.value).toEqual(newValue);
 });
 });
 ```
@@ -318,15 +324,15 @@ describe('userAtom', () => {
 import { useAtomValue, useSetAtom } from 'jotai/react';
 
 class UserModel {
-  private setUser = useSetAtom(userAtom);
-  private user = useAtomValue(userAtom);
+private setUser = useSetAtom(userAtom);
+private user = useAtomValue(userAtom);
 
-  getName() {
-    return `${this.user.first} ${this.user.last}`;
-  }
+getName() {
+return `${this.user.first} ${this.user.last}`;
+}
 
 updateProfile(profile) {
-  this.setUser(prev => ({...prev, ...profile}));
+this.setUser(prev => ({...prev, ...profile}));
 }
 }
 ```
@@ -339,12 +345,12 @@ function usePersistedState<T>(
   key: string,
   initial: T
 ) {
-  const persistedAtom = createPersistedState();
-  const atom = persistedAtom(key, initial);
+const persistedAtom = createPersistedState();
+const atom = persistedAtom(key, initial);
 
-  return {
-    value: useAtomValue(atom),
-    set: useSetAtom(atom)
+return {
+value: useAtomValue(atom),
+set: useSetAtom(atom)
 };
 }
 ```
@@ -357,9 +363,9 @@ import { useAtomValue } from 'jotai/react';
 
 // Log atom changes (development only)
 function useDebugAtom<T>(atom: Atom<T>) {
-  const value = useAtomValue(atom);
+    const value = useAtomValue(atom);
 
-  useEffect(() => {
+    useEffect(() => {
     console.log('Atom updated:', value);
   }, [value]);
 

@@ -41,9 +41,9 @@ function enumToStr(value: any): string
 import { enumToStr } from '@htk/utils/enum';
 
 enum Status {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-  PENDING = 'pending'
+ACTIVE = 'active',
+INACTIVE = 'inactive',
+PENDING = 'pending'
 }
 
 // Display in UI
@@ -54,9 +54,9 @@ enum Status {
 ### Numeric Enum Conversion
 ```typescript
 enum Priority {
-  LOW = 0,
-  MEDIUM = 1,
-  HIGH = 2
+LOW = 0,
+MEDIUM = 1,
+HIGH = 2
 }
 
 const displayValue = enumToStr(Priority.HIGH);
@@ -66,9 +66,9 @@ const displayValue = enumToStr(Priority.HIGH);
 ### Snake Case to Title Case
 ```typescript
 enum DeviceType {
-  MOBILE_PHONE = 'mobile_phone',
-  TABLET_DEVICE = 'tablet_device',
-  DESKTOP_COMPUTER = 'desktop_computer'
+MOBILE_PHONE = 'mobile_phone',
+TABLET_DEVICE = 'tablet_device',
+DESKTOP_COMPUTER = 'desktop_computer'
 }
 
 enumToStr(DeviceType.MOBILE_PHONE);
@@ -80,22 +80,24 @@ enumToStr(DeviceType.MOBILE_PHONE);
 import { enumToStr } from '@htk/utils/enum';
 
 enum UserRole {
-  ADMIN = 'admin',
-  MODERATOR = 'moderator',
-  USER = 'user'
+ADMIN = 'admin',
+MODERATOR = 'moderator',
+USER = 'user'
 }
 
 function RolePicker() {
-  const roles = Object.values(UserRole);
+const roles = Object.values(UserRole);
 
-  return (
-    <Picker>
+return (
+
+
+  <Picker>
   {roles.map(role => (
-    <Picker.Item
-    key={role}
+  <Picker.Item
+  key={role}
   label={enumToStr(role)}
-value={role}
-/>
+  value={role}
+  />
 ))}
 </Picker>
 );
@@ -105,20 +107,21 @@ value={role}
 ### Switch/Case Display
 ```typescript
 function getStatusColor(status: Status) {
-  switch (status) {
-    case Status.ACTIVE:
-    return 'green';
-    case Status.INACTIVE:
-    return 'gray';
-    case Status.PENDING:
-    return 'orange';
-  }
+switch (status) {
+case Status.ACTIVE:
+return 'green';
+case Status.INACTIVE:
+return 'gray';
+case Status.PENDING:
+return 'orange';
+}
 }
 
 function StatusBadge({ status }: { status: Status }) {
-  return (
-    <View style={{ backgroundColor: getStatusColor(status) }}>
-  <Text>{enumToStr(status)}</Text>
+return (
+
+  <View style={{ backgroundColor: getStatusColor(status) }}>
+<Text>{enumToStr(status)}</Text>
 </View>
 );
 }
@@ -131,10 +134,10 @@ function StatusBadge({ status }: { status: Status }) {
 import { enumToStr } from '@htk/utils/enum';
 
 enum LogLevel {
-  DEBUG = 'debug',
-  INFO = 'info',
-  WARN = 'warn',
-  ERROR = 'error'
+DEBUG = 'debug',
+INFO = 'info',
+WARN = 'warn',
+ERROR = 'error'
 }
 
 // Custom display names
@@ -146,63 +149,65 @@ const LogLevelDisplay: Record<LogLevel, string> = {
 };
 
 function getLogLevelDisplay(level: LogLevel): string {
-  return LogLevelDisplay[level] enumToStr(level);
+return LogLevelDisplay[level] enumToStr(level);
 }
 ```
 
 ### Form Field Labels from Enums
 ```typescript
 enum FormField {
-  FIRST_NAME = 'first_name',
-  LAST_NAME = 'last_name',
-  EMAIL_ADDRESS = 'email_address',
-  PHONE_NUMBER = 'phone_number'
+FIRST_NAME = 'first_name',
+LAST_NAME = 'last_name',
+EMAIL_ADDRESS = 'email_address',
+PHONE_NUMBER = 'phone_number'
 }
 
 function FormFieldLabel({ field }: { field: FormField }) {
-  return <Label>{enumToStr(field)}</Label>;
-  // Displays: "First Name", "Last Name", etc.
+return <Label>{enumToStr(field)}</Label>;
+// Displays: "First Name", "Last Name", etc.
 }
 ```
 
 ### Validation Error Messages
 ```typescript
 enum ValidationError {
-  REQUIRED_FIELD = 'required_field',
-  INVALID_EMAIL = 'invalid_email',
-  PASSWORD_TOO_SHORT = 'password_too_short'
+REQUIRED_FIELD = 'required_field',
+INVALID_EMAIL = 'invalid_email',
+PASSWORD_TOO_SHORT = 'password_too_short'
 }
 
 function getErrorMessage(error: ValidationError): string {
-  const messages: Record<ValidationError, string> = {
-    [ValidationError.REQUIRED_FIELD]: 'This field is required',
-    [ValidationError.INVALID_EMAIL]: 'Please enter a valid email',
-    [ValidationError.PASSWORD_TOO_SHORT]: 'Password must be at least 8 characters'
-  };
+const messages: Record<ValidationError, string> = {
+  [ValidationError.REQUIRED_FIELD]: 'This field is required',
+  [ValidationError.INVALID_EMAIL]: 'Please enter a valid email',
+  [ValidationError.PASSWORD_TOO_SHORT]: 'Password must be at least 8 characters'
+};
 
-  return messages[error];
+return messages[error];
 }
 ```
 
 ### Dynamic List Generation
 ```typescript
 enum Permission {
-  READ = 'read',
-  WRITE = 'write',
-  DELETE = 'delete',
-  ADMIN = 'admin'
+READ = 'read',
+WRITE = 'write',
+DELETE = 'delete',
+ADMIN = 'admin'
 }
 
 function PermissionsList() {
-  const permissions = Object.values(Permission);
+const permissions = Object.values(Permission);
 
-  return (
-    <FlatList
-    data={permissions}
-  renderItem={({ item }) => (
-    <CheckBox
-    label={enumToStr(item)}
-  value={item}
+return (
+
+
+  <FlatList
+data={permissions}
+renderItem={({ item }) => (
+<CheckBox
+label={enumToStr(item)}
+value={item}
 />
 )}
 />
@@ -217,7 +222,7 @@ function PermissionsList() {
 function displayEnum<T extends Record<string, string>>(
   enumValue: T[keyof T]
 ): string {
-  return enumToStr(enumValue);
+return enumToStr(enumValue);
 }
 
 // Usage with type safety
@@ -275,10 +280,10 @@ mobile-phone → Mobile Phone (kebab-case)
 // Cache converted values
 const enumCache = new Map<any, string>();
 
-function cachedEnumToStr(value: any): string {
+  function cachedEnumToStr(value: any): string {
   if (enumCache.has(value)) {
-    return enumCache.get(value)!;
-  }
+  return enumCache.get(value)!;
+}
 
 const str = enumToStr(value);
 enumCache.set(value, str);
@@ -311,21 +316,21 @@ return str;
 
 ```typescript
 describe('enumToStr', () => {
-  it('converts enum to readable string', () => {
-    const result = enumToStr(Status.ACTIVE);
-    expect(result).toBe('active'); // or 'Active' depending on impl
-  });
+it('converts enum to readable string', () => {
+const result = enumToStr(Status.ACTIVE);
+expect(result).toBe('active'); // or 'Active' depending on impl
+});
 
-  it('handles snake_case conversion', () => {
-    const result = enumToStr(DeviceType.MOBILE_PHONE);
-    expect(result).toMatch(/mobile.*phone/i);
-  });
+it('handles snake_case conversion', () => {
+const result = enumToStr(DeviceType.MOBILE_PHONE);
+expect(result).toMatch(/mobile.*phone/i);
+});
 
-  it('handles all enum values', () => {
-    Object.values(Status).forEach(value => {
-      expect(() => enumToStr(value)).not.toThrow();
-    });
-  });
+it('handles all enum values', () => {
+Object.values(Status).forEach(value => {
+expect(() => enumToStr(value)).not.toThrow();
+});
+});
 });
 ```
 

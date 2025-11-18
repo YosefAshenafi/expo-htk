@@ -59,11 +59,11 @@ Implements platform-agnostic storage operations:
 
 ```typescript
 interface StorageAdapter {
-  getItem(key: string): string null Promise<string null>;
+getItem(key: string): string null Promise<string null>;
   setItem(key: string, value: string): void Promise<void>;
-  removeItem(key: string): void Promise<void>;
-  clearAll(): void Promise<void>;
-}
+    removeItem(key: string): void Promise<void>;
+      clearAll(): void Promise<void>;
+      }
 ```
 
 ## API Usage
@@ -87,15 +87,15 @@ import { mmkvStorage } from '@htk/storages/mmkv';
 
 // Create a persisted atom
 const userThemeAtom = atomWithStorage(
-  'userTheme',
-  'light',
-  mmkvStorage
+'userTheme',
+'light',
+mmkvStorage
 );
 
 // Use in components
 function ThemeComponent() {
-  const [theme, setTheme] = useAtom(userThemeAtom);
-  // Theme is automatically persisted to MMKV
+const [theme, setTheme] = useAtom(userThemeAtom);
+// Theme is automatically persisted to MMKV
 }
 ```
 
@@ -162,9 +162,9 @@ export function setTypedValue<T>(
   key: string,
   value: T
 ): void {
-  const data: StorageValue<T> = {
-    value,
-    timestamp: Date.now()
+const data: StorageValue<T> = {
+  value,
+  timestamp: Date.now()
 };
 storage.setItem(key, JSON.stringify(data));
 }
@@ -174,8 +174,8 @@ export function getTypedValue<T>(key: string): T null {
   if (!raw) return null;
 
   const data: StorageValue<T> = JSON.parse(raw);
-  return data.value;
-}
+    return data.value;
+  }
 ```
 
 ### Persisted State Hook
@@ -189,13 +189,13 @@ function useStoredValue<T>(key: string, initialValue: T) {
   });
 
   const updateValue = useCallback((newValue: T ((prev: T) => T)) => {
-    setValue(prev => {
-      const updated = typeof newValue === 'function'
-      ? newValue(prev)
-    : newValue;
-    storage.setItem(key, JSON.stringify(updated));
-    return updated;
-  });
+  setValue(prev => {
+  const updated = typeof newValue === 'function'
+  ? newValue(prev)
+  : newValue;
+  storage.setItem(key, JSON.stringify(updated));
+  return updated;
+});
 }, [key]);
 
 return [value, updateValue] as const;
@@ -239,16 +239,16 @@ return [value, updateValue] as const;
 ```typescript
 // Backup all data
 function backupStorage() {
-  const allData = getAllStoredItems();
-  return JSON.stringify(allData);
+const allData = getAllStoredItems();
+return JSON.stringify(allData);
 }
 
 // Restore from backup
 function restoreStorage(backup: string) {
-  const data = JSON.parse(backup);
-  Object.entries(data).forEach(([key, value]) => {
-    storage.setItem(key, value as string);
-  });
+const data = JSON.parse(backup);
+Object.entries(data).forEach(([key, value]) => {
+storage.setItem(key, value as string);
+});
 }
 ```
 
@@ -256,14 +256,14 @@ function restoreStorage(backup: string) {
 
 ```typescript
 try {
-  const value = storage.getItem('important');
-  if (value) {
-    processData(JSON.parse(value));
-  }
+const value = storage.getItem('important');
+if (value) {
+processData(JSON.parse(value));
+}
 } catch (error) {
-  console.error('Storage access failed:', error);
-  // Fall back to default value
-  return defaultValue;
+console.error('Storage access failed:', error);
+// Fall back to default value
+return defaultValue;
 }
 ```
 
@@ -275,13 +275,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { storage as mmkvStorage } from '@htk/storages/mmkv';
 
 async function migrateFromAsyncStorage() {
-  const keys = await AsyncStorage.getAllKeys();
+const keys = await AsyncStorage.getAllKeys();
 
-  for (const key of keys) {
-    const value = await AsyncStorage.getItem(key);
-    if (value) {
-      mmkvStorage.setItem(key, value);
-    }
+for (const key of keys) {
+const value = await AsyncStorage.getItem(key);
+if (value) {
+mmkvStorage.setItem(key, value);
+}
 }
 }
 ```
@@ -291,14 +291,14 @@ async function migrateFromAsyncStorage() {
 ### Mock MMKV for Tests
 ```typescript
 jest.mock('react-native-mmkv', () => ({
-  MMKVLoader: jest.fn(() => ({
-    setProcessingMode: jest.fn().mockReturnThis(),
-    build: jest.fn(() => ({
-      getItem: jest.fn(),
-      setItem: jest.fn(),
-      removeItem: jest.fn(),
-      clearAll: jest.fn()
-  }))
+MMKVLoader: jest.fn(() => ({
+setProcessingMode: jest.fn().mockReturnThis(),
+build: jest.fn(() => ({
+getItem: jest.fn(),
+setItem: jest.fn(),
+removeItem: jest.fn(),
+clearAll: jest.fn()
+}))
 }))
 }));
 ```
