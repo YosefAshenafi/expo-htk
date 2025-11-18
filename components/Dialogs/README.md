@@ -33,15 +33,15 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 <Confirm>
   <MyApp />
-  </Confirm>
+</Confirm>
 
 // In components:
 const { confirm } = useConfirm();
 confirm({
-title: 'Delete?',
-buttons: [
-{ label: 'Cancel', onPress: () => {} },
-{ label: 'Delete', onPress: handleDelete }
+  title: 'Delete?',
+  buttons: [
+    { label: 'Cancel', onPress: () => {} },
+    { label: 'Delete', onPress: handleDelete }
 ]
 });
 ```
@@ -90,28 +90,28 @@ Each dialog follows these patterns:
 import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 
 export function App() {
-return (
+  return (
 
-  <Confirm>
-  <MainScreen />
-  </Confirm>
-);
+    <Confirm>
+      <MainScreen />
+    </Confirm>
+  );
 }
 
 function DeleteButton() {
-const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
-return (
+  return (
 
 
-  <Button
-title="Delete"
-onPress={() => confirm({
-title: 'Confirm Delete',
-buttons: [
-{ label: 'Cancel', onPress: () => {} },
-{ label: 'Delete', onPress: () => handleDelete() }
-]
+    <Button
+    title="Delete"
+    onPress={() => confirm({
+      title: 'Confirm Delete',
+      buttons: [
+        { label: 'Cancel', onPress: () => {} },
+        { label: 'Delete', onPress: () => handleDelete() }
+    ]
 })}
 />
 );
@@ -123,12 +123,12 @@ buttons: [
 import { Confirm } from '@htk/components/Dialogs/Confirm';
 
 export function App() {
-// Wrap with multiple dialog providers
-return (
+  // Wrap with multiple dialog providers
+  return (
 
-  <Confirm>
-  {/* Future: AlertDialog, PromptDialog, etc. */}
-  <MainScreen />
+    <Confirm>
+      {/* Future: AlertDialog, PromptDialog, etc. */}
+    <MainScreen />
   </Confirm>
 );
 }
@@ -169,7 +169,7 @@ DialogType/
  ```typescript
 // Use React.createContext + useReducer
 const Context = React.createContext<State>(defaultState);
-  const DispatchContext = React.createContext<Dispatch>(defaultDispatch);
+const DispatchContext = React.createContext<Dispatch>(defaultDispatch);
 ```
 
 3. **Type Safety**
@@ -241,20 +241,20 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 
 function TestComponent() {
-const { confirm } = useConfirm();
-return <Button onPress={() => confirm({ ... })} />;
+  const { confirm } = useConfirm();
+  return <Button onPress={() => confirm({ ... })} />;
 }
 
 test('confirms action', () => {
-const onConfirm = jest.fn();
-const { getByText } = render(
-<Confirm>
-  <TestComponent onConfirm={onConfirm} />
-  </Confirm>
-);
+  const onConfirm = jest.fn();
+  const { getByText } = render(
+    <Confirm>
+      <TestComponent onConfirm={onConfirm} />
+    </Confirm>
+  );
 
-fireEvent.press(getByText('Confirm'));
-expect(onConfirm).toHaveBeenCalled();
+  fireEvent.press(getByText('Confirm'));
+  expect(onConfirm).toHaveBeenCalled();
 });
 ```
 
@@ -263,18 +263,18 @@ expect(onConfirm).toHaveBeenCalled();
 ### Async Confirmation
 ```typescript
 function useAsyncConfirm() {
-const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
-return (title: string, message: string): Promise<boolean> => {
-  return new Promise(resolve => {
-  confirm({
-  title,
-  message,
-  buttons: [
-  { label: 'Cancel', onPress: () => resolve(false) },
-  { label: 'Confirm', onPress: () => resolve(true) }
-]
-});
+  return (title: string, message: string): Promise<boolean> => {
+    return new Promise(resolve => {
+      confirm({
+        title,
+        message,
+        buttons: [
+          { label: 'Cancel', onPress: () => resolve(false) },
+          { label: 'Confirm', onPress: () => resolve(true) }
+      ]
+  });
 });
 };
 }
@@ -287,13 +287,13 @@ function useConfirmWithData<T>() {
 
   return (title: string, data: T): Promise<T null> => {
     return new Promise(resolve => {
-    confirm({
-    title,
-    buttons: [
-    { label: 'Cancel', onPress: () => resolve(null) },
-    { label: 'Confirm', onPress: () => resolve(data) }
-  ]
-});
+      confirm({
+        title,
+        buttons: [
+          { label: 'Cancel', onPress: () => resolve(null) },
+          { label: 'Confirm', onPress: () => resolve(data) }
+      ]
+  });
 });
 };
 }

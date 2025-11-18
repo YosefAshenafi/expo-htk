@@ -85,11 +85,11 @@ All adapters implement a common interface:
 
 ```typescript
 interface StorageAdapter {
-getItem(key: string): string null Promise<string null>;
+  getItem(key: string): string null Promise<string null>;
   setItem(key: string, value: string): void Promise<void>;
-    removeItem(key: string): void Promise<void>;
-      clearAll(): void Promise<void>;
-      }
+  removeItem(key: string): void Promise<void>;
+  clearAll(): void Promise<void>;
+}
 ```
 
 ## Platform Selection
@@ -114,15 +114,15 @@ import { storage } from '@htk/storages/mmkv';
 
 // Create persisted atom
 const userPreferencesAtom = atomWithStorage(
-'userPreferences',
-defaultValues,
-storage
+  'userPreferences',
+  defaultValues,
+  storage
 );
 
 // Use in components
 function Component() {
-const [prefs, setPrefs] = useAtom(userPreferencesAtom);
-// Automatically persisted!
+  const [prefs, setPrefs] = useAtom(userPreferencesAtom);
+  // Automatically persisted!
 }
 ```
 
@@ -156,11 +156,11 @@ function useStoredValue<T>(key: string, initial: T) {
   });
 
   const updateValue = useCallback((newValue: T) => {
-  setValue(newValue);
-  storage.setItem(key, JSON.stringify(newValue));
-}, [key]);
+    setValue(newValue);
+    storage.setItem(key, JSON.stringify(newValue));
+  }, [key]);
 
-return [value, updateValue] as const;
+  return [value, updateValue] as const;
 }
 ```
 
@@ -171,11 +171,11 @@ function setWithExpiry<T>(
   value: T,
   ttlMs: number
 ) {
-const data = {
-value,
-expiry: Date.now() + ttlMs
-};
-storage.setItem(key, JSON.stringify(data));
+  const data = {
+    value,
+    expiry: Date.now() + ttlMs
+  };
+  storage.setItem(key, JSON.stringify(data));
 }
 
 function getWithExpiry<T>(key: string): T null {
@@ -185,9 +185,9 @@ function getWithExpiry<T>(key: string): T null {
   const { value, expiry } = JSON.parse(stored);
 
   if (Date.now() > expiry) {
-  storage.removeItem(key);
-  return null;
-}
+    storage.removeItem(key);
+    return null;
+  }
 
 return value;
 }
@@ -196,21 +196,21 @@ return value;
 ### Backup and Restore
 ```typescript
 function backupStorage() {
-const backup: Record<string, string> = {};
+  const backup: Record<string, string> = {};
 
   // Manually collect all keys (implementation varies by adapter)
-  // For MMKV: iterate stored keys
-  // For localStorage: use localStorage iteration
+// For MMKV: iterate stored keys
+// For localStorage: use localStorage iteration
 
-  return JSON.stringify(backup);
+return JSON.stringify(backup);
 }
 
 function restoreStorage(backup: string) {
-const data = JSON.parse(backup);
+  const data = JSON.parse(backup);
 
-Object.entries(data).forEach(([key, value]) => {
-storage.setItem(key, value as string);
-});
+  Object.entries(data).forEach(([key, value]) => {
+    storage.setItem(key, value as string);
+  });
 }
 ```
 
@@ -248,12 +248,12 @@ storage.setItem(key, value as string);
 ```typescript
 // Read from localStorage
 for (let i = 0; i < localStorage.length; i++) {
-const key = localStorage.key(i);
-if (key) {
-const value = localStorage.getItem(key);
-if (value) {
-mmkvStorage.setItem(key, value);
-}
+  const key = localStorage.key(i);
+  if (key) {
+    const value = localStorage.getItem(key);
+    if (value) {
+      mmkvStorage.setItem(key, value);
+    }
 }
 }
 
@@ -284,26 +284,26 @@ localStorage.clear();
 ### Storage Not Available
 ```typescript
 function isStorageAvailable(): boolean {
-try {
-const test = '__storage_test__';
-storage.setItem(test, test);
-storage.removeItem(test);
-return true;
-} catch {
-return false;
-}
+  try {
+    const test = '__storage_test__';
+    storage.setItem(test, test);
+    storage.removeItem(test);
+    return true;
+  } catch {
+    return false;
+  }
 }
 ```
 
 ### Quota Exceeded
 ```typescript
 try {
-storage.setItem('large_data', largeValue);
+  storage.setItem('large_data', largeValue);
 } catch (error: any) {
-if (error.name === 'QuotaExceededError') {
-// Clear old data and retry
-cleanupOldData();
-}
+  if (error.name === 'QuotaExceededError') {
+    // Clear old data and retry
+    cleanupOldData();
+  }
 }
 ```
 
@@ -312,14 +312,14 @@ cleanupOldData();
 ### Mock Storage for Tests
 ```typescript
 const mockStorage = {
-getItem: jest.fn(),
-setItem: jest.fn(),
-removeItem: jest.fn(),
-clearAll: jest.fn()
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  clearAll: jest.fn()
 };
 
 beforeEach(() => {
-jest.clearAllMocks();
+  jest.clearAllMocks();
 });
 ```
 

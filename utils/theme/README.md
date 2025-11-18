@@ -27,10 +27,10 @@ A collection of pre-configured border style objects using theme colors. Getters 
 
 ```typescript
 export const Dividers = {
-top1, // Top border 1px
-right1, // Right border 1px
-bottom1, // Bottom border 1px
-left1 // Left border 1px
+  top1, // Top border 1px
+  right1, // Right border 1px
+  bottom1, // Bottom border 1px
+  left1 // Left border 1px
 }
 ```
 
@@ -41,9 +41,9 @@ Horizontal divider at the top of an element.
 
 ```typescript
 Dividers.top1 // {
-// borderTopWidth: 1,
-// borderColor: Colors.$outlineDefault
-// }
+  // borderTopWidth: 1,
+  // borderColor: Colors.$outlineDefault
+  // }
 ```
 
 ### right1
@@ -51,9 +51,9 @@ Vertical divider on the right side of an element.
 
 ```typescript
 Dividers.right1 // {
-// borderRightWidth: 1,
-// borderColor: Colors.$outlineDefault
-// }
+  // borderRightWidth: 1,
+  // borderColor: Colors.$outlineDefault
+  // }
 ```
 
 ### bottom1
@@ -61,9 +61,9 @@ Horizontal divider at the bottom of an element.
 
 ```typescript
 Dividers.bottom1 // {
-// borderBottomWidth: 1,
-// borderColor: Colors.$outlineDefault
-// }
+  // borderBottomWidth: 1,
+  // borderColor: Colors.$outlineDefault
+  // }
 ```
 
 ### left1
@@ -71,9 +71,9 @@ Vertical divider on the left side of an element.
 
 ```typescript
 Dividers.left1 // {
-// borderLeftWidth: 1,
-// borderColor: Colors.$outlineDefault
-// }
+  // borderLeftWidth: 1,
+  // borderColor: Colors.$outlineDefault
+  // }
 ```
 
 ## Usage Examples
@@ -84,13 +84,13 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text } from 'react-native';
 
 function Card() {
-return (
+  return (
 
-  <View style={Dividers.bottom1}>
-<Text>Card Content</Text>
-</View>
-);
-}
+    <View style={Dividers.bottom1}>
+      <Text>Card Content</Text>
+      </View>
+    );
+  }
 // Renders with 1px bottom border in theme color
 ```
 
@@ -100,19 +100,19 @@ import { Dividers } from '@htk/utils/theme';
 import { View, StyleSheet } from 'react-native';
 
 function BorderedBox() {
-const combinedBorders = StyleSheet.compose(
-Dividers.top1,
-Dividers.bottom1
-);
+  const combinedBorders = StyleSheet.compose(
+    Dividers.top1,
+    Dividers.bottom1
+  );
 
-return (
+  return (
 
 
-  <View style={combinedBorders}>
-<Text>Content</Text>
-</View>
-);
-}
+    <View style={combinedBorders}>
+      <Text>Content</Text>
+      </View>
+    );
+  }
 ```
 
 ### Layout Separation
@@ -121,15 +121,15 @@ import { Dividers } from '@htk/utils/theme';
 import { View, FlatList } from 'react-native';
 
 function UserList() {
-return (
+  return (
 
-  <FlatList
-data={users}
-renderItem={({ item }) => (
-<View style={Dividers.bottom1}>
-<UserCard user={item} />
-</View>
-)}
+    <FlatList
+    data={users}
+  renderItem={({ item }) => (
+    <View style={Dividers.bottom1}>
+      <UserCard user={item} />
+    </View>
+  )}
 keyExtractor={item => item.id}
 />
 );
@@ -142,21 +142,21 @@ import { Dividers } from '@htk/utils/theme';
 import { View } from 'react-native';
 
 function HorizontalLayout() {
-return (
+  return (
 
-  <View style={{ flexDirection: 'row' }}>
-<View style={{ flex: 1 }}>
-<Text>Left Column</Text>
-</View>
+    <View style={{ flexDirection: 'row' }}>
+      <View style={{ flex: 1 }}>
+        <Text>Left Column</Text>
+        </View>
 
-<View style={Dividers.left1} />
+        <View style={Dividers.left1} />
 
-<View style={{ flex: 1 }}>
-<Text>Right Column</Text>
-</View>
-</View>
-);
-}
+        <View style={{ flex: 1 }}>
+          <Text>Right Column</Text>
+          </View>
+        </View>
+      );
+    }
 ```
 
 ### Card Component
@@ -165,34 +165,34 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-card: {
-padding: 16,
-backgroundColor: 'white'
-},
-header: {
-...Dividers.bottom1,
-paddingBottom: 12,
-marginBottom: 12
-},
-body: {
-paddingVertical: 8
-}
+  card: {
+    padding: 16,
+    backgroundColor: 'white'
+  },
+  header: {
+    ...Dividers.bottom1,
+    paddingBottom: 12,
+    marginBottom: 12
+  },
+  body: {
+    paddingVertical: 8
+  }
 });
 
 function Card({ title, content }) {
-return (
+  return (
 
-  <View style={styles.card}>
-<View style={styles.header}>
-<Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-{title}
-</Text>
-</View>
-<View style={styles.body}>
-<Text>{content}</Text>
-</View>
-</View>
-);
+    <View style={styles.card}>
+      <View style={styles.header}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+          {title}
+      </Text>
+    </View>
+    <View style={styles.body}>
+      <Text>{content}</Text>
+      </View>
+    </View>
+  );
 }
 ```
 
@@ -202,32 +202,32 @@ import { Dividers } from '@htk/utils/theme';
 import { View, TextInput, Text } from 'react-native';
 
 function FormSection({ title, children }) {
-return (
+  return (
 
-  <View style={Dividers.bottom1}>
-<Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 12 }}>
-{title}
-</Text>
-{children}
+    <View style={Dividers.bottom1}>
+      <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 12 }}>
+        {title}
+    </Text>
+    {children}
 </View>
 );
 }
 
 function RegistrationForm() {
-return (
+  return (
 
-  <View>
-  <FormSection title="Personal Information">
-    <TextInput placeholder="First Name" />
-<TextInput placeholder="Last Name" />
-</FormSection>
+    <View>
+      <FormSection title="Personal Information">
+        <TextInput placeholder="First Name" />
+        <TextInput placeholder="Last Name" />
+      </FormSection>
 
-<FormSection title="Contact">
-  <TextInput placeholder="Email" />
-<TextInput placeholder="Phone" />
-</FormSection>
-</View>
-);
+      <FormSection title="Contact">
+        <TextInput placeholder="Email" />
+        <TextInput placeholder="Phone" />
+      </FormSection>
+    </View>
+  );
 }
 ```
 
@@ -237,29 +237,29 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text, Button } from 'react-native';
 
 function Dialog({ title, content, onConfirm, onCancel }) {
-return (
+  return (
 
-  <View style={{ backgroundColor: 'white', borderRadius: 8 }}>
-<View style={{ padding: 16, ...Dividers.bottom1 }}>
-<Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-{title}
-</Text>
-</View>
+    <View style={{ backgroundColor: 'white', borderRadius: 8 }}>
+      <View style={{ padding: 16, ...Dividers.bottom1 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+          {title}
+      </Text>
+    </View>
 
-<View style={{ padding: 16, ...Dividers.bottom1 }}>
-<Text>{content}</Text>
-</View>
+    <View style={{ padding: 16, ...Dividers.bottom1 }}>
+      <Text>{content}</Text>
+      </View>
 
-<View style={{
-flexDirection: 'row',
-justifyContent: 'flex-end',
-padding: 12
-}}>
-<Button title="Cancel" onPress={onCancel} />
-<Button title="Confirm" onPress={onConfirm} />
-</View>
-</View>
-);
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        padding: 12
+      }}>
+        <Button title="Cancel" onPress={onCancel} />
+        <Button title="Confirm" onPress={onConfirm} />
+      </View>
+    </View>
+  );
 }
 ```
 
@@ -269,25 +269,25 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 
 function TabNavigation({ tabs, activeTab, onTabChange }) {
-return (
+  return (
 
-  <View style={Dividers.bottom1}>
-<FlatList
-data={tabs}
-horizontal
-renderItem={({ item }) => (
-<TouchableOpacity
-onPress={() => onTabChange(item.id)}
-style={{
-paddingHorizontal: 16,
-paddingVertical: 12,
-borderBottomWidth: activeTab === item.id ? 2 : 0,
-borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
-}}
->
-<Text>{item.label}</Text>
-</TouchableOpacity>
-)}
+    <View style={Dividers.bottom1}>
+      <FlatList
+      data={tabs}
+    horizontal
+    renderItem={({ item }) => (
+      <TouchableOpacity
+      onPress={() => onTabChange(item.id)}
+    style={{
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      borderBottomWidth: activeTab === item.id ? 2 : 0,
+      borderBottomColor: activeTab === item.id ? 'blue' : 'transparent'
+    }}
+  >
+    <Text>{item.label}</Text>
+    </TouchableOpacity>
+  )}
 keyExtractor={item => item.id}
 />
 </View>
@@ -301,33 +301,33 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 function SettingsItem({ label, value, onPress }) {
-return (
+  return (
 
-  <TouchableOpacity
-style={{
-paddingVertical: 12,
-paddingHorizontal: 16,
-...Dividers.bottom1
-}}
-onPress={onPress}
+    <TouchableOpacity
+    style={{
+      paddingVertical: 12,
+      paddingHorizontal: 16,
+      ...Dividers.bottom1
+    }}
+  onPress={onPress}
 >
-<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-<Text>{label}</Text>
-<Text style={{ color: 'gray' }}>{value}</Text>
-</View>
-</TouchableOpacity>
-);
+  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text>{label}</Text>
+      <Text style={{ color: 'gray' }}>{value}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 function SettingsList() {
-return (
+  return (
 
-  <View>
-  <SettingsItem label="Language" value="English" />
-<SettingsItem label="Theme" value="Dark" />
-<SettingsItem label="Notifications" value="On" />
-</View>
-);
+    <View>
+      <SettingsItem label="Language" value="English" />
+      <SettingsItem label="Theme" value="Dark" />
+      <SettingsItem label="Notifications" value="On" />
+    </View>
+  );
 }
 ```
 
@@ -339,25 +339,25 @@ import { Dividers } from '@htk/utils/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-// Combine multiple dividers
-bordered: {
-...Dividers.top1,
-...Dividers.bottom1
-},
+  // Combine multiple dividers
+  bordered: {
+    ...Dividers.top1,
+    ...Dividers.bottom1
+  },
 
-// Horizontal box
-boxHorizontal: {
-...Dividers.left1,
-...Dividers.right1
-},
+  // Horizontal box
+  boxHorizontal: {
+    ...Dividers.left1,
+    ...Dividers.right1
+  },
 
-// All sides
-boxFull: {
-...Dividers.top1,
-...Dividers.right1,
-...Dividers.bottom1,
-...Dividers.left1
-}
+  // All sides
+  boxFull: {
+    ...Dividers.top1,
+    ...Dividers.right1,
+    ...Dividers.bottom1,
+    ...Dividers.left1
+  }
 });
 ```
 
@@ -366,16 +366,16 @@ boxFull: {
 import { Dividers } from '@htk/utils/theme';
 
 function ListItem({ item, showBottom = true, showTop = false }) {
-return (
+  return (
 
-  <View
-style={{
-...(showTop && Dividers.top1),
-...(showBottom && Dividers.bottom1)
-}}
+    <View
+    style={{
+      ...(showTop && Dividers.top1),
+      ...(showBottom && Dividers.bottom1)
+  }}
 >
-<Text>{item.title}</Text>
-</View>
+  <Text>{item.title}</Text>
+  </View>
 );
 }
 ```
@@ -390,14 +390,14 @@ import { Colors } from 'react-native-ui-lib';
 // Dark theme: automatically switches to dark outline color
 
 function ThemedComponent() {
-// No need to manually change colors - theme system handles it
-return (
+  // No need to manually change colors - theme system handles it
+  return (
 
-  <View style={Dividers.bottom1}>
-<Text>This divider adapts to theme</Text>
-</View>
-);
-}
+    <View style={Dividers.bottom1}>
+      <Text>This divider adapts to theme</Text>
+      </View>
+    );
+  }
 ```
 
 ## Integration with react-native-ui-lib
@@ -416,11 +416,11 @@ All divider styles return objects with the following properties:
 
 ```typescript
 {
-borderTopWidth?: number; // 1
-borderBottomWidth?: number; // 1
-borderLeftWidth?: number; // 1
-borderRightWidth?: number; // 1
-borderColor: string; // Colors.$outlineDefault
+  borderTopWidth?: number; // 1
+  borderBottomWidth?: number; // 1
+  borderLeftWidth?: number; // 1
+  borderRightWidth?: number; // 1
+  borderColor: string; // Colors.$outlineDefault
 }
 ```
 
@@ -433,7 +433,7 @@ import { Dividers } from '@htk/utils/theme';
 import { StyleProp, ViewStyle } from 'react-native';
 
 const dividerStyle: StyleProp<ViewStyle> = Dividers.bottom1;
-  // Type-safe
+// Type-safe
 ```
 
 ## Performance Considerations
@@ -447,12 +447,12 @@ const dividerStyle: StyleProp<ViewStyle> = Dividers.bottom1;
 ```typescript
 // Good: Create once, reuse
 const styles = StyleSheet.create({
-item: Dividers.bottom1
+  item: Dividers.bottom1
 });
 
 // Avoid: Creating in render
 function Item() {
-return <View style={Dividers.bottom1} />; // Creates style object each render
+  return <View style={Dividers.bottom1} />; // Creates style object each render
 }
 ```
 
@@ -487,19 +487,19 @@ import { Dividers } from '@htk/utils/theme';
 import { View } from 'react-native';
 
 function GridItem({ item }) {
-return (
+  return (
 
-  <View
-style={{
-flex: 1,
-padding: 8,
-...Dividers.right1,
-...Dividers.bottom1
-}}
->
-<Text>{item.title}</Text>
-</View>
-);
+    <View
+    style={{
+      flex: 1,
+      padding: 8,
+      ...Dividers.right1,
+      ...Dividers.bottom1
+    }}
+  >
+    <Text>{item.title}</Text>
+    </View>
+  );
 }
 ```
 
@@ -509,21 +509,21 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text } from 'react-native';
 
 function Breadcrumb({ items }) {
-return (
+  return (
 
-  <View style={{
-flexDirection: 'row',
-alignItems: 'center',
-...Dividers.bottom1,
-paddingVertical: 8
-}}>
-{items.map((item, index) => (
-<View key={item.id} style={{ flexDirection: 'row', alignItems: 'center' }}>
-<Text>{item.label}</Text>
-{index < items.length - 1 && <Text style={{ marginHorizontal: 8 }}>›</Text>}
-</View>
-))}
-</View>
+    <View style={{
+      flexDirection: 'row',
+      alignItems: 'center',
+      ...Dividers.bottom1,
+      paddingVertical: 8
+    }}>
+      {items.map((item, index) => (
+        <View key={item.id} style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Text>{item.label}</Text>
+            {index < items.length - 1 && <Text style={{ marginHorizontal: 8 }}>›</Text>}
+        </View>
+      ))}
+  </View>
 );
 }
 ```
@@ -534,37 +534,37 @@ import { Dividers } from '@htk/utils/theme';
 import { View, Text } from 'react-native';
 
 function StepIndicator({ steps, currentStep }) {
-return (
+  return (
 
-  <View style={{
-...Dividers.bottom1,
-paddingVertical: 16,
-paddingHorizontal: 12
-}}>
-{steps.map((step, index) => (
-<View
-key={step.id}
-style={{
-flexDirection: 'row',
-alignItems: 'center',
-marginBottom: index < steps.length - 1 ? 8 : 0
-}}
->
-<View
-style={{
-width: 32,
-height: 32,
-borderRadius: 16,
-backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
-justifyContent: 'center',
-alignItems: 'center'
-}}
->
-<Text style={{ color: 'white' }}>{index + 1}</Text>
-</View>
-<Text style={{ marginLeft: 12 }}>{step.title}</Text>
-</View>
-))}
+    <View style={{
+      ...Dividers.bottom1,
+      paddingVertical: 16,
+      paddingHorizontal: 12
+    }}>
+      {steps.map((step, index) => (
+        <View
+        key={step.id}
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: index < steps.length - 1 ? 8 : 0
+      }}
+    >
+      <View
+      style={{
+        width: 32,
+        height: 32,
+        borderRadius: 16,
+        backgroundColor: currentStep >= index ? 'blue' : 'lightgray',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <Text style={{ color: 'white' }}>{index + 1}</Text>
+      </View>
+      <Text style={{ marginLeft: 12 }}>{step.title}</Text>
+      </View>
+    ))}
 </View>
 );
 }
@@ -577,17 +577,17 @@ alignItems: 'center'
 import { Dividers } from '@htk/utils/theme';
 
 describe('Dividers', () => {
-it('has correct top divider style', () => {
-expect(Dividers.top1).toEqual({
-borderTopWidth: 1,
-borderColor: expect.any(String)
-});
+  it('has correct top divider style', () => {
+    expect(Dividers.top1).toEqual({
+      borderTopWidth: 1,
+      borderColor: expect.any(String)
+  });
 });
 
 it('all dividers use outline color', () => {
-[Dividers.top1, Dividers.right1, Dividers.bottom1, Dividers.left1]
+  [Dividers.top1, Dividers.right1, Dividers.bottom1, Dividers.left1]
 .forEach(divider => {
-expect(divider.borderColor).toBeDefined();
+  expect(divider.borderColor).toBeDefined();
 });
 });
 });

@@ -57,7 +57,7 @@ export function MyApp() {
   return (
     <Confirm>
       <MainScreen />
-      </Confirm>
+    </Confirm>
   );
 }
 ```
@@ -67,16 +67,16 @@ export function MyApp() {
 import { useConfirm } from '@htk/components';
 
 export function MyComponent() {
-const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
-const handleDelete = () => {
-confirm({
-title: 'Delete Item?',
-message: 'This action cannot be undone.',
-buttons: [
-{ label: 'Cancel', onPress: () => {} },
-{ label: 'Delete', onPress: handleConfirmedDelete }
-]
+  const handleDelete = () => {
+    confirm({
+      title: 'Delete Item?',
+      message: 'This action cannot be undone.',
+      buttons: [
+        { label: 'Cancel', onPress: () => {} },
+        { label: 'Delete', onPress: handleConfirmedDelete }
+    ]
 });
 };
 
@@ -91,16 +91,16 @@ The root provider component - wraps the application or screen section that needs
 
 ```typescript
 interface ConfirmProps {
-children: ReactNode;
+  children: ReactNode;
 }
 ```
 
 ### Button Configuration
 ```typescript
 interface ConfirmButton {
-label: string;
-onPress: () => void;
-variant?: 'primary' 'secondary' 'destructive';
+  label: string;
+  onPress: () => void;
+  variant?: 'primary' 'secondary' 'destructive';
 }
 ```
 
@@ -109,10 +109,10 @@ variant?: 'primary' 'secondary' 'destructive';
 const { confirm } = useConfirm();
 
 function confirm(config: {
-title: string;
-message: string;
-buttons: ConfirmButton[];
-layout?: 'horizontal' 'vertical'; // defaults to horizontal
+  title: string;
+  message: string;
+  buttons: ConfirmButton[];
+  layout?: 'horizontal' 'vertical'; // defaults to horizontal
 }): void
 ```
 
@@ -123,8 +123,8 @@ Best for 2-3 buttons on wider screens. Buttons arranged in a row.
 
 ```typescript
 buttons: [
-{ label: 'Cancel', onPress: () => {} },
-{ label: 'Confirm', onPress: () => {} }
+  { label: 'Cancel', onPress: () => {} },
+  { label: 'Confirm', onPress: () => {} }
 ]
 // Renders: [Cancel] [Confirm]
 ```
@@ -134,9 +134,9 @@ Better for longer button labels or mobile screens. Buttons stacked vertically.
 
 ```typescript
 confirm({
-title: 'Confirm Action',
-buttons: [...],
-layout: 'vertical'
+  title: 'Confirm Action',
+  buttons: [...],
+  layout: 'vertical'
 });
 ```
 

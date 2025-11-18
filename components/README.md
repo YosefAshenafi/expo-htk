@@ -34,14 +34,14 @@ import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 <Confirm>
   <App />
-  </Confirm>
+</Confirm>
 
 const { confirm } = useConfirm();
 confirm({
-title: 'Confirm?',
-buttons: [
-{ label: 'Cancel', onPress: () => {} },
-{ label: 'OK', onPress: handleConfirm }
+  title: 'Confirm?',
+  buttons: [
+    { label: 'Cancel', onPress: () => {} },
+    { label: 'OK', onPress: handleConfirm }
 ]
 });
 ```
@@ -87,15 +87,15 @@ components/Button.tsx
 1. **Interfaces for Props**
  ```typescript
 export interface ButtonProps {
-/**
-* Button label text
-*/
-label: string;
+  /**
+  * Button label text
+  */
+  label: string;
 
-/**
-* Called when button pressed
-*/
-onPress?: () => void;
+  /**
+  * Called when button pressed
+  */
+  onPress?: () => void;
 }
 ```
 
@@ -124,7 +124,7 @@ export function Component(props: Props) { }
 * A customizable button with multiple variants and states.
 *
 * @example
-* 
+*
 ```tsx
   * <Button
   * label="Press me"
@@ -138,22 +138,22 @@ export function Button(props: ButtonProps) { }
 2. **Prop JSDoc**
  ```typescript
 export interface ButtonProps {
-/**
-* Text displayed on button.
-* @default 'Button'
-*/
-label: string;
+  /**
+  * Text displayed on button.
+  * @default 'Button'
+  */
+  label: string;
 
-/**
-* Button variants.
-* @default 'primary'
-*/
-variant?: 'primary' 'secondary' 'outline';
+  /**
+  * Button variants.
+  * @default 'primary'
+  */
+  variant?: 'primary' 'secondary' 'outline';
 
-/**
-* Called when button is pressed.
-*/
-onPress?: () => void;
+  /**
+  * Called when button is pressed.
+  */
+  onPress?: () => void;
 }
 ```
 
@@ -191,18 +191,18 @@ All components should integrate with the theme system:
 import { Colors, View, Text } from 'react-native-ui-lib';
 
 export function ThemedComponent(props: Props) {
-return (
+  return (
 
-  <View
-style={{
-backgroundColor: Colors.$backgroundDefault,
-padding: 16
-}}
->
-<Text style={{ color: Colors.$textDefault }}>
-Theme-aware component
-</Text>
-</View>
+    <View
+    style={{
+      backgroundColor: Colors.$backgroundDefault,
+      padding: 16
+    }}
+  >
+    <Text style={{ color: Colors.$textDefault }}>
+      Theme-aware component
+    </Text>
+  </View>
 );
 }
 ```
@@ -225,20 +225,20 @@ import { render } from '@testing-library/react-native';
 import { Button } from './Button';
 
 describe('Button', () => {
-it('renders with label', () => {
-const { getByText } = render(<Button label="Test" />);
-expect(getByText('Test')).toBeTruthy();
-});
+  it('renders with label', () => {
+    const { getByText } = render(<Button label="Test" />);
+    expect(getByText('Test')).toBeTruthy();
+  });
 
-it('calls onPress when pressed', () => {
-const onPress = jest.fn();
-const { getByRole } = render(
-<Button label="Test" onPress={onPress} />
-);
+  it('calls onPress when pressed', () => {
+    const onPress = jest.fn();
+    const { getByRole } = render(
+      <Button label="Test" onPress={onPress} />
+    );
 
-fireEvent.press(getByRole('button'));
-expect(onPress).toHaveBeenCalled();
-});
+    fireEvent.press(getByRole('button'));
+    expect(onPress).toHaveBeenCalled();
+  });
 });
 ```
 
@@ -290,27 +290,27 @@ import React from 'react';
 
 export const MyContext = React.createContext<State>(defaultState);
 
-  export interface MyComponentProps {
+export interface MyComponentProps {
   children: ReactNode;
 }
 
 export function MyProvider(props: MyComponentProps) {
-const [state, setState] = React.useState(defaultState);
+  const [state, setState] = React.useState(defaultState);
 
-return (
+  return (
 
 
-  <MyContext.Provider value={state}>
-{props.children}
-</MyContext.Provider>
+    <MyContext.Provider value={state}>
+      {props.children}
+  </MyContext.Provider>
 );
 }
 
 export function useMyComponent() {
-const context = React.useContext(MyContext);
-if (!context) {
-throw new Error('useMyComponent must be used within MyProvider');
-}
+  const context = React.useContext(MyContext);
+  if (!context) {
+    throw new Error('useMyComponent must be used within MyProvider');
+  }
 return context;
 }
 ```
@@ -318,15 +318,15 @@ return context;
 ### Compound Components
 ```typescript
 export function Container(props: ContainerProps) {
-return <View>{props.children}</View>;
+  return <View>{props.children}</View>;
 }
 
 export function Header(props: HeaderProps) {
-return <View>{props.children}</View>;
+  return <View>{props.children}</View>;
 }
 
 export function Content(props: ContentProps) {
-return <View>{props.children}</View>;
+  return <View>{props.children}</View>;
 }
 
 // Usage:

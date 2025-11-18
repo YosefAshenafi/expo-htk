@@ -36,33 +36,33 @@ Factory function that creates a complete theme system.
 
 ```typescript
 function createTheme(options: CreateThemeOptions): {
-ThemeProvider: React.FC<{ children: ReactNode }>;
-useChangeTheme: () => (scheme: 'light' 'dark') => void;
-useThemeScheme: () => 'light' 'dark';
-useIgnoreSystemMode: () => boolean;
-ThemeSettings: React.FC;
+  ThemeProvider: React.FC<{ children: ReactNode }>;
+  useChangeTheme: () => (scheme: 'light' 'dark') => void;
+  useThemeScheme: () => 'light' 'dark';
+  useIgnoreSystemMode: () => boolean;
+  ThemeSettings: React.FC;
 }
 ```
 
 **Parameters:**
 ```typescript
 interface CreateThemeOptions {
-enabled: boolean; // Enable theme system
-ignoreSystemMode: boolean; // Override system theme
-supportDarkMode: boolean; // Enable dark mode support
-defaultScheme: 'light' 'dark'; // Default theme
-schemes: { // Color schemes
-light: SchemeColors;
-dark: SchemeColors;
+  enabled: boolean; // Enable theme system
+  ignoreSystemMode: boolean; // Override system theme
+  supportDarkMode: boolean; // Enable dark mode support
+  defaultScheme: 'light' 'dark'; // Default theme
+  schemes: { // Color schemes
+  light: SchemeColors;
+  dark: SchemeColors;
 };
 colors?: Record<string, string>; // Additional colors
-  spacings?: Record<string, number>; // Custom spacings
-    componentDefaults?: { // Component styling
-    Text?: Record<string, any>;
-      View?: Record<string, any>;
-        Button?: Record<string, any>;
-        };
-      }
+spacings?: Record<string, number>; // Custom spacings
+componentDefaults?: { // Component styling
+Text?: Record<string, any>;
+View?: Record<string, any>;
+Button?: Record<string, any>;
+};
+}
 ```
 
 **Returns:**
@@ -79,26 +79,26 @@ colors?: Record<string, string>; // Additional colors
 import { createTheme } from '@htk/features/theme';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme, ThemeSettings } = createTheme({
-enabled: true,
-ignoreSystemMode: false,
-supportDarkMode: true,
-defaultScheme: 'light',
-schemes: {
-light: {
-primaryColor: '#007AFF',
-backgroundColor: '#FFFFFF',
-textColor: '#000000'
-},
-dark: {
-primaryColor: '#0A84FF',
-backgroundColor: '#000000',
-textColor: '#FFFFFF'
-}
+  enabled: true,
+  ignoreSystemMode: false,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: {
+    light: {
+      primaryColor: '#007AFF',
+      backgroundColor: '#FFFFFF',
+      textColor: '#000000'
+    },
+    dark: {
+      primaryColor: '#0A84FF',
+      backgroundColor: '#000000',
+      textColor: '#FFFFFF'
+    }
 },
 colors: {
-success: '#34C759',
-error: '#FF3B30',
-warning: '#FF9500'
+  success: '#34C759',
+  error: '#FF3B30',
+  warning: '#FF9500'
 }
 });
 
@@ -110,12 +110,12 @@ export { ThemeProvider, useThemeScheme, useChangeTheme, ThemeSettings };
 import { ThemeProvider } from '@/theme';
 
 export function App() {
-return (
+  return (
 
-  <ThemeProvider>
-  <MainApp />
-  </ThemeProvider>
-);
+    <ThemeProvider>
+      <MainApp />
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -124,15 +124,15 @@ return (
 import { useThemeScheme, useChangeTheme } from '@/theme';
 
 function ThemeToggle() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
 
-return (
+  return (
 
 
-  <Button
-title={`Current: ${scheme}`}
-onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
+    <Button
+    title={`Current: ${scheme}`}
+  onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
 />
 );
 }
@@ -145,32 +145,32 @@ onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
 import { createTheme } from '@htk/features/theme';
 
 const lightColors = {
-primary: '#007AFF',
-secondary: '#5AC8FA',
-background: '#FFFFFF',
-surface: '#F2F2F7',
-text: '#000000',
-textSecondary: '#666666'
+  primary: '#007AFF',
+  secondary: '#5AC8FA',
+  background: '#FFFFFF',
+  surface: '#F2F2F7',
+  text: '#000000',
+  textSecondary: '#666666'
 };
 
 const darkColors = {
-primary: '#0A84FF',
-secondary: '#64B5F6',
-background: '#000000',
-surface: '#1C1C1E',
-text: '#FFFFFF',
-textSecondary: '#A0A0A0'
+  primary: '#0A84FF',
+  secondary: '#64B5F6',
+  background: '#000000',
+  surface: '#1C1C1E',
+  text: '#FFFFFF',
+  textSecondary: '#A0A0A0'
 };
 
 const themeSystem = createTheme({
-enabled: true,
-ignoreSystemMode: false,
-supportDarkMode: true,
-defaultScheme: 'light',
-schemes: {
-light: lightColors,
-dark: darkColors
-}
+  enabled: true,
+  ignoreSystemMode: false,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: {
+    light: lightColors,
+    dark: darkColors
+  }
 });
 
 export const { ThemeProvider, useThemeScheme, useChangeTheme } = themeSystem;
@@ -183,23 +183,23 @@ import { View, Text } from 'react-native';
 import { Colors } from 'react-native-ui-lib';
 
 function ResponsiveCard() {
-const scheme = useThemeScheme();
+  const scheme = useThemeScheme();
 
-return (
+  return (
 
 
-  <View style={{
-backgroundColor: scheme === 'dark' ? Colors.$backgroundDark : Colors.$backgroundLight,
-padding: 16,
-borderRadius: 8
-}}>
-<Text style={{
-color: scheme === 'dark' ? '#FFF' : '#000'
-}}>
-This card adapts to theme
-</Text>
-</View>
-);
+    <View style={{
+      backgroundColor: scheme === 'dark' ? Colors.$backgroundDark : Colors.$backgroundLight,
+      padding: 16,
+      borderRadius: 8
+    }}>
+      <Text style={{
+        color: scheme === 'dark' ? '#FFF' : '#000'
+      }}>
+        This card adapts to theme
+      </Text>
+    </View>
+  );
 }
 ```
 
@@ -209,14 +209,14 @@ import { ThemeSettings } from '@/theme';
 import { ScrollView } from 'react-native';
 
 function SettingsScreen() {
-return (
+  return (
 
-  <ScrollView>
-  <Text style={styles.title}>Display Settings</Text>
-<ThemeSettings />
-{/* Other settings... */}
-</ScrollView>
-);
+    <ScrollView>
+      <Text style={styles.title}>Display Settings</Text>
+        <ThemeSettings />
+        {/* Other settings... */}
+    </ScrollView>
+  );
 }
 ```
 
@@ -226,22 +226,22 @@ import { useThemeScheme, useChangeTheme } from '@/theme';
 import { TouchableOpacity, Text } from 'react-native';
 
 function ThemeToggleButton() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
 
-return (
+  return (
 
 
-  <TouchableOpacity
-onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
-style={{
-padding: 12,
-backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
-borderRadius: 8
-}}
+    <TouchableOpacity
+    onPress={() => changeTheme(scheme === 'light' ? 'dark' : 'light')}
+  style={{
+    padding: 12,
+    backgroundColor: scheme === 'light' ? '#007AFF' : '#0A84FF',
+    borderRadius: 8
+  }}
 >
-<Text style={{ color: 'white' }}>
-{scheme === 'light' ? ' Dark Mode' : ' Light Mode'}
+  <Text style={{ color: 'white' }}>
+    {scheme === 'light' ? ' Dark Mode' : ' Light Mode'}
 </Text>
 </TouchableOpacity>
 );
@@ -253,21 +253,21 @@ borderRadius: 8
 import { useIgnoreSystemMode, useChangeTheme } from '@/theme';
 
 function AutoThemeComponent() {
-const ignoreSystemMode = useIgnoreSystemMode();
+  const ignoreSystemMode = useIgnoreSystemMode();
 
-// When ignoreSystemMode is false:
-// - Theme automatically follows device settings
-// - Changes to system settings update theme
+  // When ignoreSystemMode is false:
+  // - Theme automatically follows device settings
+  // - Changes to system settings update theme
 
-// When ignoreSystemMode is true:
-// - Manual theme selection overrides system
-// - Use changeTheme() to switch manually
+  // When ignoreSystemMode is true:
+  // - Manual theme selection overrides system
+  // - Use changeTheme() to switch manually
 
-return (
+  return (
 
 
-  <Text>
-  {ignoreSystemMode ? 'Manual Theme' : 'System Theme'}
+    <Text>
+      {ignoreSystemMode ? 'Manual Theme' : 'System Theme'}
   </Text>
 );
 }
@@ -278,21 +278,21 @@ return (
 import { createTheme } from '@htk/features/theme';
 
 const themeSystem = createTheme({
-enabled: true,
-ignoreSystemMode: false,
-supportDarkMode: true,
-defaultScheme: 'light',
-schemes: {
-light: { /* colors */ },
-dark: { /* colors */ }
+  enabled: true,
+  ignoreSystemMode: false,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: {
+    light: { /* colors */ },
+    dark: { /* colors */ }
 },
 // Add brand-specific colors
 colors: {
-brandPrimary: '#FF6B6B',
-brandSecondary: '#4ECDC4',
-success: '#51CF66',
-error: '#FF6B6B',
-warning: '#FFD93D'
+  brandPrimary: '#FF6B6B',
+  brandSecondary: '#4ECDC4',
+  success: '#51CF66',
+  error: '#FF6B6B',
+  warning: '#FFD93D'
 }
 });
 ```
@@ -302,24 +302,24 @@ warning: '#FFD93D'
 import { createTheme } from '@htk/features/theme';
 
 const themeSystem = createTheme({
-enabled: true,
-ignoreSystemMode: false,
-supportDarkMode: true,
-defaultScheme: 'light',
-schemes: { /* ... */ },
-// Set default styles for components
-componentDefaults: {
-Text: {
-$text70: { fontSize: 18, fontWeight: '600' },
-$text80: { fontSize: 16, fontWeight: '500' }
-},
-Button: {
-backgroundColor: '#007AFF',
-borderRadius: 8
-},
-View: {
-padding: 16
-}
+  enabled: true,
+  ignoreSystemMode: false,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: { /* ... */ },
+  // Set default styles for components
+  componentDefaults: {
+    Text: {
+      $text70: { fontSize: 18, fontWeight: '600' },
+      $text80: { fontSize: 16, fontWeight: '500' }
+  },
+  Button: {
+    backgroundColor: '#007AFF',
+    borderRadius: 8
+  },
+  View: {
+    padding: 16
+  }
 }
 });
 ```
@@ -340,9 +340,9 @@ Button component for selecting themes in settings UI.
 
 ```typescript
 interface Scheme {
-name: string;
-isDark: boolean;
-colors: Record<string, string>;
+  name: string;
+  isDark: boolean;
+  colors: Record<string, string>;
 }
 ```
 
@@ -357,8 +357,8 @@ Theme preferences are automatically persisted:
 ### What Gets Persisted
 ```typescript
 {
-ignoreSystemMode: boolean; // Whether to override system theme
-scheme: 'light' 'dark'; // Currently selected theme
+  ignoreSystemMode: boolean; // Whether to override system theme
+  scheme: 'light' 'dark'; // Currently selected theme
 }
 ```
 
@@ -372,15 +372,15 @@ The theme system automatically integrates with React Navigation:
 
 ```typescript
 function AppNavigator() {
-const { ThemeProvider } = useTheme();
+  const { ThemeProvider } = useTheme();
 
-return (
+  return (
 
 
-  <ThemeProvider>
-  <NavigationContainer>
-    <Stack.Navigator>
-      {/* Navigation screens */}
+    <ThemeProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {/* Navigation screens */}
       </Stack.Navigator>
     </NavigationContainer>
   </ThemeProvider>
@@ -420,14 +420,14 @@ Persisted
 import { useThemeScheme, useChangeTheme } from '@/theme';
 
 function useTheme() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
 
-return {
-isDark: scheme === 'dark',
-isLight: scheme === 'light',
-scheme,
-toggle: () => changeTheme(scheme === 'light' ? 'dark' : 'light')
+  return {
+    isDark: scheme === 'dark',
+    isLight: scheme === 'light',
+    scheme,
+    toggle: () => changeTheme(scheme === 'light' ? 'dark' : 'light')
 };
 }
 ```
@@ -437,14 +437,14 @@ toggle: () => changeTheme(scheme === 'light' ? 'dark' : 'light')
 import { useThemeScheme } from '@/theme';
 
 function AdaptiveComponent() {
-const scheme = useThemeScheme();
+  const scheme = useThemeScheme();
 
-return (
+  return (
 
 
-  <>
-{scheme === 'light' && <LightModeContent />}
-{scheme === 'dark' && <DarkModeContent />}
+    <>
+      {scheme === 'light' && <LightModeContent />}
+    {scheme === 'dark' && <DarkModeContent />}
 </>
 );
 }
@@ -455,11 +455,11 @@ return (
 import { createTheme } from '@htk/features/theme';
 
 const classicTheme = createTheme({
-/* classic theme config */
+  /* classic theme config */
 });
 
 const modernTheme = createTheme({
-/* modern theme config */
+  /* modern theme config */
 });
 
 export { classicTheme, modernTheme };
@@ -508,15 +508,15 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useThemeScheme, useChangeTheme } from '@/theme';
 
 test('changes theme', () => {
-const { result } = renderHook(() => ({
-scheme: useThemeScheme(),
-change: useChangeTheme()
+  const { result } = renderHook(() => ({
+    scheme: useThemeScheme(),
+    change: useChangeTheme()
 }));
 
 expect(result.current.scheme).toBe('light');
 
 act(() => {
-result.current.change('dark');
+  result.current.change('dark');
 });
 
 expect(result.current.scheme).toBe('dark');

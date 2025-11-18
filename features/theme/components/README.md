@@ -40,10 +40,10 @@ A circular button component for selecting and displaying theme options with acti
 **Props:**
 ```typescript
 interface ThemeSettingsButtonProps {
-name: 'light' | 'dark';              // Theme name
-theme: typeof DesignTokens;          // react-native-ui-lib design tokens
-isActive: boolean;                   // Whether this theme is currently active
-onPress: (theme: 'light' | 'dark') => void; // Callback when pressed
+  name: 'light' | 'dark';              // Theme name
+  theme: typeof DesignTokens;          // react-native-ui-lib design tokens
+  isActive: boolean;                   // Whether this theme is currently active
+  onPress: (theme: 'light' | 'dark') => void; // Callback when pressed
 }
 ```
 
@@ -72,22 +72,22 @@ import { useThemeScheme, useChangeTheme } from '@htk/features/theme';
 import { View } from 'react-native-ui-lib';
 
 function ThemeSelector() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
 
-return (
+  return (
 
 
-  <View row centerH gap-16>
-  <ThemeSettingsButton
-  name="light"
-  isActive={scheme === 'light'}
-  onPress={changeTheme}
+    <View row centerH gap-16>
+      <ThemeSettingsButton
+      name="light"
+      isActive={scheme === 'light'}
+    onPress={changeTheme}
   theme={useTheme()} // Design tokens from ui-lib
   />
-<ThemeSettingsButton
-name="dark"
-isActive={scheme === 'dark'}
+  <ThemeSettingsButton
+  name="dark"
+  isActive={scheme === 'dark'}
 onPress={changeTheme}
 theme={useTheme()} // Design tokens from ui-lib
 />
@@ -103,32 +103,32 @@ import { useThemeScheme, useChangeTheme } from '@htk/features/theme';
 import { ScrollView, View, Text } from 'react-native-ui-lib';
 
 function SettingsScreen() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
-const tokens = useTheme(); // Get design tokens
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
+  const tokens = useTheme(); // Get design tokens
 
-return (
+  return (
 
 
-  <ScrollView>
-  <View padding-16>
-    <Text text70 marginB-16>Display Settings</Text>
+    <ScrollView>
+      <View padding-16>
+        <Text text70 marginB-16>Display Settings</Text>
 
-    <Text text80 marginB-12>Theme</Text>
-    <View row centerH gap-16 marginB-32>
-      <ThemeSettingsButton
-      name="light"
-      isActive={scheme === 'light'}
+          <Text text80 marginB-12>Theme</Text>
+            <View row centerH gap-16 marginB-32>
+              <ThemeSettingsButton
+              name="light"
+              isActive={scheme === 'light'}
+            onPress={changeTheme}
+          theme={tokens}
+        />
+        <ThemeSettingsButton
+        name="dark"
+        isActive={scheme === 'dark'}
       onPress={changeTheme}
-      theme={tokens}
-      />
-  <ThemeSettingsButton
-  name="dark"
-  isActive={scheme === 'dark'}
-  onPress={changeTheme}
-  theme={tokens}
+    theme={tokens}
   />
-  </View>
+</View>
 </View>
 </ScrollView>
 );
@@ -142,22 +142,22 @@ import { useThemeScheme, useChangeTheme } from '@htk/features/theme';
 import { View } from 'react-native-ui-lib';
 
 function HorizontalThemeSelector() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
-const tokens = useTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
+  const tokens = useTheme();
 
-return (
+  return (
 
 
-  <View row centerH gap-24 padding-16>
-  {(['light', 'dark'] as const).map((themeName) => (
-  <ThemeSettingsButton
-  key={themeName}
-  name={themeName}
-  isActive={scheme === themeName}
+    <View row centerH gap-24 padding-16>
+      {(['light', 'dark'] as const).map((themeName) => (
+        <ThemeSettingsButton
+        key={themeName}
+      name={themeName}
+    isActive={scheme === themeName}
   onPress={changeTheme}
-  theme={tokens}
-  />
+theme={tokens}
+/>
 ))}
 </View>
 );
@@ -171,33 +171,33 @@ import { useThemeScheme, useChangeTheme } from '@htk/features/theme';
 import { View, Text } from 'react-native-ui-lib';
 
 function LabeledThemeButton() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
-const tokens = useTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
+  const tokens = useTheme();
 
-return (
+  return (
 
 
-  <View gap-8>
-  <View gap-8>
-    <Text text80>Light Mode</Text>
-    <ThemeSettingsButton
-    name="light"
-    isActive={scheme === 'light'}
-    onPress={changeTheme}
-    theme={tokens}
+    <View gap-8>
+      <View gap-8>
+        <Text text80>Light Mode</Text>
+          <ThemeSettingsButton
+          name="light"
+          isActive={scheme === 'light'}
+        onPress={changeTheme}
+      theme={tokens}
     />
-    </View>
-
-<View gap-8>
-  <Text text80>Dark Mode</Text>
-  <ThemeSettingsButton
-  name="dark"
-  isActive={scheme === 'dark'}
-  onPress={changeTheme}
-  theme={tokens}
-  />
   </View>
+
+  <View gap-8>
+    <Text text80>Dark Mode</Text>
+      <ThemeSettingsButton
+      name="dark"
+      isActive={scheme === 'dark'}
+    onPress={changeTheme}
+  theme={tokens}
+/>
+</View>
 </View>
 );
 }
@@ -212,31 +212,31 @@ import { createTheme } from '@htk/features/theme';
 import { ThemeSettingsButton } from '@htk/features/theme/components';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme } = createTheme({
-enabled: true,
-supportDarkMode: true,
-defaultScheme: 'light',
-schemes: {
-light: { /* colors */ },
-dark: { /* colors */ }
+  enabled: true,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: {
+    light: { /* colors */ },
+    dark: { /* colors */ }
 }
 });
 
 // Use in component
 function AppHeader() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
 
-return (
+  return (
 
 
-  <View>
-  <ThemeSettingsButton
-  name={scheme === 'light' ? 'dark' : 'light'}
-  isActive={false}
+    <View>
+      <ThemeSettingsButton
+      name={scheme === 'light' ? 'dark' : 'light'}
+    isActive={false}
   onPress={changeTheme}
-  theme={useTheme()}
-  />
-  </View>
+theme={useTheme()}
+/>
+</View>
 );
 }
 ```
@@ -253,15 +253,15 @@ All components use `react-native-ui-lib` design tokens:
 import { View, Text, Colors } from 'react-native-ui-lib';
 
 function ThemedButton() {
-return (
+  return (
 
-  <View
-padding-16
-backgroundColor={Colors.$backgroundColor}
->
-<Text color={Colors.$textDefault}>Theme Aware</Text>
-</View>
-);
+    <View
+    padding-16
+    backgroundColor={Colors.$backgroundColor}
+  >
+    <Text color={Colors.$textDefault}>Theme Aware</Text>
+    </View>
+  );
 }
 ```
 
@@ -287,29 +287,29 @@ import { useMemo } from 'react';
 import { ThemeSettingsButton } from '@htk/features/theme/components';
 
 function OptimizedThemeSelector() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
-const tokens = useTheme();
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
+  const tokens = useTheme();
 
-const buttons = useMemo(() => (
-['light', 'dark'].map((name) => ({
-name,
-isActive: scheme === name
-}))
+  const buttons = useMemo(() => (
+    ['light', 'dark'].map((name) => ({
+      name,
+      isActive: scheme === name
+    }))
 ), [scheme]);
 
 return (
 
 
   <View row centerH gap-16>
-  {buttons.map((btn) => (
-  <ThemeSettingsButton
-  key={btn.name}
-  name={btn.name as 'light' | 'dark'}
+    {buttons.map((btn) => (
+      <ThemeSettingsButton
+      key={btn.name}
+    name={btn.name as 'light' | 'dark'}
   isActive={btn.isActive}
-  onPress={changeTheme}
-  theme={tokens}
-  />
+onPress={changeTheme}
+theme={tokens}
+/>
 ))}
 </View>
 );
@@ -345,8 +345,8 @@ When creating additional theme components:
 import { DesignTokens } from 'react-native-ui-lib';
 
 interface CustomThemeComponentProps {
-theme: typeof DesignTokens;
-isActive: boolean;
+  theme: typeof DesignTokens;
+  isActive: boolean;
 }
 ```
 
@@ -355,9 +355,9 @@ isActive: boolean;
 import { useThemeScheme, useChangeTheme } from '@htk/features/theme';
 
 function CustomThemeComponent() {
-const scheme = useThemeScheme();
-const changeTheme = useChangeTheme();
-// Implementation...
+  const scheme = useThemeScheme();
+  const changeTheme = useChangeTheme();
+  // Implementation...
 }
 ```
 
@@ -388,14 +388,14 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { ThemeSettingsButton } from '@htk/features/theme/components';
 
 test('renders theme button', () => {
-const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
-const onPress = jest.fn();
+  const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
+  const onPress = jest.fn();
 
-const { getByText } = render(
-<ThemeSettingsButton
-name="light"
-isActive={true}
-onPress={onPress}
+  const { getByText } = render(
+    <ThemeSettingsButton
+    name="light"
+    isActive={true}
+  onPress={onPress}
 theme={mockTheme}
 />
 );
@@ -404,14 +404,14 @@ expect(getByText('light')).toBeTruthy();
 });
 
 test('calls onPress with theme name', () => {
-const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
-const onPress = jest.fn();
+  const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
+  const onPress = jest.fn();
 
-const { getByText } = render(
-<ThemeSettingsButton
-name="dark"
-isActive={false}
-onPress={onPress}
+  const { getByText } = render(
+    <ThemeSettingsButton
+    name="dark"
+    isActive={false}
+  onPress={onPress}
 theme={mockTheme}
 />
 );
@@ -421,14 +421,14 @@ expect(onPress).toHaveBeenCalledWith('dark');
 });
 
 test('shows active state styling', () => {
-const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
-const onPress = jest.fn();
+  const mockTheme = { $backgroundColor: '#FFF', $textDefault: '#000' };
+  const onPress = jest.fn();
 
-const { getByTestId } = render(
-<ThemeSettingsButton
-name="light"
-isActive={true}
-onPress={onPress}
+  const { getByTestId } = render(
+    <ThemeSettingsButton
+    name="light"
+    isActive={true}
+  onPress={onPress}
 theme={mockTheme}
 testID="theme-button"
 />
