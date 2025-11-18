@@ -50,8 +50,8 @@ import { MMKVLoader } from 'react-native-mmkv';
 
 // Configured MMKV instance with optional encryption
 const storage = new MMKVLoader()
- .setProcessingMode(MMKVMode.SINGLE_PROCESS)
- .build();
+.setProcessingMode(MMKVMode.SINGLE_PROCESS)
+.build();
 ```
 
 ### Storage Interface
@@ -59,10 +59,10 @@ Implements platform-agnostic storage operations:
 
 ```typescript
 interface StorageAdapter {
- getItem(key: string): string null Promise<string null>;
- setItem(key: string, value: string): void Promise<void>;
- removeItem(key: string): void Promise<void>;
- clearAll(): void Promise<void>;
+  getItem(key: string): string null Promise<string null>;
+  setItem(key: string, value: string): void Promise<void>;
+  removeItem(key: string): void Promise<void>;
+  clearAll(): void Promise<void>;
 }
 ```
 
@@ -87,15 +87,15 @@ import { mmkvStorage } from '@htk/storages/mmkv';
 
 // Create a persisted atom
 const userThemeAtom = atomWithStorage(
- 'userTheme',
- 'light',
- mmkvStorage
+  'userTheme',
+  'light',
+  mmkvStorage
 );
 
 // Use in components
 function ThemeComponent() {
- const [theme, setTheme] = useAtom(userThemeAtom);
- // Theme is automatically persisted to MMKV
+  const [theme, setTheme] = useAtom(userThemeAtom);
+  // Theme is automatically persisted to MMKV
 }
 ```
 
@@ -132,17 +132,17 @@ storage.clearAll();
 import { MMKVLoader, MMKVMode } from 'react-native-mmkv';
 
 const customStorage = new MMKVLoader()
- .setProcessingMode(MMKVMode.SINGLE_PROCESS)
- .setEncryptionKey('your-encryption-key') // Enable encryption
- .build();
+.setProcessingMode(MMKVMode.SINGLE_PROCESS)
+.setEncryptionKey('your-encryption-key') // Enable encryption
+.build();
 ```
 
 ### With Encryption
 ```typescript
 // Production setup with encryption
 const storage = new MMKVLoader()
- .setEncryptionKey(getSecureEncryptionKey())
- .build();
+.setEncryptionKey(getSecureEncryptionKey())
+.build();
 
 // Secure sensitive data
 storage.setItem('apiToken', secureToken);
@@ -154,27 +154,27 @@ storage.setItem('password', encryptedPassword);
 ### Type-Safe Storage Wrapper
 ```typescript
 interface StorageValue<T> {
- value: T;
- timestamp: number;
+  value: T;
+  timestamp: number;
 }
 
 export function setTypedValue<T>(
- key: string,
- value: T
+  key: string,
+  value: T
 ): void {
- const data: StorageValue<T> = {
- value,
- timestamp: Date.now()
- };
- storage.setItem(key, JSON.stringify(data));
+  const data: StorageValue<T> = {
+    value,
+    timestamp: Date.now()
+};
+storage.setItem(key, JSON.stringify(data));
 }
 
 export function getTypedValue<T>(key: string): T null {
- const raw = storage.getItem(key);
- if (!raw) return null;
+  const raw = storage.getItem(key);
+  if (!raw) return null;
 
- const data: StorageValue<T> = JSON.parse(raw);
- return data.value;
+  const data: StorageValue<T> = JSON.parse(raw);
+  return data.value;
 }
 ```
 
@@ -183,22 +183,22 @@ export function getTypedValue<T>(key: string): T null {
 import { useCallback } from 'react';
 
 function useStoredValue<T>(key: string, initialValue: T) {
- const [value, setValue] = useState<T>(() => {
- const stored = storage.getItem(key);
- return stored ? JSON.parse(stored) : initialValue;
- });
+  const [value, setValue] = useState<T>(() => {
+    const stored = storage.getItem(key);
+    return stored ? JSON.parse(stored) : initialValue;
+  });
 
- const updateValue = useCallback((newValue: T ((prev: T) => T)) => {
- setValue(prev => {
- const updated = typeof newValue === 'function'
- ? newValue(prev)
- : newValue;
- storage.setItem(key, JSON.stringify(updated));
- return updated;
- });
- }, [key]);
+  const updateValue = useCallback((newValue: T ((prev: T) => T)) => {
+    setValue(prev => {
+      const updated = typeof newValue === 'function'
+      ? newValue(prev)
+    : newValue;
+    storage.setItem(key, JSON.stringify(updated));
+    return updated;
+  });
+}, [key]);
 
- return [value, updateValue] as const;
+return [value, updateValue] as const;
 }
 ```
 
@@ -239,16 +239,16 @@ function useStoredValue<T>(key: string, initialValue: T) {
 ```typescript
 // Backup all data
 function backupStorage() {
- const allData = getAllStoredItems();
- return JSON.stringify(allData);
+  const allData = getAllStoredItems();
+  return JSON.stringify(allData);
 }
 
 // Restore from backup
 function restoreStorage(backup: string) {
- const data = JSON.parse(backup);
- Object.entries(data).forEach(([key, value]) => {
- storage.setItem(key, value as string);
- });
+  const data = JSON.parse(backup);
+  Object.entries(data).forEach(([key, value]) => {
+    storage.setItem(key, value as string);
+  });
 }
 ```
 
@@ -256,14 +256,14 @@ function restoreStorage(backup: string) {
 
 ```typescript
 try {
- const value = storage.getItem('important');
- if (value) {
- processData(JSON.parse(value));
- }
+  const value = storage.getItem('important');
+  if (value) {
+    processData(JSON.parse(value));
+  }
 } catch (error) {
- console.error('Storage access failed:', error);
- // Fall back to default value
- return defaultValue;
+  console.error('Storage access failed:', error);
+  // Fall back to default value
+  return defaultValue;
 }
 ```
 
@@ -275,14 +275,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { storage as mmkvStorage } from '@htk/storages/mmkv';
 
 async function migrateFromAsyncStorage() {
- const keys = await AsyncStorage.getAllKeys();
+  const keys = await AsyncStorage.getAllKeys();
 
- for (const key of keys) {
- const value = await AsyncStorage.getItem(key);
- if (value) {
- mmkvStorage.setItem(key, value);
- }
- }
+  for (const key of keys) {
+    const value = await AsyncStorage.getItem(key);
+    if (value) {
+      mmkvStorage.setItem(key, value);
+    }
+}
 }
 ```
 
@@ -291,15 +291,15 @@ async function migrateFromAsyncStorage() {
 ### Mock MMKV for Tests
 ```typescript
 jest.mock('react-native-mmkv', () => ({
- MMKVLoader: jest.fn(() => ({
- setProcessingMode: jest.fn().mockReturnThis(),
- build: jest.fn(() => ({
- getItem: jest.fn(),
- setItem: jest.fn(),
- removeItem: jest.fn(),
- clearAll: jest.fn()
- }))
- }))
+  MMKVLoader: jest.fn(() => ({
+    setProcessingMode: jest.fn().mockReturnThis(),
+    build: jest.fn(() => ({
+      getItem: jest.fn(),
+      setItem: jest.fn(),
+      removeItem: jest.fn(),
+      clearAll: jest.fn()
+  }))
+}))
 }));
 ```
 

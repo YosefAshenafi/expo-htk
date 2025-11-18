@@ -26,7 +26,7 @@ Generates a complete context system for managing shared state across React compo
 
 ```typescript
 function contextBuilder<T>(
- defaultValue: T
+  defaultValue: T
 ): [IProvider<T>, IuseContext<T>, IuseContextDispatch<T>, IuseUpdate<T>]
 ```
 
@@ -44,20 +44,20 @@ import { contextBuilder } from '@htk/utils/react';
 
 // Define state shape
 type ThemeContextValue = {
- isDarkMode: boolean;
- primaryColor: string;
- fontSize: number;
+  isDarkMode: boolean;
+  primaryColor: string;
+  fontSize: number;
 };
 
 const defaultTheme: ThemeContextValue = {
- isDarkMode: false,
- primaryColor: '#007AFF',
- fontSize: 16
+  isDarkMode: false,
+  primaryColor: '#007AFF',
+  fontSize: 16
 };
 
 // Create context system
 const [ThemeProvider, useTheme, useThemeDispatch, useUpdateTheme] =
- contextBuilder(defaultTheme);
+contextBuilder(defaultTheme);
 
 // Export for use
 export { ThemeProvider, useTheme, useThemeDispatch, useUpdateTheme };
@@ -68,11 +68,11 @@ export { ThemeProvider, useTheme, useThemeDispatch, useUpdateTheme };
 import { ThemeProvider } from '@/context/theme';
 
 export function App() {
- return (
- <ThemeProvider>
- <MainApp />
- </ThemeProvider>
- );
+  return (
+    <ThemeProvider>
+  <MainApp />
+</ThemeProvider>
+);
 }
 ```
 
@@ -81,25 +81,25 @@ export function App() {
 import { useTheme, useUpdateTheme } from '@/context/theme';
 
 function ThemeToggle() {
- const theme = useTheme();
- const updateTheme = useUpdateTheme();
+  const theme = useTheme();
+  const updateTheme = useUpdateTheme();
 
- const toggleDarkMode = () => {
- updateTheme({
- isDarkMode: !theme.isDarkMode
- });
- };
+  const toggleDarkMode = () => {
+    updateTheme({
+      isDarkMode: !theme.isDarkMode
+    });
+  };
 
- return (
- <View style={{
- backgroundColor: theme.isDarkMode ? '#000' : '#fff'
- }}>
- <Button
- title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
- onPress={toggleDarkMode}
- />
- </View>
- );
+  return (
+    <View style={{
+      backgroundColor: theme.isDarkMode ? '#000' : '#fff'
+    }}>
+  <Button
+  title={`Dark Mode: ${theme.isDarkMode ? 'ON' : 'OFF'}`}
+onPress={toggleDarkMode}
+/>
+</View>
+);
 }
 ```
 
@@ -108,26 +108,26 @@ function ThemeToggle() {
 ### Multiple Context Values
 ```typescript
 type AppContextValue = {
- user: User null;
- isLoading: boolean;
- error: string null;
- preferences: UserPreferences;
- isOnline: boolean;
+  user: User null;
+  isLoading: boolean;
+  error: string null;
+  preferences: UserPreferences;
+  isOnline: boolean;
 };
 
 const defaultAppContext: AppContextValue = {
- user: null,
- isLoading: false,
- error: null,
- preferences: {
- language: 'en',
- notifications: true
- },
- isOnline: true
+  user: null,
+  isLoading: false,
+  error: null,
+  preferences: {
+    language: 'en',
+    notifications: true
+  },
+  isOnline: true
 };
 
 const [AppProvider, useApp, useAppDispatch, useUpdateApp] =
- contextBuilder(defaultAppContext);
+contextBuilder(defaultAppContext);
 ```
 
 ### Context with Dispatch Hook
@@ -135,18 +135,18 @@ const [AppProvider, useApp, useAppDispatch, useUpdateApp] =
 import { useAppDispatch } from '@/context/app';
 
 function UserSettings() {
- const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
- const handleLogout = () => {
- // Full control over dispatch with custom actions
- dispatch({
- type: 'RESET' // Resets to default value
- });
- };
+  const handleLogout = () => {
+    // Full control over dispatch with custom actions
+    dispatch({
+      type: 'RESET' // Resets to default value
+    });
+  };
 
- return (
- <Button title="Logout" onPress={handleLogout} />
- );
+  return (
+    <Button title="Logout" onPress={handleLogout} />
+);
 }
 ```
 
@@ -155,44 +155,44 @@ function UserSettings() {
 import { useApp, useUpdateApp } from '@/context/app';
 
 function UserProfile() {
- const { user, preferences } = useApp();
- const updateApp = useUpdateApp();
+  const { user, preferences } = useApp();
+  const updateApp = useUpdateApp();
 
- // Update single property
- const updateLanguage = (lang: string) => {
- updateApp({
- preferences: {
- ...preferences,
- language: lang
- }
- });
- };
+  // Update single property
+  const updateLanguage = (lang: string) => {
+    updateApp({
+      preferences: {
+        ...preferences,
+        language: lang
+      }
+  });
+};
 
- // Update multiple properties
- const onUserDataFetched = (userData: User) => {
- updateApp({
- user: userData,
- isLoading: false,
- error: null
- });
- };
+// Update multiple properties
+const onUserDataFetched = (userData: User) => {
+  updateApp({
+    user: userData,
+    isLoading: false,
+    error: null
+  });
+};
 
- const onLoadingStart = () => {
- updateApp({ isLoading: true });
- };
+const onLoadingStart = () => {
+  updateApp({ isLoading: true });
+};
 
- const onError = (error: string) => {
- updateApp({
- error,
- isLoading: false
- });
- };
+const onError = (error: string) => {
+  updateApp({
+    error,
+    isLoading: false
+  });
+};
 
- return (
- <View>
- <Text>{user?.name}</Text>
- </View>
- );
+return (
+  <View>
+<Text>{user?.name}</Text>
+</View>
+);
 }
 ```
 
@@ -203,118 +203,118 @@ function UserProfile() {
 import { contextBuilder } from '@htk/utils/react';
 
 type AuthContextValue = {
- isAuthenticated: boolean;
- user: User null;
- token: string null;
- isLoading: boolean;
+  isAuthenticated: boolean;
+  user: User null;
+  token: string null;
+  isLoading: boolean;
 };
 
 const [AuthProvider, useAuth, useAuthDispatch, useUpdateAuth] = contextBuilder<AuthContextValue>({
- isAuthenticated: false,
- user: null,
- token: null,
- isLoading: false
+  isAuthenticated: false,
+  user: null,
+  token: null,
+  isLoading: false
 });
 
 // Custom hook for login
 function useLogin() {
- const updateAuth = useUpdateAuth();
+  const updateAuth = useUpdateAuth();
 
- return async (email: string, password: string) => {
- updateAuth({ isLoading: true });
+  return async (email: string, password: string) => {
+    updateAuth({ isLoading: true });
 
- try {
- const response = await loginAPI(email, password);
+    try {
+      const response = await loginAPI(email, password);
 
- updateAuth({
- isAuthenticated: true,
- user: response.user,
- token: response.token,
- isLoading: false
- });
- } catch (error) {
- updateAuth({
- isLoading: false
- });
- throw error;
- }
- };
+      updateAuth({
+        isAuthenticated: true,
+        user: response.user,
+        token: response.token,
+        isLoading: false
+      });
+    } catch (error) {
+      updateAuth({
+        isLoading: false
+      });
+      throw error;
+    }
+};
 }
 ```
 
 ### Notification Center
 ```typescript
 type NotificationContextValue = {
- notifications: Notification[];
- unreadCount: number;
+  notifications: Notification[];
+  unreadCount: number;
 };
 
 const [NotificationProvider, useNotifications, , useUpdateNotifications] =
- contextBuilder({
- notifications: [],
- unreadCount: 0
- });
+contextBuilder({
+  notifications: [],
+  unreadCount: 0
+});
 
 function useAddNotification() {
- const { notifications, unreadCount } = useNotifications();
- const updateNotifications = useUpdateNotifications();
+  const { notifications, unreadCount } = useNotifications();
+  const updateNotifications = useUpdateNotifications();
 
- return (notification: Notification) => {
- updateNotifications({
- notifications: [...notifications, notification],
- unreadCount: unreadCount + 1
- });
- };
+  return (notification: Notification) => {
+    updateNotifications({
+      notifications: [...notifications, notification],
+      unreadCount: unreadCount + 1
+    });
+  };
 }
 
 function useClearNotifications() {
- const updateNotifications = useUpdateNotifications();
+  const updateNotifications = useUpdateNotifications();
 
- return () => {
- updateNotifications({
- notifications: [],
- unreadCount: 0
- });
- };
+  return () => {
+    updateNotifications({
+      notifications: [],
+      unreadCount: 0
+    });
+  };
 }
 ```
 
 ### Form State Management
 ```typescript
 type FormContextValue = {
- values: Record<string, any>;
- errors: Record<string, string>;
- touched: Record<string, boolean>;
- isSubmitting: boolean;
+  values: Record<string, any>;
+  errors: Record<string, string>;
+  touched: Record<string, boolean>;
+  isSubmitting: boolean;
 };
 
 const [FormProvider, useFormState, , useUpdateFormState] = contextBuilder({
- values: {},
- errors: {},
- touched: {},
- isSubmitting: false
+  values: {},
+  errors: {},
+  touched: {},
+  isSubmitting: false
 });
 
 function useFormField(fieldName: string) {
- const { values, errors, touched } = useFormState();
- const updateForm = useUpdateFormState();
+  const { values, errors, touched } = useFormState();
+  const updateForm = useUpdateFormState();
 
- return {
- value: values[fieldName] ?? '',
- error: touched[fieldName] ? errors[fieldName] : null,
- setValue: (value: any) => {
- updateForm({
- values: {
- ...values,
- [fieldName]: value
- },
- touched: {
- ...touched,
- [fieldName]: true
- }
- });
- }
- };
+  return {
+    value: values[fieldName] ?? '',
+    error: touched[fieldName] ? errors[fieldName] : null,
+    setValue: (value: any) => {
+      updateForm({
+        values: {
+          ...values,
+          [fieldName]: value
+        },
+        touched: {
+          ...touched,
+          [fieldName]: true
+        }
+    });
+  }
+};
 }
 ```
 
@@ -323,7 +323,7 @@ function useFormField(fieldName: string) {
 ### Provider Component
 ```typescript
 <Provider value?: Partial<T>>
- {children: ReactNode}
+{children: ReactNode}
 </Provider>
 ```
 
@@ -334,7 +334,7 @@ function useFormField(fieldName: string) {
 **Example:**
 ```typescript
 <ThemeProvider value={{ isDarkMode: true }}>
- <App />
+<App />
 </ThemeProvider>
 ```
 
@@ -379,17 +379,17 @@ const update = useUpdate(): (payload: Partial<T>) => void
 ### Full TypeScript Support
 ```typescript
 const [Provider, useContext, useDispatch, useUpdate] = contextBuilder({
- count: 0,
- name: 'app'
+  count: 0,
+  name: 'app'
 });
 
 function Component() {
- const { count, name } = useContext(); // Fully typed
- const update = useUpdate();
+  const { count, name } = useContext(); // Fully typed
+  const update = useUpdate();
 
- update({ count: 1 }); // Valid
- update({ name: 'new-app' }); // Valid
- update({ invalid: true }); // TypeScript error
+  update({ count: 1 }); // Valid
+  update({ name: 'new-app' }); // Valid
+  update({ invalid: true }); // TypeScript error
 }
 ```
 
@@ -398,61 +398,61 @@ function Component() {
 ### Computed Context Values
 ```typescript
 const [Provider, useAuth, , useUpdateAuth] = contextBuilder({
- firstName: '',
- lastName: '',
- email: ''
+  firstName: '',
+  lastName: '',
+  email: ''
 });
 
 // Custom hook for derived values
 function useFullName() {
- const { firstName, lastName } = useAuth();
- return `${firstName} ${lastName}`.trim();
+  const { firstName, lastName } = useAuth();
+  return `${firstName} ${lastName}`.trim();
 }
 
 function useInitials() {
- const { firstName, lastName } = useAuth();
- return `${firstName[0]}${lastName[0]}`.toUpperCase();
+  const { firstName, lastName } = useAuth();
+  return `${firstName[0]}${lastName[0]}`.toUpperCase();
 }
 ```
 
 ### Context Composition
 ```typescript
 function ComposedProviders({ children }: { children: ReactNode }) {
- return (
- <ThemeProvider>
- <AuthProvider>
- <NotificationProvider>
- {children}
- </NotificationProvider>
- </AuthProvider>
- </ThemeProvider>
- );
+  return (
+    <ThemeProvider>
+  <AuthProvider>
+<NotificationProvider>
+{children}
+</NotificationProvider>
+</AuthProvider>
+</ThemeProvider>
+);
 }
 ```
 
 ### Custom Hooks wrapping Context
 ```typescript
 function useThemeMode() {
- const { isDarkMode } = useTheme();
- const updateTheme = useUpdateTheme();
+  const { isDarkMode } = useTheme();
+  const updateTheme = useUpdateTheme();
 
- return {
- isDark: isDarkMode,
- toggle: () => updateTheme({ isDarkMode: !isDarkMode }),
- setMode: (dark: boolean) => updateTheme({ isDarkMode: dark })
- };
+  return {
+    isDark: isDarkMode,
+    toggle: () => updateTheme({ isDarkMode: !isDarkMode }),
+    setMode: (dark: boolean) => updateTheme({ isDarkMode: dark })
+};
 }
 
 // Usage
 function Component() {
- const theme = useThemeMode();
+  const theme = useThemeMode();
 
- return (
- <Button
- title={theme.isDark ? '' : ''}
- onPress={theme.toggle}
- />
- );
+  return (
+    <Button
+    title={theme.isDark ? '' : ''}
+  onPress={theme.toggle}
+/>
+);
 }
 ```
 
@@ -479,7 +479,7 @@ const contextValue = useMemo(() => ({ ...state }), [state]);
 ### Memoize Consumer Components
 ```typescript
 const ConsumerComponent = React.memo(({ value }: { value: T }) => {
- return <Text>{value.name}</Text>;
+  return <Text>{value.name}</Text>;
 });
 ```
 
@@ -516,32 +516,32 @@ const [AnimationProvider, useAnimation] = contextBuilder(defaultAnimation);
 ### Testing Components Using Context
 ```typescript
 describe('ThemeToggle', () => {
- it('toggles dark mode', () => {
- const { getByRole } = render(
- <ThemeProvider>
- <ThemeToggle />
- </ThemeProvider>
- );
+  it('toggles dark mode', () => {
+    const { getByRole } = render(
+      <ThemeProvider>
+    <ThemeToggle />
+</ThemeProvider>
+);
 
- const button = getByRole('button');
- fireEvent.press(button);
+const button = getByRole('button');
+fireEvent.press(button);
 
- expect(button).toHaveTextContent('ON');
- });
+expect(button).toHaveTextContent('ON');
+});
 });
 ```
 
 ### Mocking Context in Tests
 ```typescript
 const mockContext = {
- isDarkMode: true,
- primaryColor: '#000'
+  isDarkMode: true,
+  primaryColor: '#000'
 };
 
 const MockProvider = ({ children }: { children: ReactNode }) => (
- <ThemeProvider value={mockContext}>
- {children}
- </ThemeProvider>
+  <ThemeProvider value={mockContext}>
+{children}
+</ThemeProvider>
 );
 ```
 
@@ -559,20 +559,20 @@ const MockProvider = ({ children }: { children: ReactNode }) => (
 ```typescript
 // Wrong
 function App() {
- const context = useTheme(); // Error!
+  const context = useTheme(); // Error!
 }
 
 // Correct
 function App() {
- return (
- <ThemeProvider>
- <Child />
- </ThemeProvider>
- );
+  return (
+    <ThemeProvider>
+  <Child />
+</ThemeProvider>
+);
 }
 
 function Child() {
- const context = useTheme(); // OK
+  const context = useTheme(); // OK
 }
 ```
 
@@ -583,10 +583,10 @@ function Child() {
 ```typescript
 // Create new object
 updateTheme({
- preferences: {
- ...preferences,
- language: 'en'
- }
+  preferences: {
+    ...preferences,
+    language: 'en'
+  }
 });
 ```
 
@@ -603,28 +603,28 @@ updateTheme({
 ### Reset Context State
 ```typescript
 function useReset() {
- const dispatch = useAuthDispatch();
+  const dispatch = useAuthDispatch();
 
- return () => {
- dispatch({ type: 'RESET' });
- };
+  return () => {
+    dispatch({ type: 'RESET' });
+  };
 }
 ```
 
 ### Context Middleware Pattern
 ```typescript
 function createMiddlewareContext<T>(defaultValue: T) {
- const [Provider, useContext, useDispatch, useUpdate] = contextBuilder(defaultValue);
+  const [Provider, useContext, useDispatch, useUpdate] = contextBuilder(defaultValue);
 
- const useWithMiddleware = (middleware: (action: any) => any) => {
- const dispatch = useDispatch();
+  const useWithMiddleware = (middleware: (action: any) => any) => {
+    const dispatch = useDispatch();
 
- return (action: any) => {
- const processed = middleware(action);
- dispatch(processed);
- };
- };
+    return (action: any) => {
+      const processed = middleware(action);
+      dispatch(processed);
+    };
+  };
 
- return [Provider, useContext, useDispatch, useUpdate, useWithMiddleware] as const;
+  return [Provider, useContext, useDispatch, useUpdate, useWithMiddleware] as const;
 }
 ```

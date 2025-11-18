@@ -37,23 +37,23 @@ This is a toolkit meant to be integrated into your Expo project. Copy or referen
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, updateAppSetting } = createAppSettings({
- darkMode: false,
- fontSize: 16,
- language: 'en'
+  darkMode: false,
+  fontSize: 16,
+  language: 'en'
 });
 
 function MyComponent() {
- const settings = useAppSettings();
- const update = updateAppSetting();
+  const settings = useAppSettings();
+  const update = updateAppSetting();
 
- return (
- <View>
- <Toggle
- value={settings.darkMode}
- onValueChange={(val) => update('darkMode', val)}
- />
- </View>
- );
+  return (
+    <View>
+  <Toggle
+  value={settings.darkMode}
+onValueChange={(val) => update('darkMode', val)}
+/>
+</View>
+);
 }
 ```
 
@@ -62,21 +62,21 @@ function MyComponent() {
 import { createTheme } from '@htk/features/theme';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme } = createTheme({
- enabled: true,
- supportDarkMode: true,
- defaultScheme: 'light',
- schemes: {
- light: { /* colors */ },
- dark: { /* colors */ }
- }
+  enabled: true,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: {
+    light: { /* colors */ },
+    dark: { /* colors */ }
+}
 });
 
 function App() {
- return (
- <ThemeProvider>
- <MainApp />
- </ThemeProvider>
- );
+  return (
+    <ThemeProvider>
+  <MainApp />
+</ThemeProvider>
+);
 }
 ```
 
@@ -85,28 +85,28 @@ function App() {
 import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 function App() {
- return (
- <Confirm>
- <MainApp />
- </Confirm>
- );
+  return (
+    <Confirm>
+  <MainApp />
+</Confirm>
+);
 }
 
 function MyComponent() {
- const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
- return (
- <Button
- title="Delete"
- onPress={() => confirm({
- title: 'Confirm Delete?',
- buttons: [
- { label: 'Cancel', onPress: () => {} },
- { label: 'Delete', onPress: handleDelete }
- ]
- })}
- />
- );
+  return (
+    <Button
+    title="Delete"
+    onPress={() => confirm({
+      title: 'Confirm Delete?',
+      buttons: [
+        { label: 'Cancel', onPress: () => {} },
+        { label: 'Delete', onPress: handleDelete }
+    ]
+})}
+/>
+);
 }
 ```
 
@@ -189,8 +189,8 @@ Type-safe settings management with UI and automatic persistence.
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, updateAppSetting } = createAppSettings({
- isDarkMode: false,
- fontSize: 16
+  isDarkMode: false,
+  fontSize: 16
 });
 ```
 
@@ -201,9 +201,9 @@ Complete theme management with light/dark mode, system detection, and persistenc
 import { createTheme } from '@htk/features/theme';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme } = createTheme({
- enabled: true,
- supportDarkMode: true,
- schemes: { light: {...}, dark: {...} }
+  enabled: true,
+  supportDarkMode: true,
+  schemes: { light: {...}, dark: {...} }
 });
 ```
 
@@ -228,7 +228,7 @@ Context-based confirmation dialog for user interactions.
 import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 <Confirm>
- <App />
+<App />
 </Confirm>
 
 const { confirm } = useConfirm();
@@ -311,13 +311,13 @@ import { Dividers } from '@htk/utils/theme';
 import { AppSettings } from '@htk/features/appSettings/components';
 
 function SettingsScreen() {
- const entries = [
- { type: 'switch', key: 'darkMode', label: 'Dark Mode' },
- { type: 'fontFamily', key: 'fontFamily', label: 'Font' },
- { type: 'fontSize', key: 'fontSize', label: 'Size' }
- ];
+  const entries = [
+    { type: 'switch', key: 'darkMode', label: 'Dark Mode' },
+    { type: 'fontFamily', key: 'fontFamily', label: 'Font' },
+    { type: 'fontSize', key: 'fontSize', label: 'Size' }
+];
 
- return <AppSettings entries={entries} onSettingChange={handleChange} />;
+return <AppSettings entries={entries} onSettingChange={handleChange} />;
 }
 ```
 
@@ -326,15 +326,15 @@ function SettingsScreen() {
 import { useThemeScheme } from '@htk/features/theme';
 
 function ThemedCard() {
- const scheme = useThemeScheme();
+  const scheme = useThemeScheme();
 
- return (
- <View style={{
- backgroundColor: scheme === 'dark' ? '#000' : '#fff'
- }}>
- <Text>Theme-aware content</Text>
- </View>
- );
+  return (
+    <View style={{
+      backgroundColor: scheme === 'dark' ? '#000' : '#fff'
+    }}>
+  <Text>Theme-aware content</Text>
+</View>
+);
 }
 ```
 
@@ -345,7 +345,7 @@ import { Observer } from '@htk/utils/observer';
 const observer = new Observer<UserData, 'updated' 'deleted'>();
 
 observer.subscribe('updated', (data) => {
- console.log('User updated:', data);
+  console.log('User updated:', data);
 });
 
 observer.notify('updated', userData);
@@ -360,13 +360,13 @@ import { render } from '@testing-library/react-native';
 import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 test('confirm dialog works', () => {
- const { getByText } = render(
- <Confirm>
- <ConfirmButton />
- </Confirm>
- );
+  const { getByText } = render(
+    <Confirm>
+  <ConfirmButton />
+</Confirm>
+);
 
- fireEvent.press(getByText('Confirm'));
+fireEvent.press(getByText('Confirm'));
 });
 ```
 

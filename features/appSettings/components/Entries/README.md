@@ -33,12 +33,12 @@ The foundational component that all entries extend. Provides:
 
 ```typescript
 interface BaseEntryProps {
- label: string;
- description?: string;
- value: any;
- onChange: (value: any) => void;
- icon?: ReactNode;
- disabled?: boolean;
+  label: string;
+  description?: string;
+  value: any;
+  onChange: (value: any) => void;
+  icon?: ReactNode;
+  disabled?: boolean;
 }
 ```
 
@@ -51,10 +51,10 @@ Boolean toggle for simple yes/no settings.
 import { SwitchEntry } from '@htk/features/appSettings';
 
 <SwitchEntry
- label="Dark Mode"
- description="Use dark color scheme"
- value={isDarkMode}
- onChange={(enabled) => setIsDarkMode(enabled)}
+label="Dark Mode"
+description="Use dark color scheme"
+value={isDarkMode}
+onChange={(enabled) => setIsDarkMode(enabled)}
 />
 ```
 
@@ -71,9 +71,9 @@ Picker component for selecting fonts from available system fonts.
 import { FontFamilyEntry } from '@htk/features/appSettings';
 
 <FontFamilyEntry
- label="Font Family"
- value={selectedFont}
- onChange={(font) => setSelectedFont(font)}
+label="Font Family"
+value={selectedFont}
+onChange={(font) => setSelectedFont(font)}
 />
 ```
 
@@ -90,10 +90,10 @@ Numerical input or picker for adjusting font sizes.
 import { FontSizeEntry } from '@htk/features/appSettings';
 
 <FontSizeEntry
- label="Base Font Size"
- description="Adjust text size"
- value={fontSize}
- onChange={(size) => setFontSize(size)}
+label="Base Font Size"
+description="Adjust text size"
+value={fontSize}
+onChange={(size) => setFontSize(size)}
 />
 ```
 
@@ -112,25 +112,25 @@ To add a new setting entry type, extend the Base entry:
 import { BaseEntry, BaseEntryProps } from './Base';
 
 interface MyCustomEntryProps extends BaseEntryProps {
- options?: string[];
+  options?: string[];
 }
 
 export function MyCustomEntry({
- label,
- value,
- onChange,
- options = [],
- ...props
+  label,
+  value,
+  onChange,
+  options = [],
+  ...props
 }: MyCustomEntryProps) {
- return (
- <BaseEntry label={label} value={value} {...props}>
- <MyCustomControl
- value={value}
- onChange={onChange}
- options={options}
- />
- </BaseEntry>
- );
+  return (
+    <BaseEntry label={label} value={value} {...props}>
+  <MyCustomControl
+  value={value}
+onChange={onChange}
+options={options}
+/>
+</BaseEntry>
+);
 }
 ```
 
@@ -140,22 +140,22 @@ Entries are used within the AppSettings component through entry definitions:
 
 ```typescript
 const settingsEntries = [
- {
- type: 'switch',
- key: 'darkMode',
- label: 'Dark Mode',
- description: 'Enable dark color scheme'
- },
- {
- type: 'fontFamily',
- key: 'fontFamily',
- label: 'Font Family'
- },
- {
- type: 'fontSize',
- key: 'fontSize',
- label: 'Font Size'
- }
+  {
+    type: 'switch',
+    key: 'darkMode',
+    label: 'Dark Mode',
+    description: 'Enable dark color scheme'
+  },
+  {
+    type: 'fontFamily',
+    key: 'fontFamily',
+    label: 'Font Family'
+  },
+  {
+    type: 'fontSize',
+    key: 'fontSize',
+    label: 'Font Size'
+  }
 ];
 ```
 
@@ -172,13 +172,13 @@ All entries integrate with the app's theme system via `react-native-ui-lib`:
 ```typescript
 // Entry configuration type
 interface SettingsEntry {
- type: 'switch' 'fontFamily' 'fontSize' string;
- key: string;
- label: string;
- description?: string;
- defaultValue?: any;
- disabled?: boolean;
- validation?: (value: any) => boolean;
+  type: 'switch' 'fontFamily' 'fontSize' string;
+  key: string;
+  label: string;
+  description?: string;
+  defaultValue?: any;
+  disabled?: boolean;
+  validation?: (value: any) => boolean;
 }
 
 // Entry change handler
@@ -210,24 +210,24 @@ type OnEntryChange = (key: string, value: any) => void;
 ### Disabled Entries
 ```typescript
 <SwitchEntry
- label="Premium Feature"
- disabled={!isPremium}
- value={premiumSetting}
- onChange={handleChange}
+label="Premium Feature"
+disabled={!isPremium}
+value={premiumSetting}
+onChange={handleChange}
 />
 ```
 
 ### Entries with Validation
 ```typescript
 const validationRules = {
- fontSize: (value) => value >= 12 && value <= 32
+  fontSize: (value) => value >= 12 && value <= 32
 };
 ```
 
 ### Conditional Entry Display
 ```typescript
 {shouldShowAdvanced && (
- <MyCustomEntry {...props} />
+  <MyCustomEntry {...props} />
 )}
 ```
 

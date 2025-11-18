@@ -32,9 +32,9 @@ Pre-built UI component displaying device information in a structured list format
 import { ExpoDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 export function DebugScreen() {
- return (
- <ExpoDeviceInfo />
- );
+  return (
+    <ExpoDeviceInfo />
+);
 }
 ```
 
@@ -54,15 +54,15 @@ Access device information programmatically for custom implementations.
 import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 function MyComponent() {
- const deviceInfo = useDeviceInfo();
+  const deviceInfo = useDeviceInfo();
 
- return (
- <View>
- <Text>Device: {deviceInfo.manufacturer} {deviceInfo.modelName}</Text>
- <Text>OS: {deviceInfo.osVersion}</Text>
- <Text>Platform: {deviceInfo.platform}</Text>
- </View>
- );
+  return (
+    <View>
+  <Text>Device: {deviceInfo.manufacturer} {deviceInfo.modelName}</Text>
+<Text>OS: {deviceInfo.osVersion}</Text>
+<Text>Platform: {deviceInfo.platform}</Text>
+</View>
+);
 }
 ```
 
@@ -70,38 +70,38 @@ function MyComponent() {
 
 ```typescript
 interface DeviceInfo {
- // Device Hardware
- manufacturer: string; // e.g., "Apple", "Samsung"
- modelName: string; // e.g., "iPhone 15", "SM-G95F"
- modelId: string; // Device model identifier
- designName: string; // Design name if available
+  // Device Hardware
+  manufacturer: string; // e.g., "Apple", "Samsung"
+  modelName: string; // e.g., "iPhone 15", "SM-G95F"
+  modelId: string; // Device model identifier
+  designName: string; // Design name if available
 
- // OS Information
- osName: string; // e.g., "iOS", "Android"
- osVersion: string; // e.g., "18.1"
- osBuildId: string; // Build ID or patch level
+  // OS Information
+  osName: string; // e.g., "iOS", "Android"
+  osVersion: string; // e.g., "18.1"
+  osBuildId: string; // Build ID or patch level
 
- // Platform & Orientation
- platform: DevicePlatform; // 'ios' 'android' 'web'
- platformVersion: string; // Platform API level
+  // Platform & Orientation
+  platform: DevicePlatform; // 'ios' 'android' 'web'
+  platformVersion: string; // Platform API level
 
- // Device Type
- deviceType: DeviceType; // 'phone' 'tablet' 'unknown'
+  // Device Type
+  deviceType: DeviceType; // 'phone' 'tablet' 'unknown'
 
- // Hardware Capabilities
- hasBluetooth: boolean;
- hasNFC: boolean;
- hasGPS: boolean;
- hasWifi: boolean;
- hasApplePaySupport: boolean;
+  // Hardware Capabilities
+  hasBluetooth: boolean;
+  hasNFC: boolean;
+  hasGPS: boolean;
+  hasWifi: boolean;
+  hasApplePaySupport: boolean;
 
- // Screen & Display
- displaySize: number; // Diagonal in inches (approximate)
+  // Screen & Display
+  displaySize: number; // Diagonal in inches (approximate)
 
- // Additional Info
- brand: string; // Device brand
- serialNumber: string; // Device serial (may be restricted)
- isTablet: boolean; // Convenience flag
+// Additional Info
+brand: string; // Device brand
+serialNumber: string; // Device serial (may be restricted)
+isTablet: boolean; // Convenience flag
 }
 ```
 
@@ -125,18 +125,18 @@ import { DEVICE_INFO_FIELDS } from '@htk/features/expo/deviceInfo';
 ### DevicePlatform
 ```typescript
 enum DevicePlatform {
- IOS = 'ios',
- ANDROID = 'android',
- WEB = 'web'
+  IOS = 'ios',
+  ANDROID = 'android',
+  WEB = 'web'
 }
 ```
 
 ### DeviceType
 ```typescript
 enum DeviceType {
- PHONE = 'phone',
- TABLET = 'tablet',
- UNKNOWN = 'unknown'
+  PHONE = 'phone',
+  TABLET = 'tablet',
+  UNKNOWN = 'unknown'
 }
 ```
 
@@ -147,12 +147,12 @@ enum DeviceType {
 import { ExpoDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 export function SettingsScreen() {
- return (
- <ScrollView>
- <Text style={styles.title}>Device Information</Text>
- <ExpoDeviceInfo />
- </ScrollView>
- );
+  return (
+    <ScrollView>
+  <Text style={styles.title}>Device Information</Text>
+<ExpoDeviceInfo />
+</ScrollView>
+);
 }
 ```
 
@@ -162,25 +162,25 @@ import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 import { View, Text } from 'react-native';
 
 export function DeviceCard() {
- const device = useDeviceInfo();
+  const device = useDeviceInfo();
 
- return (
- <View style={styles.card}>
- <Text style={styles.label}>Device</Text>
- <Text style={styles.value}>
- {device.manufacturer} {device.modelName}
- </Text>
+  return (
+    <View style={styles.card}>
+  <Text style={styles.label}>Device</Text>
+<Text style={styles.value}>
+{device.manufacturer} {device.modelName}
+</Text>
 
- <Text style={styles.label}>Operating System</Text>
- <Text style={styles.value}>
- {device.osName} {device.osVersion}
- </Text>
+<Text style={styles.label}>Operating System</Text>
+<Text style={styles.value}>
+{device.osName} {device.osVersion}
+</Text>
 
- {device.isTablet && (
- <Text style={styles.badge}>Tablet Device</Text>
- )}
- </View>
- );
+{device.isTablet && (
+  <Text style={styles.badge}>Tablet Device</Text>
+)}
+</View>
+);
 }
 ```
 
@@ -189,25 +189,25 @@ export function DeviceCard() {
 import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 export function FeatureAvailability() {
- const device = useDeviceInfo();
+  const device = useDeviceInfo();
 
- return (
- <View>
- {device.hasNFC && (
- <FeatureCard
- title="NFC Payment"
- description="Available on this device"
- />
- )}
+  return (
+    <View>
+  {device.hasNFC && (
+    <FeatureCard
+    title="NFC Payment"
+    description="Available on this device"
+    />
+)}
 
- {device.hasGPS && (
- <FeatureCard
- title="Location Services"
- description="GPS enabled"
- />
- )}
- </View>
- );
+{device.hasGPS && (
+  <FeatureCard
+  title="Location Services"
+  description="GPS enabled"
+  />
+)}
+</View>
+);
 }
 ```
 
@@ -216,10 +216,10 @@ export function FeatureAvailability() {
 import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 
 export function ResponsiveLayout() {
- const device = useDeviceInfo();
- const isMobile = device.deviceType === 'phone';
+  const device = useDeviceInfo();
+  const isMobile = device.deviceType === 'phone';
 
- return isMobile ? <MobileLayout /> : <TabletLayout />;
+  return isMobile ? <MobileLayout /> : <TabletLayout />;
 }
 ```
 
@@ -261,19 +261,19 @@ import { useDeviceInfo } from '@htk/features/expo/deviceInfo';
 import { useRollbar } from '@htk/utils/rollbar';
 
 export function App() {
- const device = useDeviceInfo();
- const rollbar = useRollbar();
+  const device = useDeviceInfo();
+  const rollbar = useRollbar();
 
- // Include device info with error reports
- rollbar.configure({
- payload: {
- device: {
- platform: device.platform,
- osVersion: device.osVersion,
- modelName: device.modelName
- }
- }
- });
+  // Include device info with error reports
+  rollbar.configure({
+    payload: {
+      device: {
+        platform: device.platform,
+        osVersion: device.osVersion,
+        modelName: device.modelName
+      }
+  }
+});
 }
 ```
 
@@ -284,10 +284,10 @@ import { useAppSettings } from '@htk/features/appSettings';
 
 // Provide device-aware default settings
 function initializeSettings(device) {
- return {
- fontSize: device.isTablet ? 18 : 16,
- columnCount: device.isTablet ? 2 : 1
- };
+  return {
+    fontSize: device.isTablet ? 18 : 16,
+    columnCount: device.isTablet ? 2 : 1
+  };
 }
 ```
 

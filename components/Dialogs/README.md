@@ -32,17 +32,17 @@ Modal confirmation dialog for requesting user approval on actions.
 import { Confirm, useConfirm } from '@htk/components/Dialogs';
 
 <Confirm>
- <MyApp />
+<MyApp />
 </Confirm>
 
 // In components:
 const { confirm } = useConfirm();
 confirm({
- title: 'Delete?',
- buttons: [
- { label: 'Cancel', onPress: () => {} },
- { label: 'Delete', onPress: handleDelete }
- ]
+  title: 'Delete?',
+  buttons: [
+    { label: 'Cancel', onPress: () => {} },
+    { label: 'Delete', onPress: handleDelete }
+]
 });
 ```
 
@@ -90,28 +90,28 @@ Each dialog follows these patterns:
 import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 
 export function App() {
- return (
- <Confirm>
- <MainScreen />
- </Confirm>
- );
+  return (
+    <Confirm>
+  <MainScreen />
+</Confirm>
+);
 }
 
 function DeleteButton() {
- const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
- return (
- <Button
- title="Delete"
- onPress={() => confirm({
- title: 'Confirm Delete',
- buttons: [
- { label: 'Cancel', onPress: () => {} },
- { label: 'Delete', onPress: () => handleDelete() }
- ]
- })}
- />
- );
+  return (
+    <Button
+    title="Delete"
+    onPress={() => confirm({
+      title: 'Confirm Delete',
+      buttons: [
+        { label: 'Cancel', onPress: () => {} },
+        { label: 'Delete', onPress: () => handleDelete() }
+    ]
+})}
+/>
+);
 }
 ```
 
@@ -120,13 +120,13 @@ function DeleteButton() {
 import { Confirm } from '@htk/components/Dialogs/Confirm';
 
 export function App() {
- // Wrap with multiple dialog providers
- return (
- <Confirm>
- {/* Future: AlertDialog, PromptDialog, etc. */}
- <MainScreen />
- </Confirm>
- );
+  // Wrap with multiple dialog providers
+  return (
+    <Confirm>
+  {/* Future: AlertDialog, PromptDialog, etc. */}
+<MainScreen />
+</Confirm>
+);
 }
 ```
 
@@ -153,13 +153,13 @@ When adding new dialog types:
 
 1. **File Structure**
  ```text
- DialogType/
- ├── index.tsx # Main export
- ├── context.ts # State & dispatch logic
- ├── Root.tsx # Container component
- ├── YourComponent.tsx # Dialog subcomponents
- └── README.md # Documentation
- ```
+DialogType/
+├── index.tsx # Main export
+├── context.ts # State & dispatch logic
+├── Root.tsx # Container component
+├── YourComponent.tsx # Dialog subcomponents
+└── README.md # Documentation
+```
 
 2. **Context Pattern**
  ```typescript
@@ -237,20 +237,20 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { Confirm, useConfirm } from '@htk/components/Dialogs/Confirm';
 
 function TestComponent() {
- const { confirm } = useConfirm();
- return <Button onPress={() => confirm({ ... })} />;
+  const { confirm } = useConfirm();
+  return <Button onPress={() => confirm({ ... })} />;
 }
 
 test('confirms action', () => {
- const onConfirm = jest.fn();
- const { getByText } = render(
- <Confirm>
- <TestComponent onConfirm={onConfirm} />
- </Confirm>
- );
+  const onConfirm = jest.fn();
+  const { getByText } = render(
+    <Confirm>
+  <TestComponent onConfirm={onConfirm} />
+</Confirm>
+);
 
- fireEvent.press(getByText('Confirm'));
- expect(onConfirm).toHaveBeenCalled();
+fireEvent.press(getByText('Confirm'));
+expect(onConfirm).toHaveBeenCalled();
 });
 ```
 
@@ -259,39 +259,39 @@ test('confirms action', () => {
 ### Async Confirmation
 ```typescript
 function useAsyncConfirm() {
- const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
- return (title: string, message: string): Promise<boolean> => {
- return new Promise(resolve => {
- confirm({
- title,
- message,
- buttons: [
- { label: 'Cancel', onPress: () => resolve(false) },
- { label: 'Confirm', onPress: () => resolve(true) }
- ]
- });
- });
- };
+  return (title: string, message: string): Promise<boolean> => {
+    return new Promise(resolve => {
+      confirm({
+        title,
+        message,
+        buttons: [
+          { label: 'Cancel', onPress: () => resolve(false) },
+          { label: 'Confirm', onPress: () => resolve(true) }
+      ]
+  });
+});
+};
 }
 ```
 
 ### Confirmation with Data
 ```typescript
 function useConfirmWithData<T>() {
- const { confirm } = useConfirm();
+  const { confirm } = useConfirm();
 
- return (title: string, data: T): Promise<T null> => {
- return new Promise(resolve => {
- confirm({
- title,
- buttons: [
- { label: 'Cancel', onPress: () => resolve(null) },
- { label: 'Confirm', onPress: () => resolve(data) }
- ]
- });
- });
- };
+  return (title: string, data: T): Promise<T null> => {
+    return new Promise(resolve => {
+      confirm({
+        title,
+        buttons: [
+          { label: 'Cancel', onPress: () => resolve(null) },
+          { label: 'Confirm', onPress: () => resolve(data) }
+      ]
+  });
+});
+};
 }
 ```
 

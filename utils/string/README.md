@@ -74,25 +74,25 @@ snakeCaseToCapitalize('UPPER_CASE') // → 'Upper Case'
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 interface UserData {
- first_name: string;
- last_name: string;
- email_address: string;
- phone_number: string;
+  first_name: string;
+  last_name: string;
+  email_address: string;
+  phone_number: string;
 }
 
 function UserForm() {
- return (
- <View>
- <Label>{snakeCaseToCapitalize('first_name')}</Label>
- <TextInput placeholder="John" />
+  return (
+    <View>
+  <Label>{snakeCaseToCapitalize('first_name')}</Label>
+<TextInput placeholder="John" />
 
- <Label>{snakeCaseToCapitalize('last_name')}</Label>
- <TextInput placeholder="Doe" />
+<Label>{snakeCaseToCapitalize('last_name')}</Label>
+<TextInput placeholder="Doe" />
 
- <Label>{snakeCaseToCapitalize('email_address')}</Label>
- <TextInput placeholder="john@example.com" />
- </View>
- );
+<Label>{snakeCaseToCapitalize('email_address')}</Label>
+<TextInput placeholder="john@example.com" />
+</View>
+);
 }
 ```
 
@@ -101,26 +101,26 @@ function UserForm() {
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 enum OrderStatus {
- PENDING_PAYMENT = 'pending_payment',
- PROCESSING = 'processing',
- SHIPPED = 'shipped',
- DELIVERED = 'delivered'
+  PENDING_PAYMENT = 'pending_payment',
+  PROCESSING = 'processing',
+  SHIPPED = 'shipped',
+  DELIVERED = 'delivered'
 }
 
 function OrderStatusPicker() {
- const statuses = Object.values(OrderStatus);
+  const statuses = Object.values(OrderStatus);
 
- return (
- <Picker>
- {statuses.map(status => (
- <Picker.Item
- key={status}
- label={snakeCaseToCapitalize(status)}
- value={status}
- />
- ))}
- </Picker>
- );
+  return (
+    <Picker>
+  {statuses.map(status => (
+    <Picker.Item
+    key={status}
+  label={snakeCaseToCapitalize(status)}
+value={status}
+/>
+))}
+</Picker>
+);
 }
 ```
 
@@ -129,13 +129,13 @@ function OrderStatusPicker() {
 import { capitalize } from '@htk/utils/string';
 
 function ValidationError({ field }: { field: string }) {
- const fieldName = capitalize(field);
+  const fieldName = capitalize(field);
 
- return (
- <Text style={styles.error}>
- {fieldName} is required
- </Text>
- );
+  return (
+    <Text style={styles.error}>
+  {fieldName} is required
+</Text>
+);
 }
 
 // Usage
@@ -148,23 +148,23 @@ function ValidationError({ field }: { field: string }) {
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 interface APIResponse {
- user_id: string;
- created_at: string;
- updated_at: string;
- is_verified: boolean;
+  user_id: string;
+  created_at: string;
+  updated_at: string;
+  is_verified: boolean;
 }
 
 function DataDisplay(data: APIResponse) {
- return (
- <View>
- {Object.entries(data).map(([key, value]) => (
- <Row key={key}>
- <Label>{snakeCaseToCapitalize(key)}</Label>
- <Value>{String(value)}</Value>
- </Row>
- ))}
- </View>
- );
+  return (
+    <View>
+  {Object.entries(data).map(([key, value]) => (
+    <Row key={key}>
+  <Label>{snakeCaseToCapitalize(key)}</Label>
+<Value>{String(value)}</Value>
+</Row>
+))}
+</View>
+);
 }
 ```
 
@@ -173,12 +173,12 @@ function DataDisplay(data: APIResponse) {
 import { capitalize } from '@htk/utils/string';
 
 function SettingsOption({ name }: { name: string }) {
- return (
- <Row>
- <Label>{capitalize(name)}</Label>
- <Toggle />
- </Row>
- );
+  return (
+    <Row>
+  <Label>{capitalize(name)}</Label>
+<Toggle />
+</Row>
+);
 }
 
 // Usage
@@ -194,13 +194,13 @@ function SettingsOption({ name }: { name: string }) {
 import { capitalize, snakeCaseToCapitalize } from '@htk/utils/string';
 
 function normalizeFieldLabel(field: string): string {
- // If it contains underscores, convert from snake_case
- if (field.includes('_')) {
- return snakeCaseToCapitalize(field);
- }
+  // If it contains underscores, convert from snake_case
+  if (field.includes('_')) {
+    return snakeCaseToCapitalize(field);
+  }
 
- // Otherwise, just capitalize
- return capitalize(field);
+// Otherwise, just capitalize
+return capitalize(field);
 }
 
 normalizeFieldLabel('first_name') // → 'First Name'
@@ -213,29 +213,29 @@ normalizeFieldLabel('userId') // → 'Userid'
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 function createLabels<T extends Record<string, any>>(
- data: T
+  data: T
 ): Record<keyof T, string> {
- const labels = {} as Record<keyof T, string>;
+  const labels = {} as Record<keyof T, string>;
 
- for (const key in data) {
- labels[key] = snakeCaseToCapitalize(key);
- }
+  for (const key in data) {
+    labels[key] = snakeCaseToCapitalize(key);
+  }
 
- return labels;
+return labels;
 }
 
 const userLabels = createLabels({
- first_name: '',
- last_name: '',
- email_address: ''
+  first_name: '',
+  last_name: '',
+  email_address: ''
 });
 
 // Result:
 // {
-// first_name: 'First Name',
-// last_name: 'Last Name',
-// email_address: 'Email Address'
-// }
+  // first_name: 'First Name',
+  // last_name: 'Last Name',
+  // email_address: 'Email Address'
+  // }
 ```
 
 ### Localized String Utilities
@@ -243,11 +243,11 @@ const userLabels = createLabels({
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 function i18nLabel(key: string): string {
- // First convert to readable format
- const readable = snakeCaseToCapitalize(key);
+  // First convert to readable format
+  const readable = snakeCaseToCapitalize(key);
 
- // Then look up translation
- return i18n.t(key) readable;
+  // Then look up translation
+  return i18n.t(key) readable;
 }
 ```
 
@@ -258,11 +258,11 @@ import { capitalize } from '@htk/utils/string';
 type ValidationErrors = Record<string, string>;
 
 function formatValidationErrors(
- errors: ValidationErrors
+  errors: ValidationErrors
 ): string {
- return Object.entries(errors)
- .map(([field, error]) => `${capitalize(field)}: ${error}`)
- .join('\n');
+  return Object.entries(errors)
+.map(([field, error]) => `${capitalize(field)}: ${error}`)
+.join('\n');
 }
 
 // Result:
@@ -276,19 +276,19 @@ function formatValidationErrors(
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 interface FormShape {
- user_name: string;
- email_address: string;
- phone_number: string;
+  user_name: string;
+  email_address: string;
+  phone_number: string;
 }
 
 type FormLabels = {
- [K in keyof FormShape]: string;
+  [K in keyof FormShape]: string;
 };
 
 const labels: FormLabels = {
- user_name: snakeCaseToCapitalize('user_name'),
- email_address: snakeCaseToCapitalize('email_address'),
- phone_number: snakeCaseToCapitalize('phone_number')
+  user_name: snakeCaseToCapitalize('user_name'),
+  email_address: snakeCaseToCapitalize('email_address'),
+  phone_number: snakeCaseToCapitalize('phone_number')
 };
 ```
 
@@ -304,11 +304,11 @@ import { useMemo } from 'react';
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 function LabeledField({ fieldName }: { fieldName: string }) {
- const label = useMemo(() => {
- return snakeCaseToCapitalize(fieldName);
- }, [fieldName]);
+  const label = useMemo(() => {
+    return snakeCaseToCapitalize(fieldName);
+  }, [fieldName]);
 
- return <Label>{label}</Label>;
+  return <Label>{label}</Label>;
 }
 ```
 
@@ -319,14 +319,14 @@ function LabeledField({ fieldName }: { fieldName: string }) {
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 enum UserRole {
- SUPER_ADMIN = 'super_admin',
- ADMIN = 'admin',
- MODERATOR = 'moderator',
- USER = 'user'
+  SUPER_ADMIN = 'super_admin',
+  ADMIN = 'admin',
+  MODERATOR = 'moderator',
+  USER = 'user'
 }
 
 function RoleLabel({ role }: { role: UserRole }) {
- return <Text>{snakeCaseToCapitalize(role)}</Text>;
+  return <Text>{snakeCaseToCapitalize(role)}</Text>;
 }
 
 // Output:
@@ -341,17 +341,17 @@ function RoleLabel({ role }: { role: UserRole }) {
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 interface APIResponse {
- [key: string]: any;
+  [key: string]: any;
 }
 
 function transformForDisplay(data: APIResponse): Record<string, string> {
- const result: Record<string, string> = {};
+  const result: Record<string, string> = {};
 
- for (const [key, value] of Object.entries(data)) {
- result[snakeCaseToCapitalize(key)] = String(value);
- }
+  for (const [key, value] of Object.entries(data)) {
+    result[snakeCaseToCapitalize(key)] = String(value);
+  }
 
- return result;
+return result;
 }
 ```
 
@@ -360,23 +360,23 @@ function transformForDisplay(data: APIResponse): Record<string, string> {
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 const config = {
- max_retries: 3,
- timeout_ms: 5000,
- enable_logging: true,
- api_endpoint_url: 'https://api.example.com'
+  max_retries: 3,
+  timeout_ms: 5000,
+  enable_logging: true,
+  api_endpoint_url: 'https://api.example.com'
 };
 
 function ConfigDisplay() {
- return (
- <View>
- {Object.entries(config).map(([key, value]) => (
- <Row key={key}>
- <Label>{snakeCaseToCapitalize(key)}</Label>
- <Value>{String(value)}</Value>
- </Row>
- ))}
- </View>
- );
+  return (
+    <View>
+  {Object.entries(config).map(([key, value]) => (
+    <Row key={key}>
+  <Label>{snakeCaseToCapitalize(key)}</Label>
+<Value>{String(value)}</Value>
+</Row>
+))}
+</View>
+);
 }
 ```
 
@@ -434,48 +434,48 @@ snakeCaseToCapitalize('user_email@domain') // → 'User Email@domain'
 
 ```typescript
 describe('capitalize', () => {
- it('capitalizes first letter', () => {
- expect(capitalize('hello')).toBe('Hello');
- });
+  it('capitalizes first letter', () => {
+    expect(capitalize('hello')).toBe('Hello');
+  });
 
- it('lowercases rest of string', () => {
- expect(capitalize('HELLO')).toBe('Hello');
- });
+  it('lowercases rest of string', () => {
+    expect(capitalize('HELLO')).toBe('Hello');
+  });
 
- it('handles single character', () => {
- expect(capitalize('a')).toBe('A');
- });
+  it('handles single character', () => {
+    expect(capitalize('a')).toBe('A');
+  });
 
- it('handles empty string', () => {
- expect(capitalize('')).toBe('');
- });
+  it('handles empty string', () => {
+    expect(capitalize('')).toBe('');
+  });
 });
 
 describe('snakeCaseToCapitalize', () => {
- it('converts snake_case to Title Case', () => {
- expect(snakeCaseToCapitalize('first_name')).toBe('First Name');
- });
+  it('converts snake_case to Title Case', () => {
+    expect(snakeCaseToCapitalize('first_name')).toBe('First Name');
+  });
 
- it('handles multiple underscores', () => {
- expect(snakeCaseToCapitalize('user_profile_page'))
- .toBe('User Profile Page');
- });
+  it('handles multiple underscores', () => {
+    expect(snakeCaseToCapitalize('user_profile_page'))
+  .toBe('User Profile Page');
+});
 
- it('handles single word', () => {
- expect(snakeCaseToCapitalize('email')).toBe('Email');
- });
+it('handles single word', () => {
+  expect(snakeCaseToCapitalize('email')).toBe('Email');
+});
 
- it('handles uppercase', () => {
- expect(snakeCaseToCapitalize('UPPER_CASE')).toBe('Upper Case');
- });
+it('handles uppercase', () => {
+  expect(snakeCaseToCapitalize('UPPER_CASE')).toBe('Upper Case');
+});
 
- it('handles empty string', () => {
- expect(snakeCaseToCapitalize('')).toBe('');
- });
+it('handles empty string', () => {
+  expect(snakeCaseToCapitalize('')).toBe('');
+});
 
- it('handles mixed case', () => {
- expect(snakeCaseToCapitalize('myVar_name')).toBe('Myvar Name');
- });
+it('handles mixed case', () => {
+  expect(snakeCaseToCapitalize('myVar_name')).toBe('Myvar Name');
+});
 });
 ```
 

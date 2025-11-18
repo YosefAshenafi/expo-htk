@@ -31,8 +31,8 @@ Geographic and location-related types.
 import type { ICoordinates } from '@htk/types';
 
 const point: ICoordinates = {
- latitude: 40.7128,
- longitude: -74.0060
+  latitude: 40.7128,
+  longitude: -74.0060
 };
 ```
 
@@ -50,24 +50,24 @@ types/
 
 ```typescript
 interface ICoordinates {
- latitude: number;
- longitude: number;
+  latitude: number;
+  longitude: number;
 }
 
 interface IMapBoxFeature {
- type: 'Feature';
- geometry: {
- type: 'Point';
- coordinates: [number, number];
- };
- properties: Record<string, any>;
+  type: 'Feature';
+  geometry: {
+    type: 'Point';
+    coordinates: [number, number];
+  };
+  properties: Record<string, any>;
 }
 
 interface ILocation {
- coordinates: ICoordinates;
- address?: string;
- city?: string;
- country?: string;
+  coordinates: ICoordinates;
+  address?: string;
+  city?: string;
+  country?: string;
 }
 ```
 
@@ -78,8 +78,8 @@ interface ILocation {
 import type { IMapBoxFeature } from '@htk/types';
 
 async function reverseGeocode(coords: ICoordinates): Promise<IMapBoxFeature> {
- const response = await fetch(`/api/geocode?lat=${coords.latitude}&lon=${coords.longitude}`);
- return response.json();
+  const response = await fetch(`/api/geocode?lat=${coords.latitude}&lon=${coords.longitude}`);
+  return response.json();
 }
 ```
 
@@ -88,8 +88,8 @@ async function reverseGeocode(coords: ICoordinates): Promise<IMapBoxFeature> {
 import type { ICoordinates } from '@htk/types';
 
 interface UserLocationState {
- current: ICoordinates null;
- history: ICoordinates[];
+  current: ICoordinates null;
+  history: ICoordinates[];
 }
 ```
 
@@ -98,10 +98,10 @@ interface UserLocationState {
 import type { ICoordinates } from '@htk/types';
 
 function calculateDistance(
- from: ICoordinates,
- to: ICoordinates
+  from: ICoordinates,
+  to: ICoordinates
 ): number {
- // Implementation
+  // Implementation
 }
 ```
 
@@ -143,17 +143,17 @@ Group types by feature:
 import type { ICoordinates } from '@htk/types';
 
 interface ExtendedCoordinates extends ICoordinates {
- altitude?: number;
- accuracy?: number;
+  altitude?: number;
+  accuracy?: number;
 }
 ```
 
 ### Generic Types
 ```typescript
 interface Response<T> {
- data: T;
- error: string null;
- loading: boolean;
+  data: T;
+  error: string null;
+  loading: boolean;
 }
 
 type LocationResponse = Response<ICoordinates>;
@@ -174,8 +174,8 @@ import type { ICoordinates } from '@htk/types';
 import { calculateHaversineDistance } from '@htk/utils';
 
 const distance = calculateHaversineDistance(
- point1 as ICoordinates,
- point2 as ICoordinates
+  point1 as ICoordinates,
+  point2 as ICoordinates
 );
 ```
 
@@ -186,12 +186,12 @@ const distance = calculateHaversineDistance(
 import type { ICoordinates } from '@htk/types';
 
 interface MapProps {
- center: ICoordinates;
- zoom: number;
+  center: ICoordinates;
+  zoom: number;
 }
 
 export function Map(props: MapProps) {
- // Implementation
+  // Implementation
 }
 ```
 
@@ -200,9 +200,9 @@ export function Map(props: MapProps) {
 import type { ICoordinates } from '@htk/types';
 
 function LocationTracker() {
- const [location, setLocation] = useState<ICoordinates null>(null);
+  const [location, setLocation] = useState<ICoordinates null>(null);
 
- return <View>{/* UI */}</View>;
+  return <View>{/* UI */}</View>;
 }
 ```
 
@@ -214,13 +214,13 @@ import type { ICoordinates } from '@htk/types';
 
 // Compile-time checks
 const validCoord: ICoordinates = {
- latitude: 0,
- longitude: 0
+  latitude: 0,
+  longitude: 0
 };
 
 // @ts-expect-error - missing required property
 const invalidCoord: ICoordinates = {
- latitude: 0
+  latitude: 0
 };
 ```
 
@@ -229,13 +229,13 @@ const invalidCoord: ICoordinates = {
 ### JSDoc for Types
 ```typescript
 /**
- * Geographic coordinates
- * @property latitude - Latitude in degrees (-90 to 90)
- * @property longitude - Longitude in degrees (-180 to 180)
- */
+* Geographic coordinates
+* @property latitude - Latitude in degrees (-90 to 90)
+* @property longitude - Longitude in degrees (-180 to 180)
+*/
 export interface ICoordinates {
- latitude: number;
- longitude: number;
+  latitude: number;
+  longitude: number;
 }
 ```
 
@@ -269,7 +269,7 @@ Potential types to add:
 ### Before (Inline)
 ```typescript
 function process(data: { lat: number; lng: number }) {
- // Implementation
+  // Implementation
 }
 ```
 
@@ -278,7 +278,7 @@ function process(data: { lat: number; lng: number }) {
 import type { ICoordinates } from '@htk/types';
 
 function process(data: ICoordinates) {
- // Implementation
+  // Implementation
 }
 ```
 

@@ -20,10 +20,10 @@ Offers components for:
 AppSettings (Main Component)
 ├── Container (Wrapper/Layout)
 └── Entries/
- ├── Base (Foundation)
- ├── Switch (Boolean)
- ├── FontFamily (Selection)
- └── FontSize (Numeric)
+├── Base (Foundation)
+├── Switch (Boolean)
+├── FontFamily (Selection)
+└── FontSize (Numeric)
 ```
 
 ## Files Included
@@ -54,21 +54,21 @@ Specialized entry components for different setting types.
 import { SwitchEntry, FontFamilyEntry, FontSizeEntry } from '@htk/features/appSettings/components/Entries';
 
 <SwitchEntry
- label="Dark Mode"
- value={isDark}
- onChange={(val) => setIsDark(val)}
+label="Dark Mode"
+value={isDark}
+onChange={(val) => setIsDark(val)}
 />
 
 <FontFamilyEntry
- label="Font Family"
- value={fontFamily}
- onChange={(val) => setFontFamily(val)}
+label="Font Family"
+value={fontFamily}
+onChange={(val) => setFontFamily(val)}
 />
 
 <FontSizeEntry
- label="Font Size"
- value={fontSize}
- onChange={(val) => setFontSize(val)}
+label="Font Size"
+value={fontSize}
+onChange={(val) => setFontSize(val)}
 />
 ```
 
@@ -79,8 +79,8 @@ The main settings display component that renders a list of configured settings e
 
 ```typescript
 interface AppSettingsProps {
- entries: SettingsEntry[];
- onSettingChange: (key: string, value: any) => void;
+  entries: SettingsEntry[];
+  onSettingChange: (key: string, value: any) => void;
 }
 ```
 
@@ -89,20 +89,20 @@ interface AppSettingsProps {
 import { AppSettings } from '@htk/features/appSettings/components';
 
 function SettingsScreen() {
- const entries = [
- { type: 'switch', key: 'darkMode', label: 'Dark Mode' },
- { type: 'fontFamily', key: 'fontFamily', label: 'Font Family' },
- { type: 'fontSize', key: 'fontSize', label: 'Font Size' }
- ];
+  const entries = [
+    { type: 'switch', key: 'darkMode', label: 'Dark Mode' },
+    { type: 'fontFamily', key: 'fontFamily', label: 'Font Family' },
+    { type: 'fontSize', key: 'fontSize', label: 'Font Size' }
+];
 
- return (
- <AppSettings
- entries={entries}
- onSettingChange={(key, value) => {
- console.log(`${key}: ${value}`);
- }}
- />
- );
+return (
+  <AppSettings
+  entries={entries}
+onSettingChange={(key, value) => {
+  console.log(`${key}: ${value}`);
+}}
+/>
+);
 }
 ```
 
@@ -118,7 +118,7 @@ Wrapper component that provides layout and styling context for settings.
 
 ```typescript
 interface ContainerProps {
- children: ReactNode;
+  children: ReactNode;
 }
 ```
 
@@ -127,11 +127,11 @@ interface ContainerProps {
 import { Container } from '@htk/features/appSettings/components';
 
 function CustomSettings() {
- return (
- <Container>
- {/* Your custom settings entries */}
- </Container>
- );
+  return (
+    <Container>
+  {/* Your custom settings entries */}
+</Container>
+);
 }
 ```
 
@@ -148,49 +148,49 @@ function CustomSettings() {
 import { AppSettings } from '@htk/features/appSettings/components';
 
 function SettingsScreen() {
- const [settings, setSettings] = useState({
- darkMode: false,
- fontFamily: 'System',
- fontSize: 16
- });
+  const [settings, setSettings] = useState({
+    darkMode: false,
+    fontFamily: 'System',
+    fontSize: 16
+  });
 
- const entries = [
- {
- type: 'switch',
- key: 'darkMode',
- label: 'Dark Mode',
- defaultValue: settings.darkMode
- },
- {
- type: 'fontFamily',
- key: 'fontFamily',
- label: 'Font Family',
- defaultValue: settings.fontFamily
- },
- {
- type: 'fontSize',
- key: 'fontSize',
- label: 'Font Size',
- defaultValue: settings.fontSize
- }
- ];
+  const entries = [
+    {
+      type: 'switch',
+      key: 'darkMode',
+      label: 'Dark Mode',
+      defaultValue: settings.darkMode
+    },
+    {
+      type: 'fontFamily',
+      key: 'fontFamily',
+      label: 'Font Family',
+      defaultValue: settings.fontFamily
+    },
+    {
+      type: 'fontSize',
+      key: 'fontSize',
+      label: 'Font Size',
+      defaultValue: settings.fontSize
+    }
+];
 
- const handleSettingChange = (key: string, value: any) => {
- setSettings(prev => ({
- ...prev,
- [key]: value
- }));
- };
+const handleSettingChange = (key: string, value: any) => {
+  setSettings(prev => ({
+    ...prev,
+    [key]: value
+  }));
+};
 
- return (
- <ScrollView>
- <Text style={styles.title}>Settings</Text>
- <AppSettings
- entries={entries}
- onSettingChange={handleSettingChange}
- />
- </ScrollView>
- );
+return (
+  <ScrollView>
+<Text style={styles.title}>Settings</Text>
+<AppSettings
+entries={entries}
+onSettingChange={handleSettingChange}
+/>
+</ScrollView>
+);
 }
 ```
 
@@ -200,44 +200,44 @@ import { Container } from '@htk/features/appSettings/components';
 import { SwitchEntry } from '@htk/features/appSettings/components/Entries';
 
 function GroupedSettingsScreen() {
- return (
- <ScrollView>
- {/* Appearance Section */}
- <Container>
- <Text style={styles.sectionTitle}>Appearance</Text>
- <SwitchEntry
- label="Dark Mode"
- value={isDark}
- onChange={handleChange}
- />
- <FontFamilyEntry
- label="Font Family"
- value={fontFamily}
- onChange={handleChange}
- />
- <FontSizeEntry
- label="Font Size"
- value={fontSize}
- onChange={handleChange}
- />
- </Container>
+  return (
+    <ScrollView>
+  {/* Appearance Section */}
+<Container>
+<Text style={styles.sectionTitle}>Appearance</Text>
+<SwitchEntry
+label="Dark Mode"
+value={isDark}
+onChange={handleChange}
+/>
+<FontFamilyEntry
+label="Font Family"
+value={fontFamily}
+onChange={handleChange}
+/>
+<FontSizeEntry
+label="Font Size"
+value={fontSize}
+onChange={handleChange}
+/>
+</Container>
 
- {/* Notification Section */}
- <Container>
- <Text style={styles.sectionTitle}>Notifications</Text>
- <SwitchEntry
- label="Push Notifications"
- value={notificationsEnabled}
- onChange={handleChange}
- />
- <SwitchEntry
- label="Email Notifications"
- value={emailNotifications}
- onChange={handleChange}
- />
- </Container>
- </ScrollView>
- );
+{/* Notification Section */}
+<Container>
+<Text style={styles.sectionTitle}>Notifications</Text>
+<SwitchEntry
+label="Push Notifications"
+value={notificationsEnabled}
+onChange={handleChange}
+/>
+<SwitchEntry
+label="Email Notifications"
+value={emailNotifications}
+onChange={handleChange}
+/>
+</Container>
+</ScrollView>
+);
 }
 ```
 
@@ -246,20 +246,20 @@ function GroupedSettingsScreen() {
 import { AppSettings } from '@htk/features/appSettings/components';
 
 function DynamicSettingsScreen({ userTier }) {
- const basicEntries = [
- { type: 'switch', key: 'darkMode', label: 'Dark Mode' }
- ];
+  const basicEntries = [
+    { type: 'switch', key: 'darkMode', label: 'Dark Mode' }
+];
 
- const premiumEntries = [
- { type: 'fontFamily', key: 'fontFamily', label: 'Font Family' },
- { type: 'fontSize', key: 'fontSize', label: 'Font Size' }
- ];
+const premiumEntries = [
+  { type: 'fontFamily', key: 'fontFamily', label: 'Font Family' },
+  { type: 'fontSize', key: 'fontSize', label: 'Font Size' }
+];
 
- const entries = userTier === 'premium'
- ? [...basicEntries, ...premiumEntries]
- : basicEntries;
+const entries = userTier === 'premium'
+? [...basicEntries, ...premiumEntries]
+: basicEntries;
 
- return <AppSettings entries={entries} onSettingChange={handleChange} />;
+return <AppSettings entries={entries} onSettingChange={handleChange} />;
 }
 ```
 
@@ -269,28 +269,28 @@ import { Container } from '@htk/features/appSettings/components';
 import { FontSizeEntry } from '@htk/features/appSettings/components/Entries';
 
 function ValidatedSettingsScreen() {
- const [fontSize, setFontSize] = useState(16);
- const [error, setError] = useState<string null>(null);
+  const [fontSize, setFontSize] = useState(16);
+  const [error, setError] = useState<string null>(null);
 
- const handleFontSizeChange = (size: number) => {
- if (size < 12 size > 32) {
- setError('Font size must be between 12 and 32');
- return;
- }
- setError(null);
- setFontSize(size);
- };
+  const handleFontSizeChange = (size: number) => {
+    if (size < 12 size > 32) {
+      setError('Font size must be between 12 and 32');
+      return;
+    }
+  setError(null);
+  setFontSize(size);
+};
 
- return (
- <Container>
- <FontSizeEntry
- label="Font Size"
- value={fontSize}
- onChange={handleFontSizeChange}
- />
- {error && <Text style={styles.error}>{error}</Text>}
- </Container>
- );
+return (
+  <Container>
+<FontSizeEntry
+label="Font Size"
+value={fontSize}
+onChange={handleFontSizeChange}
+/>
+{error && <Text style={styles.error}>{error}</Text>}
+</Container>
+);
 }
 ```
 
@@ -304,23 +304,23 @@ import { AppSettings } from '@htk/features/appSettings/components';
 
 // Create settings system
 const { useAppSettings, setAppSettings } = createAppSettings({
- darkMode: false,
- fontFamily: 'System',
- fontSize: 16
+  darkMode: false,
+  fontFamily: 'System',
+  fontSize: 16
 });
 
 // Use in component
 function SettingsScreen() {
- const settings = useAppSettings();
+  const settings = useAppSettings();
 
- return (
- <AppSettings
- entries={[...]}
- onSettingChange={(key, value) => {
- setAppSettings({ ...settings, [key]: value });
- }}
- />
- );
+  return (
+    <AppSettings
+    entries={[...]}
+  onSettingChange={(key, value) => {
+    setAppSettings({ ...settings, [key]: value });
+  }}
+/>
+);
 }
 ```
 
@@ -336,11 +336,11 @@ All components use `react-native-ui-lib` theming:
 import { View, Text } from 'react-native-ui-lib';
 
 function StyledSetting() {
- return (
- <View padding-16 backgroundColor="$backgroundColor">
- <Text text70>Setting Label</Text>
- </View>
- );
+  return (
+    <View padding-16 backgroundColor="$backgroundColor">
+  <Text text70>Setting Label</Text>
+</View>
+);
 }
 ```
 
@@ -365,9 +365,9 @@ Components support:
 import { useMemo } from 'react';
 
 function OptimizedSettings({ entries, onChangehandlers }) {
- const memoizedEntries = useMemo(() => entries, [entries]);
+  const memoizedEntries = useMemo(() => entries, [entries]);
 
- return <AppSettings entries={memoizedEntries} {...onChangehandlers} />;
+  return <AppSettings entries={memoizedEntries} {...onChangehandlers} />;
 }
 ```
 
@@ -398,11 +398,11 @@ When creating custom settings entries:
 import { BaseEntry } from '@htk/features/appSettings/components/Entries';
 
 interface MyEntryProps extends BaseEntryProps {
-customProp?: string;
+  customProp?: string;
 }
 
 export function MyEntry({ customProp, ...props }: MyEntryProps) {
-return <BaseEntry {...props}>...</BaseEntry>;
+  return <BaseEntry {...props}>...</BaseEntry>;
 }
 ```
 
@@ -414,7 +414,7 @@ export { MyEntry } from './MyEntry';
 3. **Use in AppSettings**
  ```typescript
 const entries = [
-{ type: 'myType', key: 'myKey', label: 'My Setting' }
+  { type: 'myType', key: 'myKey', label: 'My Setting' }
 ];
 ```
 
@@ -438,15 +438,15 @@ import { render } from '@testing-library/react-native';
 import { AppSettings } from '@htk/features/appSettings/components';
 
 test('renders settings entries', () => {
- const entries = [
- { type: 'switch', key: 'test', label: 'Test' }
- ];
+  const entries = [
+    { type: 'switch', key: 'test', label: 'Test' }
+];
 
- const { getByText } = render(
- <AppSettings entries={entries} onSettingChange={jest.fn()} />
- );
+const { getByText } = render(
+  <AppSettings entries={entries} onSettingChange={jest.fn()} />
+);
 
- expect(getByText('Test')).toBeTruthy();
+expect(getByText('Test')).toBeTruthy();
 });
 ```
 

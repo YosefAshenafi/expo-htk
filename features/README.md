@@ -32,8 +32,8 @@ Complete settings management system with UI and persistence.
 import { createAppSettings } from '@htk/features/appSettings';
 
 const { useAppSettings, updateAppSetting } = createAppSettings({
- darkMode: false,
- fontSize: 16
+  darkMode: false,
+  fontSize: 16
 });
 ```
 
@@ -54,11 +54,11 @@ Comprehensive theme management with light/dark mode support.
 import { createTheme } from '@htk/features/theme';
 
 const { ThemeProvider, useThemeScheme, useChangeTheme } = createTheme({
- enabled: true,
- ignoreSystemMode: false,
- supportDarkMode: true,
- defaultScheme: 'light',
- schemes: { light: {...}, dark: {...} }
+  enabled: true,
+  ignoreSystemMode: false,
+  supportDarkMode: true,
+  defaultScheme: 'light',
+  schemes: { light: {...}, dark: {...} }
 });
 ```
 
@@ -109,12 +109,12 @@ When creating new features:
 ```typescript
 // features/myFeature/index.ts
 export function createMyFeature(options: Options) {
- // Create and return hooks, components, state
- return {
- MyProvider,
- useMyFeature,
- updateMyFeature
- };
+  // Create and return hooks, components, state
+  return {
+    MyProvider,
+    useMyFeature,
+    updateMyFeature
+  };
 }
 ```
 
@@ -122,7 +122,7 @@ export function createMyFeature(options: Options) {
 ```typescript
 // features/myFeature/components/
 export function MyComponent(props: MyComponentProps) {
- // Component implementation
+  // Component implementation
 }
 ```
 
@@ -130,11 +130,11 @@ export function MyComponent(props: MyComponentProps) {
 ```typescript
 // features/myFeature/types.ts
 export interface MyFeatureState {
- // State shape
+  // State shape
 }
 
 export interface MyFeatureOptions {
- // Configuration options
+  // Configuration options
 }
 ```
 
@@ -159,13 +159,13 @@ Complete API documentation
 import { createPersistedState } from '@htk/states';
 
 export function createMyFeature(initial: State) {
- const persistedAtom = createPersistedState();
- const atom = persistedAtom('myFeature', initial);
+  const persistedAtom = createPersistedState();
+  const atom = persistedAtom('myFeature', initial);
 
- return {
- useFeature: () => useAtomValue(atom),
- updateFeature: () => useSetAtom(atom)
- };
+  return {
+    useFeature: () => useAtomValue(atom),
+    updateFeature: () => useSetAtom(atom)
+};
 }
 ```
 
@@ -174,15 +174,15 @@ export function createMyFeature(initial: State) {
 import { useThemeScheme } from '@htk/features/theme';
 
 function ThemedFeature() {
- const scheme = useThemeScheme();
+  const scheme = useThemeScheme();
 
- return (
- <View style={{
- backgroundColor: scheme === 'dark' ? '#000' : '#fff'
- }}>
- {/* Feature content */}
- </View>
- );
+  return (
+    <View style={{
+      backgroundColor: scheme === 'dark' ? '#000' : '#fff'
+    }}>
+  {/* Feature content */}
+</View>
+);
 }
 ```
 
@@ -191,13 +191,13 @@ function ThemedFeature() {
 import { useAppSettings } from '@htk/features/appSettings';
 
 function SettingsAwareFeature() {
- const settings = useAppSettings();
+  const settings = useAppSettings();
 
- return (
- <Text style={{ fontSize: settings.fontSize }}>
- Settings-aware text
- </Text>
- );
+  return (
+    <Text style={{ fontSize: settings.fontSize }}>
+  Settings-aware text
+</Text>
+);
 }
 ```
 
@@ -230,16 +230,16 @@ import { createAppSettings } from '@htk/features/appSettings';
 import { createTheme } from '@htk/features/theme';
 
 function App() {
- const { AppSettingsProvider } = createAppSettings({...});
- const { ThemeProvider } = createTheme({...});
+  const { AppSettingsProvider } = createAppSettings({...});
+  const { ThemeProvider } = createTheme({...});
 
- return (
- <AppSettingsProvider>
- <ThemeProvider>
- <MainApp />
- </ThemeProvider>
- </AppSettingsProvider>
- );
+  return (
+    <AppSettingsProvider>
+  <ThemeProvider>
+<MainApp />
+</ThemeProvider>
+</AppSettingsProvider>
+);
 }
 ```
 
@@ -252,8 +252,8 @@ Features can communicate through:
 import { useAppSettings } from '@htk/features/appSettings';
 
 function SettingsConsumer() {
- const settings = useAppSettings();
- // Use settings
+  const settings = useAppSettings();
+  // Use settings
 }
 ```
 
@@ -277,27 +277,27 @@ const [Provider, useContext] = contextBuilder(initialState);
 import { createAppSettings } from '@htk/features/appSettings';
 
 describe('appSettings', () => {
- it('creates settings with defaults', () => {
- const { useAppSettings } = createAppSettings({
- count: 0
- });
+  it('creates settings with defaults', () => {
+    const { useAppSettings } = createAppSettings({
+      count: 0
+    });
 
- // Test initial state
- const settings = useAppSettings();
- expect(settings.count).toBe(0);
- });
+    // Test initial state
+    const settings = useAppSettings();
+    expect(settings.count).toBe(0);
+  });
 
- it('updates settings', () => {
- const { useAppSettings, updateAppSetting } = createAppSettings({
- count: 0
- });
+  it('updates settings', () => {
+    const { useAppSettings, updateAppSetting } = createAppSettings({
+      count: 0
+    });
 
- const update = updateAppSetting();
- update('count', 1);
+    const update = updateAppSetting();
+    update('count', 1);
 
- const settings = useAppSettings();
- expect(settings.count).toBe(1);
- });
+    const settings = useAppSettings();
+    expect(settings.count).toBe(1);
+  });
 });
 ```
 

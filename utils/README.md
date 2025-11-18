@@ -106,7 +106,7 @@ import { Observer } from '@htk/utils/observer';
 
 const observer = new Observer<Data, Event>();
 const unsubscribe = observer.subscribe('event', (data) => {
- console.log(data);
+  console.log(data);
 });
 observer.notify('event', { /* data */ });
 ```
@@ -124,7 +124,7 @@ Factory for creating typed context systems.
 import { contextBuilder } from '@htk/utils/react';
 
 const [Provider, useContext, useDispatch, useUpdate] = contextBuilder({
- count: 0
+  count: 0
 });
 ```
 
@@ -143,7 +143,7 @@ Styling helpers for consistent UI.
 import { Dividers } from '@htk/utils/theme';
 
 <View style={Dividers.bottom1}>
- <Text>Divider below</Text>
+<Text>Divider below</Text>
 </View>
 ```
 
@@ -226,9 +226,9 @@ import { enumToStr } from '@htk/utils/enum';
 enum Status { ACTIVE = 'active', INACTIVE = 'inactive' }
 
 <Picker>
- {Object.values(Status).map(s => (
- <Picker.Item label={enumToStr(s)} value={s} />
- ))}
+{Object.values(Status).map(s => (
+  <Picker.Item label={enumToStr(s)} value={s} />
+))}
 </Picker>
 ```
 
@@ -240,7 +240,7 @@ type UserEvent = 'created' 'updated' 'deleted';
 const observer = new Observer<User, UserEvent>();
 
 const unsub = observer.subscribe('updated', (user) => {
- console.log('User updated:', user);
+  console.log('User updated:', user);
 });
 
 observer.notify('updated', userData);
@@ -252,19 +252,19 @@ unsub(); // Unsubscribe
 import { contextBuilder } from '@htk/utils/react';
 
 const [AppProvider, useApp, useDispatch, useUpdate] = contextBuilder({
- theme: 'light',
- language: 'en'
+  theme: 'light',
+  language: 'en'
 });
 
 function App() {
- return <AppProvider><MainContent /></AppProvider>;
+  return <AppProvider><MainContent /></AppProvider>;
 }
 
 function Content() {
- const app = useApp();
- const update = useUpdate();
+  const app = useApp();
+  const update = useUpdate();
 
- return <Text>{app.theme}</Text>;
+  return <Text>{app.theme}</Text>;
 }
 ```
 
@@ -275,7 +275,7 @@ function Content() {
 import { snakeCaseToCapitalize } from '@htk/utils/string';
 
 function FieldLabel({ field }: { field: string }) {
- return <Text>{snakeCaseToCapitalize(field)}</Text>;
+  return <Text>{snakeCaseToCapitalize(field)}</Text>;
 }
 ```
 
@@ -292,8 +292,8 @@ const dialogObserver = new Observer<DialogData, DialogEvent>();
 import { contextBuilder } from '@htk/utils/react';
 
 const [SettingsProvider, useSettings] = contextBuilder({
- fontSize: 16,
- isDark: false
+  fontSize: 16,
+  isDark: false
 });
 ```
 
@@ -305,9 +305,9 @@ import { enumToStr } from '@htk/utils/enum';
 enum FontSize { SMALL = 'small', MEDIUM = 'medium', LARGE = 'large' }
 
 <Picker>
- {Object.values(FontSize).map(size => (
- <Picker.Item label={enumToStr(size)} value={size} />
- ))}
+{Object.values(FontSize).map(size => (
+  <Picker.Item label={enumToStr(size)} value={size} />
+))}
 </Picker>
 ```
 
@@ -343,8 +343,8 @@ enum FontSize { SMALL = 'small', MEDIUM = 'medium', LARGE = 'large' }
 import { capitalize, snakeCaseToCapitalize } from '@htk/utils/string';
 
 test('capitalizes correctly', () => {
- expect(capitalize('hello')).toBe('Hello');
- expect(snakeCaseToCapitalize('hello_world')).toBe('Hello World');
+  expect(capitalize('hello')).toBe('Hello');
+  expect(snakeCaseToCapitalize('hello_world')).toBe('Hello World');
 });
 ```
 
@@ -353,13 +353,13 @@ test('capitalizes correctly', () => {
 import { Observer } from '@htk/utils/observer';
 
 test('notifies subscribers', () => {
- const observer = new Observer<{}, 'test'>();
- const callback = jest.fn();
+  const observer = new Observer<{}, 'test'>();
+  const callback = jest.fn();
 
- observer.subscribe('test', callback);
- observer.notify('test', {});
+  observer.subscribe('test', callback);
+  observer.notify('test', {});
 
- expect(callback).toHaveBeenCalled();
+  expect(callback).toHaveBeenCalled();
 });
 ```
 
